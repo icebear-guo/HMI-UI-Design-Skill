@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "kind": "style-proposal",
+  "files": [
+    {
+      "file": "index.html",
+      "sha256": "bf566426957f1cf4c5eb8d4b177f8326a8e542ac55f18ef1ef7a849724da6c45",
+      "bytes": 20481
+    },
+    {
+      "file": "proposal.json",
+      "sha256": "a8ce39a0ee5d9e511c97c3bbb9f95a0e41e105a8197bc7decc707124be75c1f4",
+      "bytes": 9181
+    },
+    {
+      "file": "selection.pending.json",
+      "sha256": "a39929c9a8f936a38f036d9e7714ea831d46ad1bc832b8b2de9f8bae391b466e",
+      "bytes": 151
+    }
+  ]
+}

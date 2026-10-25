@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "example_id": "page-framework-example-v1",
+  "status": "proposed",
+  "scope": "用于说明公共框架、组件布局与倍率换算；不是默认参数、现场验证结果或已批准工程",
+  "canvas_px": [1024, 600],
+  "preview": {
+    "size_px": [2048, 1200],
+    "scale_xy": [2, 2],
+    "origin_offset_px": [0, 0],
+    "cropped": false
+  },
+  "regions": {
+    "status_bar_rect_px": [0, 0, 1024, 48],
+    "alarm_area_rect_px": [0, 48, 1024, 32],
+    "content_area_rect_px": [24, 96, 976, 430],
+    "navigation": {
+      "button_size_px": [124, 40],
+      "button_x_px": [24, 166, 308, 450, 592, 734, 876],
+      "button_y_px": 540,
+      "note": "导航数量和位置仅为演示，可按实际任务重排；热区需另行验证"
+    }
+  },
+  "coordinate_example": {
+    "design_rect_px": [24, 540, 124, 40],
+    "preview_rect_px": [48, 1080, 248, 80],
+    "independent_asset_size_px": [124, 40],
+    "independent_asset_export_scale": 1,
+    "note": "整页预览倍率不改变独立资产已导出的实际像素"
+  },
+  "component_layers": ["background", "control_plate", "icon", "editable_label", "indicator", "hit_area"],
+  "state_example": {
+    "component_id": "action-button",
+    "raw_codes": ["s0", "s1"],
+    "semantic_dimension": "interaction",
+    "behavior": "momentary",
+    "states": {"s0": "default", "s1": "pressed"},
+    "on_press": "s1",
+    "on_release_or_cancel": "s0",
+    "mapping_status": "defined"
+  },
+  "color_and_typography": {
+    "parameter_file": "design-tokens.template.json",
+    "note": "采用适合目标设备的颜色、字体和字号；示例几何不替代现场可读性与触控验证"
+  }
+}

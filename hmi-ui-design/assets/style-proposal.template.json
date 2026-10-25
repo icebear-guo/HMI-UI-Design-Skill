@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "title": "设备总览方向打样",
+  "canvas_px": [1024, 600],
+  "physical_size": {"diagonal_in": null, "visible_width_mm": null, "visible_height_mm": null},
+  "representative_page_id": "overview",
+  "navigation_items": [
+    {"id": "overview", "label": "设备总览"},
+    {"id": "parameters", "label": "参数设置"},
+    {"id": "io", "label": "IO 监视"},
+    {"id": "alarms", "label": "报警记录"}
+  ],
+  "snapshot": {
+    "page_title": "设备总览",
+    "object_label": "设备单元 01",
+    "mode": "待机",
+    "connection": "本地模拟",
+    "alarm": "本地演示 · 暂无活动报警",
+    "metrics": [
+      {"id": "speed", "label": "运行速度", "value": 45, "min": 0, "max": 100, "unit": "%"},
+      {"id": "temperature", "label": "当前温度", "value": 32, "min": 0, "max": 100, "unit": "°C"},
+      {"id": "output", "label": "累计产量", "value": 1250, "min": 0, "max": 2000, "unit": "件"}
+    ],
+    "units": [
+      {"id": "feed", "label": "进料单元", "on": true},
+      {"id": "process", "label": "处理单元", "on": false},
+      {"id": "discharge", "label": "出料单元", "on": false}
+    ],
+    "actions": [
+      {"id": "start", "label": "启动", "effect": "start"},
+      {"id": "stop", "label": "停止", "effect": "stop"},
+      {"id": "reset", "label": "重置", "effect": "reset"}
+    ]
+  },
+  "variants": [
+    {"id": "a", "title": "方案 A · 浅色与底部导航", "theme_id": "neutral-light", "theme_version": "1.0.0", "layout_id": "bottom-balanced", "layout_version": "1.0.0"},
+    {"id": "b", "title": "方案 B · 深色与左侧导航", "theme_id": "slate-dark", "theme_version": "1.0.0", "layout_id": "left-process", "layout_version": "1.0.0"},
+    {"id": "c", "title": "方案 C · 暖浅色与顶部导航", "theme_id": "warm-light", "theme_version": "1.0.0", "layout_id": "top-metrics", "layout_version": "1.0.0"}
+  ],
+  "assumptions": ["示例分辨率与物理尺寸尚未由具体设备确认", "本轮只打样同一总览页面，其他导航目标尚未展开", "色值与状态仅用于本地视觉和交互比较"]
+}

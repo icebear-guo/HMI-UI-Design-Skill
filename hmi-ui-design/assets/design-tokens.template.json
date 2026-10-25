@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0",
+  "spec_id": "hmi-neutral-light-proposal-v1",
+  "status": "proposed",
+  "profile": "neutral-light",
+  "scope": "仅为1024x600草案的起始参数，复制后按实际设备校准，不代表行业标准或用户批准",
+  "direction": {
+    "status": "unselected",
+    "theme": {"id": null, "version": null},
+    "layout": {"id": null, "version": null},
+    "variant_id": null,
+    "selection_record": null,
+    "note": "明确选择后写入ID和版本，并用已解析的主题与布局替换本次项目参数；模板初值不是用户选择"
+  },
+  "configuration": {
+    "type": "design_proposal",
+    "design_principles": ["精确参数集中维护", "8px候选栅格", "语义色与文字图标冗余"],
+    "approval_record": null
+  },
+  "canvas": {
+    "width_px": 1024,
+    "height_px": 600,
+    "orientation": "landscape",
+    "visible_width_mm": null,
+    "visible_height_mm": null,
+    "viewing_distance_mm": null
+  },
+  "platform": {
+    "name": null,
+    "version": null,
+    "alpha_support": "unverified",
+    "svg_support": "unverified",
+    "asset_memory_limit_bytes": null,
+    "font_family": null,
+    "input_method": null
+  },
+  "layout": {
+    "base_unit_px": 8,
+    "spacing_scale_px": [4, 8, 16, 24, 32],
+    "spacing_policy": "使用显式间距集合；4px为允许的半栅格，不要求所有间距是8px整数倍",
+    "page_margin_px": 24,
+    "panel_gap_px": 16,
+    "header_height_px": 48,
+    "alarm_height_px": 36,
+    "navigation_position": null,
+    "navigation_item_count": null,
+    "navigation_width_px": 176,
+    "corner_radius_px": 4
+  },
+  "typography": {
+    "unit": "px_on_target_canvas",
+    "label_px": 16,
+    "body_px": 20,
+    "section_title_px": 24,
+    "primary_value_px": 32,
+    "line_height_ratio": 1.4,
+    "numeric_alignment": "right",
+    "tabular_numerals": "prefer_if_supported"
+  },
+  "touch": {
+    "candidate_min_target_px": [48, 48],
+    "candidate_gap_px": 8,
+    "verified_on_device": false,
+    "glove_mode": "unverified",
+    "note": "像素值仅供草案，须结合可见物理尺寸、触摸精度与现场任务验证"
+  },
+  "colors": {
+    "background": "#ECEFF1",
+    "surface": "#FFFFFF",
+    "text_primary": "#17212B",
+    "text_secondary": "#455A64",
+    "divider": "#78909C",
+    "selection_accent": "#1565C0",
+    "equipment_neutral": "#546E7A",
+    "warning_attention": "#F9A825",
+    "fault_attention": "#C62828",
+    "text_on_warning": "#17212B",
+    "text_on_fault": "#FFFFFF"
+  },
+  "semantic_policy": {
+    "status": "project_confirmation_required",
+    "running_color": null,
+    "stopped_color": null,
+    "offline_encoding": "text_and_icon_with_data_quality",
+    "stale_encoding": "last_update_and_text_or_pattern",
+    "redundant_text_or_icon_required": true,
+    "alarm_priorities": [],
+    "note": "warning/fault色值是候选，报警优先级及设备运行/停止编码须按项目策略确定"
+  },
+  "assets": {
+    "raster_delivery_scale": 1,
+    "coordinates": "source_pixel_top_left_xywh_right_bottom_exclusive",
+    "default_bitmap_format": "PNG_if_platform_supported",
+    "state_canvas_policy": "same_size_and_anchor",
+    "preserve_master": true
+  }
+}

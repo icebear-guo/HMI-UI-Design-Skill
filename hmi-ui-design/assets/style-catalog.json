@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "themes": [
+    {
+      "id": "neutral-light",
+      "version": "1.0.0",
+      "file": "themes/neutral-light.json"
+    },
+    {
+      "id": "slate-dark",
+      "version": "1.0.0",
+      "file": "themes/slate-dark.json"
+    },
+    {
+      "id": "warm-light",
+      "version": "1.0.0",
+      "file": "themes/warm-light.json"
+    }
+  ],
+  "layouts": [
+    {
+      "id": "bottom-balanced",
+      "version": "1.0.0",
+      "file": "layouts/bottom-balanced.json"
+    },
+    {
+      "id": "left-process",
+      "version": "1.0.0",
+      "file": "layouts/left-process.json"
+    },
+    {
+      "id": "top-metrics",
+      "version": "1.0.0",
+      "file": "layouts/top-metrics.json"
+    }
+  ]
+}

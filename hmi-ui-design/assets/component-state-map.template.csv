@@ -1,0 +1,3 @@
+component_id,asset_role,raw_state_code,semantic_dimension,semantic_state,visible_label,condition_or_feedback,evidence,mapping_status
+example-action-button,control_plate,s0,interaction,default,操作,未按下或松开取消后,按钮设计定义,defined
+example-action-button,control_plate,s1,interaction,pressed,操作,按下命中时即时反馈,按钮设计定义,defined

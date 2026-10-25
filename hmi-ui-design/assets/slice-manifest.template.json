@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "source": "source/example-state-atlas.png",
+  "canvas_px": [256, 128],
+  "assets": [
+    {
+      "id": "pump-running",
+      "file": "main__pump-01__running__128x128.png",
+      "rect_px": [0, 0, 128, 128],
+      "state": "running",
+      "expected_size_px": [128, 128],
+      "alpha_required": true,
+      "padding_px": [8, 8, 8, 8],
+      "same_canvas_group": "pump-01"
+    },
+    {
+      "id": "pump-offline",
+      "file": "main__pump-01__offline__128x128.png",
+      "rect_px": [128, 0, 128, 128],
+      "state": "offline",
+      "expected_size_px": [128, 128],
+      "alpha_required": true,
+      "padding_px": [8, 8, 8, 8],
+      "same_canvas_group": "pump-01"
+    }
+  ]
+}

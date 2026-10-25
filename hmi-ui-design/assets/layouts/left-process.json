@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "id": "left-process",
+  "version": "1.0.0",
+  "status": "proposed",
+  "name": "左侧导航 · 流程优先",
+  "description": "左侧保留导航，内容优先展示设备流程和对应指标。",
+  "navigation_position": "left",
+  "composition": "process-focus",
+  "min_canvas_px": [
+    800,
+    480
+  ],
+  "regions": {
+    "status": [
+      0,
+      0,
+      1,
+      0.08
+    ],
+    "alarm": [
+      0,
+      0.08,
+      1,
+      0.06
+    ],
+    "navigation": [
+      0,
+      0.14,
+      0.18,
+      0.86
+    ],
+    "content": [
+      0.18,
+      0.14,
+      0.82,
+      0.86
+    ]
+  }
+}

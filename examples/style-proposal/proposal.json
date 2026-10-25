@@ -1,0 +1,352 @@
+{
+  "schema_version": "1.0",
+  "title": "设备总览方向打样",
+  "canvas_px": [
+    1024,
+    600
+  ],
+  "physical_size": {
+    "diagonal_in": null,
+    "visible_width_mm": null,
+    "visible_height_mm": null
+  },
+  "representative_page_id": "overview",
+  "navigation_items": [
+    {
+      "id": "overview",
+      "label": "设备总览"
+    },
+    {
+      "id": "parameters",
+      "label": "参数设置"
+    },
+    {
+      "id": "io",
+      "label": "IO 监视"
+    },
+    {
+      "id": "alarms",
+      "label": "报警记录"
+    }
+  ],
+  "snapshot": {
+    "page_title": "设备总览",
+    "object_label": "设备单元 01",
+    "mode": "待机",
+    "connection": "本地模拟",
+    "alarm": "本地演示 · 暂无活动报警",
+    "metrics": [
+      {
+        "id": "speed",
+        "label": "运行速度",
+        "value": 45,
+        "min": 0,
+        "max": 100,
+        "unit": "%"
+      },
+      {
+        "id": "temperature",
+        "label": "当前温度",
+        "value": 32,
+        "min": 0,
+        "max": 100,
+        "unit": "°C"
+      },
+      {
+        "id": "output",
+        "label": "累计产量",
+        "value": 1250,
+        "min": 0,
+        "max": 2000,
+        "unit": "件"
+      }
+    ],
+    "units": [
+      {
+        "id": "feed",
+        "label": "进料单元",
+        "on": true
+      },
+      {
+        "id": "process",
+        "label": "处理单元",
+        "on": false
+      },
+      {
+        "id": "discharge",
+        "label": "出料单元",
+        "on": false
+      }
+    ],
+    "actions": [
+      {
+        "id": "start",
+        "label": "启动",
+        "effect": "start"
+      },
+      {
+        "id": "stop",
+        "label": "停止",
+        "effect": "stop"
+      },
+      {
+        "id": "reset",
+        "label": "重置",
+        "effect": "reset"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "id": "a",
+      "title": "方案 A · 浅色与底部导航",
+      "theme_id": "neutral-light",
+      "theme_version": "1.0.0",
+      "layout_id": "bottom-balanced",
+      "layout_version": "1.0.0"
+    },
+    {
+      "id": "b",
+      "title": "方案 B · 深色与左侧导航",
+      "theme_id": "slate-dark",
+      "theme_version": "1.0.0",
+      "layout_id": "left-process",
+      "layout_version": "1.0.0"
+    },
+    {
+      "id": "c",
+      "title": "方案 C · 暖浅色与顶部导航",
+      "theme_id": "warm-light",
+      "theme_version": "1.0.0",
+      "layout_id": "top-metrics",
+      "layout_version": "1.0.0"
+    }
+  ],
+  "assumptions": [
+    "示例分辨率与物理尺寸尚未由具体设备确认",
+    "本轮只打样同一总览页面，其他导航目标尚未展开",
+    "色值与状态仅用于本地视觉和交互比较"
+  ],
+  "input_sha256": "ed836bc947c06ba0098c83aab9e5336ccdb028fe688410553108fb8656675bce",
+  "themes": {
+    "neutral-light@1.0.0": {
+      "profile": {
+        "schema_version": "1.0",
+        "id": "neutral-light",
+        "version": "1.0.0",
+        "status": "proposed",
+        "name": "中性浅色",
+        "description": "浅灰背景、白色面板与蓝色操作强调，适合先评估阅读层级。",
+        "tone": "light",
+        "colors": {
+          "background": "#ECEFF1",
+          "surface": "#FFFFFF",
+          "surface_alt": "#F5F7FA",
+          "text_primary": "#17212B",
+          "text_secondary": "#455A64",
+          "divider": "#78909C",
+          "accent": "#1565C0",
+          "text_on_accent": "#FFFFFF",
+          "button_s0": "#1565C0",
+          "button_s1": "#0C3F7A",
+          "text_on_button": "#FFFFFF",
+          "indicator_on": "#16804A",
+          "indicator_off": "#647884",
+          "warning": "#F9A825",
+          "fault": "#C62828"
+        }
+      },
+      "sha256": "f64e77603d25bb33d929438d553613f783aad4188367a3d6c7b42d7e22bf1074"
+    },
+    "slate-dark@1.0.0": {
+      "profile": {
+        "schema_version": "1.0",
+        "id": "slate-dark",
+        "version": "1.0.0",
+        "status": "proposed",
+        "name": "石板深色",
+        "description": "深色背景与分层面板，采用明亮文字及较低面积的操作强调。",
+        "tone": "dark",
+        "colors": {
+          "background": "#111923",
+          "surface": "#1C2937",
+          "surface_alt": "#233444",
+          "text_primary": "#E8EFF6",
+          "text_secondary": "#B4C4D4",
+          "divider": "#536B82",
+          "accent": "#78BCFF",
+          "text_on_accent": "#12212F",
+          "button_s0": "#2D6CA9",
+          "button_s1": "#16436D",
+          "text_on_button": "#FFFFFF",
+          "indicator_on": "#4ED695",
+          "indicator_off": "#8395A7",
+          "warning": "#FFC857",
+          "fault": "#FF746C"
+        }
+      },
+      "sha256": "17a6fc05ea4c57fdc4925363a09915544ab9b63be87b0c60699d3a4c2e1e0005"
+    },
+    "warm-light@1.0.0": {
+      "profile": {
+        "schema_version": "1.0",
+        "id": "warm-light",
+        "version": "1.0.0",
+        "status": "proposed",
+        "name": "暖灰浅色",
+        "description": "暖灰背景、米白面板与青灰操作强调，供低装饰密度方案比较。",
+        "tone": "light",
+        "colors": {
+          "background": "#F4F1EA",
+          "surface": "#FFFEFA",
+          "surface_alt": "#EDE9DF",
+          "text_primary": "#282C2F",
+          "text_secondary": "#575F63",
+          "divider": "#85918F",
+          "accent": "#286C6B",
+          "text_on_accent": "#FFFFFF",
+          "button_s0": "#286C6B",
+          "button_s1": "#174B4A",
+          "text_on_button": "#FFFFFF",
+          "indicator_on": "#26754B",
+          "indicator_off": "#737B7C",
+          "warning": "#E6A52E",
+          "fault": "#B43E39"
+        }
+      },
+      "sha256": "38b9d1ac682520b373cb86ff5a5df1fbed342dbb2d7fd3bfc57513a4fe7f594a"
+    }
+  },
+  "layouts": {
+    "bottom-balanced@1.0.0": {
+      "profile": {
+        "schema_version": "1.0",
+        "id": "bottom-balanced",
+        "version": "1.0.0",
+        "status": "proposed",
+        "name": "底部导航 · 均衡分栏",
+        "description": "底部保留导航，内容以均衡分栏组织设备与指标。",
+        "navigation_position": "bottom",
+        "composition": "balanced-columns",
+        "min_canvas_px": [
+          800,
+          480
+        ],
+        "regions": {
+          "status": [
+            0,
+            0,
+            1,
+            0.08
+          ],
+          "alarm": [
+            0,
+            0.08,
+            1,
+            0.06
+          ],
+          "navigation": [
+            0,
+            0.9,
+            1,
+            0.1
+          ],
+          "content": [
+            0,
+            0.14,
+            1,
+            0.76
+          ]
+        }
+      },
+      "sha256": "9141f284f636aa1be5e0f23f8f7492010aea030fb98fe08197dd32ff71e5039f"
+    },
+    "left-process@1.0.0": {
+      "profile": {
+        "schema_version": "1.0",
+        "id": "left-process",
+        "version": "1.0.0",
+        "status": "proposed",
+        "name": "左侧导航 · 流程优先",
+        "description": "左侧保留导航，内容优先展示设备流程和对应指标。",
+        "navigation_position": "left",
+        "composition": "process-focus",
+        "min_canvas_px": [
+          800,
+          480
+        ],
+        "regions": {
+          "status": [
+            0,
+            0,
+            1,
+            0.08
+          ],
+          "alarm": [
+            0,
+            0.08,
+            1,
+            0.06
+          ],
+          "navigation": [
+            0,
+            0.14,
+            0.18,
+            0.86
+          ],
+          "content": [
+            0.18,
+            0.14,
+            0.82,
+            0.86
+          ]
+        }
+      },
+      "sha256": "a24811fef1f2afbd47453f96cefc95ee7b603597a5e27212bb8b95cc6e836746"
+    },
+    "top-metrics@1.0.0": {
+      "profile": {
+        "schema_version": "1.0",
+        "id": "top-metrics",
+        "version": "1.0.0",
+        "status": "proposed",
+        "name": "顶部导航 · 指标优先",
+        "description": "导航置于顶部公共区域，内容先展示指标，再展示设备流程。",
+        "navigation_position": "top",
+        "composition": "metrics-first",
+        "min_canvas_px": [
+          800,
+          480
+        ],
+        "regions": {
+          "status": [
+            0,
+            0,
+            1,
+            0.08
+          ],
+          "alarm": [
+            0,
+            0.08,
+            1,
+            0.06
+          ],
+          "navigation": [
+            0,
+            0.14,
+            1,
+            0.1
+          ],
+          "content": [
+            0,
+            0.24,
+            1,
+            0.76
+          ]
+        }
+      },
+      "sha256": "4955ce8edb77262b1bfe14787d7a46c86dc97a424bf627cbdc27c29fc1d1551b"
+    }
+  },
+  "selection_status": "pending"
+}

@@ -1,0 +1,52 @@
+# 配色与布局方案库
+
+首次新设计或大幅改版时，先按 [需求引导](design-intake.md) 收集参数，再用同一代表页面比较布局与色调；输入见 [打样清单](../assets/style-proposal.template.json)。方案库与项目选择分开维护，新增配色不需要重写技能入口或已有布局。
+
+## 可扩充的位置
+
+| 位置 | 内容 | 更新方式 |
+|---|---|---|
+| `assets/themes/` | 独立配色方案：背景、面板、文字、边界、操作强调、按钮双态及候选提示色 | 新增主题JSON后注册目录，不替换其他主题 |
+| `assets/layouts/` | 独立布局：导航位置、内容组织方式、公共区域归一化矩形及适用画布范围 | 新增布局JSON后注册目录；按目标屏幕校准 |
+| [方案目录](../assets/style-catalog.json) | 可用主题/布局的ID、版本及文件路径 | 文件路径相对assets；ID与版本必须与文件内容一致 |
+| [项目参数模板](../assets/design-tokens.template.json) | 本次项目的尺寸、字体、色值、间距及设备约束 | 复制为项目文件，记录选中主题/布局ID与版本，再补齐设备参数 |
+| [打样清单](../assets/style-proposal.template.json) | 同一代表页面的数据、画布与候选组合 | 调整本次方案数量和组合，不直接改共享库 |
+
+## 当前候选
+
+主题：`neutral-light` 中性浅色、`slate-dark` 石板深色、`warm-light` 暖灰浅色。布局：`bottom-balanced` 底部导航均衡分栏、`left-process` 左侧导航流程优先、`top-metrics` 顶部导航指标优先。主题与布局独立，可按用户选择重新组合。
+
+这三种布局样板的最小适用画布记录为800×480，仅表示它们当前的设计范围。较低分辨率或特殊比例应新增/调整适配方案，不能将此尺寸变成所有HMI项目的通用限制。导航数量、名称及排序来自本次页面范围；超出可容纳范围时重新设计，而非压缩到难以阅读。
+
+## JSON约定与版本
+
+主题与布局均有 `schema_version`、`id`、`version`、`status`、`name`、`description`。ID使用功能性命名，版本采用 `major.minor.patch`。打样与项目参数锁定ID及版本；现有项目不会因为库新增方案而自动改变。
+
+主题使用 `tone=light/dark`；`colors` 中的槽位全部使用 `#RRGGBB`。强调底色上的文字使用独立的 `text_on_accent`，不能套用按钮文字色导致深色主题的浅色强调区域难读。布局使用 `navigation_position=bottom/left/top` 和独立的 `composition`；`regions` 的 `[x,y,w,h]` 以目标画布宽高归一化至0～1，各区域不得重叠或越界。归一化只是布局起点，字体、边距与触区还需按实际像素和物理尺寸核查。
+
+新增方案时：复制相近JSON、设置新的ID和版本、调整参数、注册到目录，再实际生成打样检查同一数据下的阅读层级、区域边界、双态区别和内容容纳情况。单纯加文件但未注册的方案不进入候选列表。对已被项目引用的版本作不兼容修改时，新增版本并保留项目原有副本，避免静默漂移。
+
+当前构建器支持三种 `composition`：`balanced-columns`、`process-focus`、`metrics-first`。沿用这些组织方式时，新增坐标/导航布局只需JSON与注册；需要全新内容组织方式时，在 `scripts/build_style_proposal.py` 的契约验证及 `assets/style-proposal-viewer.template.html` 的 `renderScene` 分支一并扩展，再补充实际行为检查。不能只登记一个尚未实现的新类型就声称可渲染。
+
+`proposed`表示候选。局部对比度计算或脚本检查通过，不等于用户已选定、现场合格或符合某项标准。当前色板的提示/故障颜色需结合项目报警策略核实；`indicator_on/off`仅为已定义二值状态的表现槽位，不能据此推断运行/停止、通信或设备执行语义。关键状态仍须有文字或图形冗余。
+
+用户可以选择完整方案，也可组合某方案的布局与另一方案的配色。明确选择后，将解析后的色值与布局、ID、版本写入项目参数和方向记录；后续页面使用该项目副本。未回复、仅打开HTML或工具检查通过均不构成用户选择。
+
+## 构建与检查方向样例
+
+先在项目工作目录复制并填写打样清单。保持各候选共用同一画布与snapshot；仅修改variants中的主题、布局及说明。`navigation_items`来自用户本次范围。
+
+```powershell
+python .\scripts\build_style_proposal.py --manifest .\assets\style-proposal.template.json --out .\exports\style-proposal
+node .\scripts\check_style_logic.cjs .\exports\style-proposal\index.html
+```
+
+以上路径以技能目录为当前目录；输出父目录需先创建。构建器只需Python 3.12+标准库，纯逻辑检查需要Node.js。输出目录和并列ZIP都必须不存在；保留历史样例，不覆盖已有记录。
+
+方向包包含 `index.html`、冻结了主题/布局内容及哈希的 `proposal.json`、`selection.pending.json` 和文件清单，并提供同内容ZIP。一个HTML内展示全部候选与混选预览；数值滑块、单元切换、按钮s0/s1与仪表/棒图使用本地模拟。其他业务页面未展开，不伪装真实导航已完成。
+
+样例渲染器会按所选布局和目标画布计算指标卡片容量；超容量时拒绝构建并提示调整布局，而不继续压缩到标签与数值重叠。此检查是模板的几何边界，不代表所有HMI的最小字号或触区规范。
+
+点击“确认并导出选择”会请求下载 `project-direction.json`，记录主题/布局的ID、版本、哈希和画布。下载操作仍需浏览器实际验证；生成记录或默认高亮均不表示用户已经选择。后续任务收到用户明确选项或提供的记录后，再将项目参数状态置为selected。
+
+`check_style_logic.cjs`只运行与维护模板一致的已知代码，通过测试替身检查同内容/画布、布局差异、颜色应用、双态复位、数值联动、混选和选择记录；不调用浏览器、不渲染SVG/CSS。实际排版、字符容纳、点击命中、下载和现场效果仍分别验收。

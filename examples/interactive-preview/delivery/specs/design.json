@@ -1,0 +1,721 @@
+{
+  "schema_version": "1.1",
+  "input_manifest_sha256": "f5ebc3de4e16686a2212fd52037e33e2ad76492d395153b5574e83a735b142cb",
+  "pages": [
+    {
+      "id": "overview",
+      "name": "设备总览",
+      "design_size_px": [
+        1024,
+        600
+      ],
+      "preview": "preview/overview.png",
+      "actual_preview_px": [
+        1024,
+        600
+      ],
+      "preview_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "layers": [
+        {
+          "id": "page-title",
+          "name": "页面标题",
+          "type": "text",
+          "rect_px": [
+            24,
+            12,
+            500,
+            28
+          ],
+          "text": "设备总览",
+          "font": {
+            "family": "sans-serif",
+            "size_px": 20,
+            "weight": 500
+          },
+          "fill": "#17212B"
+        },
+        {
+          "id": "start",
+          "name": "启动请求",
+          "type": "control",
+          "rect_px": [
+            24,
+            110,
+            140,
+            56
+          ],
+          "text": "启动请求",
+          "interaction": {
+            "kind": "momentary",
+            "variable": "start-command"
+          }
+        },
+        {
+          "id": "enable",
+          "name": "使能切换",
+          "type": "control",
+          "rect_px": [
+            184,
+            110,
+            140,
+            56
+          ],
+          "text": "使能切换",
+          "interaction": {
+            "kind": "toggle",
+            "variable": "enabled"
+          }
+        },
+        {
+          "id": "lamp-control",
+          "name": "指示灯",
+          "type": "control",
+          "rect_px": [
+            344,
+            110,
+            160,
+            56
+          ],
+          "text": "指示灯",
+          "interaction": {
+            "kind": "indicator",
+            "variable": "lamp"
+          }
+        },
+        {
+          "id": "level-set",
+          "name": "液位设定",
+          "type": "control",
+          "rect_px": [
+            24,
+            210,
+            220,
+            72
+          ],
+          "text": "液位设定",
+          "interaction": {
+            "kind": "parameter",
+            "variable": "level"
+          }
+        },
+        {
+          "id": "level-gauge",
+          "name": "液位仪表",
+          "type": "gauge",
+          "rect_px": [
+            280,
+            210,
+            240,
+            260
+          ],
+          "text": "液位仪表",
+          "interaction": {
+            "kind": "gauge",
+            "variable": "level"
+          }
+        },
+        {
+          "id": "level-bar",
+          "name": "液位棒图",
+          "type": "bar",
+          "rect_px": [
+            560,
+            210,
+            160,
+            260
+          ],
+          "text": "液位棒图",
+          "interaction": {
+            "kind": "bar",
+            "variable": "level",
+            "orientation": "vertical"
+          }
+        },
+        {
+          "id": "nav-overview",
+          "name": "总览",
+          "type": "control",
+          "rect_px": [
+            24,
+            540,
+            180,
+            44
+          ],
+          "text": "总览",
+          "interaction": {
+            "kind": "navigation",
+            "target_page": "overview"
+          }
+        },
+        {
+          "id": "nav-io",
+          "name": "IO 监视",
+          "type": "control",
+          "rect_px": [
+            224,
+            540,
+            180,
+            44
+          ],
+          "text": "IO 监视",
+          "interaction": {
+            "kind": "navigation",
+            "target_page": "io"
+          }
+        }
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "rgba_sha256": "4c91c341be01a65af3bd32e944ce4bd051635b58562b874e831306d36537b370",
+      "sha256": "8b6f85fdead4afa6184274167834a6c82380c5dfe7a727a5ea1c4cf91c31715e",
+      "bytes": 29495
+    },
+    {
+      "id": "io",
+      "name": "IO 监视",
+      "design_size_px": [
+        1024,
+        600
+      ],
+      "preview": "preview/io.png",
+      "actual_preview_px": [
+        1024,
+        600
+      ],
+      "preview_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "layers": [
+        {
+          "id": "page-title",
+          "name": "页面标题",
+          "type": "text",
+          "rect_px": [
+            24,
+            12,
+            500,
+            28
+          ],
+          "text": "IO 监视",
+          "font": {
+            "family": "sans-serif",
+            "size_px": 20,
+            "weight": 500
+          },
+          "fill": "#17212B"
+        },
+        {
+          "id": "input-channel",
+          "name": "输入通道 0",
+          "type": "control",
+          "rect_px": [
+            24,
+            110,
+            280,
+            80
+          ],
+          "text": "输入通道 0",
+          "interaction": {
+            "kind": "io-input",
+            "variable": "input-0"
+          }
+        },
+        {
+          "id": "output-channel",
+          "name": "输出通道 0",
+          "type": "control",
+          "rect_px": [
+            344,
+            110,
+            340,
+            140
+          ],
+          "text": "输出通道 0",
+          "interaction": {
+            "kind": "output",
+            "variable": "output-0"
+          }
+        },
+        {
+          "id": "level-bar-h",
+          "name": "液位共享值",
+          "type": "bar",
+          "rect_px": [
+            24,
+            300,
+            660,
+            130
+          ],
+          "text": "液位共享值",
+          "interaction": {
+            "kind": "bar",
+            "variable": "level",
+            "orientation": "horizontal"
+          }
+        },
+        {
+          "id": "nav-overview",
+          "name": "总览",
+          "type": "control",
+          "rect_px": [
+            24,
+            540,
+            180,
+            44
+          ],
+          "text": "总览",
+          "interaction": {
+            "kind": "navigation",
+            "target_page": "overview"
+          }
+        },
+        {
+          "id": "nav-io",
+          "name": "IO 监视",
+          "type": "control",
+          "rect_px": [
+            224,
+            540,
+            180,
+            44
+          ],
+          "text": "IO 监视",
+          "interaction": {
+            "kind": "navigation",
+            "target_page": "io"
+          }
+        }
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "rgba_sha256": "f5ce81fa6e2d8ecddf3ad16e4e097090efaa45c1933ff94d9c3987bd3942a316",
+      "sha256": "a715d5c65aa1c2096d236074e0f36d515ddca1aa6d3a931c300131d3cb59c3bc",
+      "bytes": 21520
+    }
+  ],
+  "assets": [
+    {
+      "id": "start-s0",
+      "file": "assets/start-s0.png",
+      "component_id": "start",
+      "state": "s0",
+      "design_size_px": [
+        140,
+        56
+      ],
+      "actual_size_px": [
+        140,
+        56
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "b9e721a187da76b20817afe893a95d3f58452b5cf0adb36646a372e2c2fcba8d",
+      "sha256": "a78acba3a4ec0b94ea410326b1c1d5d679f37f50fed17820c34ec4768865ff09",
+      "bytes": 307
+    },
+    {
+      "id": "start-s1",
+      "file": "assets/start-s1.png",
+      "component_id": "start",
+      "state": "s1",
+      "design_size_px": [
+        140,
+        56
+      ],
+      "actual_size_px": [
+        140,
+        56
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "48515fa17d0ca6633ba9ca84b5893b33bc5b5ed327ce1796ed403b1fc1fe5eab",
+      "sha256": "0a62dfd04deb7e504e33e7390bb88820d55bc87c5ebf2ec967f1ae23d51f30ec",
+      "bytes": 302
+    },
+    {
+      "id": "enable-s0",
+      "file": "assets/enable-s0.png",
+      "component_id": "enable",
+      "state": "s0",
+      "design_size_px": [
+        140,
+        56
+      ],
+      "actual_size_px": [
+        140,
+        56
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "b9e721a187da76b20817afe893a95d3f58452b5cf0adb36646a372e2c2fcba8d",
+      "sha256": "a78acba3a4ec0b94ea410326b1c1d5d679f37f50fed17820c34ec4768865ff09",
+      "bytes": 307
+    },
+    {
+      "id": "enable-s1",
+      "file": "assets/enable-s1.png",
+      "component_id": "enable",
+      "state": "s1",
+      "design_size_px": [
+        140,
+        56
+      ],
+      "actual_size_px": [
+        140,
+        56
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "48515fa17d0ca6633ba9ca84b5893b33bc5b5ed327ce1796ed403b1fc1fe5eab",
+      "sha256": "0a62dfd04deb7e504e33e7390bb88820d55bc87c5ebf2ec967f1ae23d51f30ec",
+      "bytes": 302
+    },
+    {
+      "id": "lamp-control-s0",
+      "file": "assets/lamp-control-s0.png",
+      "component_id": "lamp-control",
+      "state": "s0",
+      "design_size_px": [
+        160,
+        56
+      ],
+      "actual_size_px": [
+        160,
+        56
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "ec7be2fe3487102685cfad9ab3d22ac82a2a7a23a2451ec446d9f9ff3334b2fc",
+      "sha256": "530a87a2be37f1e9afb4b5c46ecf15abc16977c0b5a503157e0c3784a1a9f7cd",
+      "bytes": 317
+    },
+    {
+      "id": "lamp-control-s1",
+      "file": "assets/lamp-control-s1.png",
+      "component_id": "lamp-control",
+      "state": "s1",
+      "design_size_px": [
+        160,
+        56
+      ],
+      "actual_size_px": [
+        160,
+        56
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "7907525426795f4bda6fcde7794885b8ea3519d149a048931132aacc91e8c6f5",
+      "sha256": "52fde68ca920f08de0bd9b2352b6cdabe63a3af8539931a9f742996963eb55b6",
+      "bytes": 312
+    },
+    {
+      "id": "level-set-s0",
+      "file": "assets/level-set-s0.png",
+      "component_id": "level-set",
+      "state": "s0",
+      "design_size_px": [
+        220,
+        72
+      ],
+      "actual_size_px": [
+        220,
+        72
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "77f445454e16e1b879d7fc5db882b9dd97e015498851d0c63324874be5eac1f1",
+      "sha256": "7eae234c947d83b47c06334b8cfb424a20dee5dee2ac8f09cb196e56c496b16d",
+      "bytes": 380
+    },
+    {
+      "id": "level-set-s1",
+      "file": "assets/level-set-s1.png",
+      "component_id": "level-set",
+      "state": "s1",
+      "design_size_px": [
+        220,
+        72
+      ],
+      "actual_size_px": [
+        220,
+        72
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "de2eb23fb3ca2d65113f38f966e0ccda1a0426cda2fb428b94d023e90b35afc6",
+      "sha256": "6ac3ea3b674b0234815d7e3d9bf590bce4a7d67b335de211d88d9ab5a53d3590",
+      "bytes": 376
+    },
+    {
+      "id": "nav-overview-s0",
+      "file": "assets/nav-overview-s0.png",
+      "component_id": "nav-overview",
+      "state": "s0",
+      "design_size_px": [
+        180,
+        44
+      ],
+      "actual_size_px": [
+        180,
+        44
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "72a2375bd79e4d4eb866ea317e8ebd74b3e3fc0dbcd77dc7baada732ab47f9ea",
+      "sha256": "a267c3c209b021d822aa623e8daee49f6f033143e462d669e8502724cc3309dc",
+      "bytes": 287
+    },
+    {
+      "id": "nav-overview-s1",
+      "file": "assets/nav-overview-s1.png",
+      "component_id": "nav-overview",
+      "state": "s1",
+      "design_size_px": [
+        180,
+        44
+      ],
+      "actual_size_px": [
+        180,
+        44
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "631cda1a48d829dcd47e6ad709dee323748aca1b27a82406677008914906aa71",
+      "sha256": "44908d0deedab3c5ce2d00bce1859a8887b528c5ef628f00ca0a018d93245dd6",
+      "bytes": 282
+    },
+    {
+      "id": "nav-io-s0",
+      "file": "assets/nav-io-s0.png",
+      "component_id": "nav-io",
+      "state": "s0",
+      "design_size_px": [
+        180,
+        44
+      ],
+      "actual_size_px": [
+        180,
+        44
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "72a2375bd79e4d4eb866ea317e8ebd74b3e3fc0dbcd77dc7baada732ab47f9ea",
+      "sha256": "a267c3c209b021d822aa623e8daee49f6f033143e462d669e8502724cc3309dc",
+      "bytes": 287
+    },
+    {
+      "id": "nav-io-s1",
+      "file": "assets/nav-io-s1.png",
+      "component_id": "nav-io",
+      "state": "s1",
+      "design_size_px": [
+        180,
+        44
+      ],
+      "actual_size_px": [
+        180,
+        44
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "631cda1a48d829dcd47e6ad709dee323748aca1b27a82406677008914906aa71",
+      "sha256": "44908d0deedab3c5ce2d00bce1859a8887b528c5ef628f00ca0a018d93245dd6",
+      "bytes": 282
+    },
+    {
+      "id": "input-channel-s0",
+      "file": "assets/input-channel-s0.png",
+      "component_id": "input-channel",
+      "state": "s0",
+      "design_size_px": [
+        280,
+        80
+      ],
+      "actual_size_px": [
+        280,
+        80
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "149e9c4cb3916c6a6858c81060bd329832fa5f7df9b6e6b4f8be51ee2bbbcda2",
+      "sha256": "56bf7a50268dbf183133644687aacc529d5203b607c1cf43aa53370b82543502",
+      "bytes": 434
+    },
+    {
+      "id": "input-channel-s1",
+      "file": "assets/input-channel-s1.png",
+      "component_id": "input-channel",
+      "state": "s1",
+      "design_size_px": [
+        280,
+        80
+      ],
+      "actual_size_px": [
+        280,
+        80
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "6b1eacd3956aeb8b1d002b6faf47a23e51cb7c42c71c4d9668d01b60f4b58a31",
+      "sha256": "146624cee42d0951fa169251097c8608feb355c7d39caf6e7cbf41055fd88947",
+      "bytes": 429
+    },
+    {
+      "id": "output-channel-s0",
+      "file": "assets/output-channel-s0.png",
+      "component_id": "output-channel",
+      "state": "s0",
+      "design_size_px": [
+        340,
+        140
+      ],
+      "actual_size_px": [
+        340,
+        140
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "4d84e2b63be24d9825022d6ccb204d54d94c87fdc896323e46d15cfe338fc2ba",
+      "sha256": "b683c8159731ebe4877500c94cd4e4d5274936f49fa888e10c9d9a9702db13b9",
+      "bytes": 658
+    },
+    {
+      "id": "output-channel-s1",
+      "file": "assets/output-channel-s1.png",
+      "component_id": "output-channel",
+      "state": "s1",
+      "design_size_px": [
+        340,
+        140
+      ],
+      "actual_size_px": [
+        340,
+        140
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "48c823e9fb87d93ff5fdd5bba5d380cfea183ab542a0b5fbd121a4f6520851c1",
+      "sha256": "2acee3bdf751269d7672ce116ac2d936eb8ce9ef59623c83bc06b3519e4c02d6",
+      "bytes": 654
+    }
+  ],
+  "fonts": [],
+  "simulation": {
+    "variables": [
+      {
+        "id": "start-command",
+        "type": "boolean",
+        "initial": false
+      },
+      {
+        "id": "enabled",
+        "type": "boolean",
+        "initial": false
+      },
+      {
+        "id": "lamp",
+        "type": "boolean",
+        "initial": false
+      },
+      {
+        "id": "input-0",
+        "type": "boolean",
+        "initial": false
+      },
+      {
+        "id": "output-0",
+        "type": "boolean",
+        "initial": false
+      },
+      {
+        "id": "level",
+        "type": "number",
+        "initial": 40,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "animate": true
+      }
+    ],
+    "required_features": [
+      "momentary",
+      "toggle",
+      "indicator",
+      "io-input",
+      "output",
+      "navigation",
+      "parameter",
+      "gauge",
+      "bar"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "id": "slate-dark",
+  "version": "1.0.0",
+  "status": "proposed",
+  "name": "石板深色",
+  "description": "深色背景与分层面板，采用明亮文字及较低面积的操作强调。",
+  "tone": "dark",
+  "colors": {
+    "background": "#111923",
+    "surface": "#1C2937",
+    "surface_alt": "#233444",
+    "text_primary": "#E8EFF6",
+    "text_secondary": "#B4C4D4",
+    "divider": "#536B82",
+    "accent": "#78BCFF",
+    "text_on_accent": "#12212F",
+    "button_s0": "#2D6CA9",
+    "button_s1": "#16436D",
+    "text_on_button": "#FFFFFF",
+    "indicator_on": "#4ED695",
+    "indicator_off": "#8395A7",
+    "warning": "#FFC857",
+    "fault": "#FF746C"
+  }
+}

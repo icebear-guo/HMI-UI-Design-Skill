@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "id": "neutral-light",
+  "version": "1.0.0",
+  "status": "proposed",
+  "name": "中性浅色",
+  "description": "浅灰背景、白色面板与蓝色操作强调，适合先评估阅读层级。",
+  "tone": "light",
+  "colors": {
+    "background": "#ECEFF1",
+    "surface": "#FFFFFF",
+    "surface_alt": "#F5F7FA",
+    "text_primary": "#17212B",
+    "text_secondary": "#455A64",
+    "divider": "#78909C",
+    "accent": "#1565C0",
+    "text_on_accent": "#FFFFFF",
+    "button_s0": "#1565C0",
+    "button_s1": "#0C3F7A",
+    "text_on_button": "#FFFFFF",
+    "indicator_on": "#16804A",
+    "indicator_off": "#647884",
+    "warning": "#F9A825",
+    "fault": "#C62828"
+  }
+}

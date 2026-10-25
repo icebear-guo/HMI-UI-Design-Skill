@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "id": "warm-light",
+  "version": "1.0.0",
+  "status": "proposed",
+  "name": "暖灰浅色",
+  "description": "暖灰背景、米白面板与青灰操作强调，供低装饰密度方案比较。",
+  "tone": "light",
+  "colors": {
+    "background": "#F4F1EA",
+    "surface": "#FFFEFA",
+    "surface_alt": "#EDE9DF",
+    "text_primary": "#282C2F",
+    "text_secondary": "#575F63",
+    "divider": "#85918F",
+    "accent": "#286C6B",
+    "text_on_accent": "#FFFFFF",
+    "button_s0": "#286C6B",
+    "button_s1": "#174B4A",
+    "text_on_button": "#FFFFFF",
+    "indicator_on": "#26754B",
+    "indicator_off": "#737B7C",
+    "warning": "#E6A52E",
+    "fault": "#B43E39"
+  }
+}

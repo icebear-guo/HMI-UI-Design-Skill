@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "id": "bottom-balanced",
+  "version": "1.0.0",
+  "status": "proposed",
+  "name": "底部导航 · 均衡分栏",
+  "description": "底部保留导航，内容以均衡分栏组织设备与指标。",
+  "navigation_position": "bottom",
+  "composition": "balanced-columns",
+  "min_canvas_px": [
+    800,
+    480
+  ],
+  "regions": {
+    "status": [
+      0,
+      0,
+      1,
+      0.08
+    ],
+    "alarm": [
+      0,
+      0.08,
+      1,
+      0.06
+    ],
+    "navigation": [
+      0,
+      0.9,
+      1,
+      0.1
+    ],
+    "content": [
+      0,
+      0.14,
+      1,
+      0.76
+    ]
+  }
+}

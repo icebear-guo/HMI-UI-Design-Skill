@@ -1,0 +1,4 @@
+interface:
+  display_name: "HMI UI 设计专家"
+  short_description: "工业HMI参数引导、配色布局HTML打样、双态切片与可操作原型交付"
+  default_prompt: "请使用 $hmi-ui-design，先补齐设备尺寸、分辨率、导航与色调等必要参数，用同一代表页面提供多种布局与配色HTML供我选择，确定方向后再展开其余页面、s0/s1切片和可操作原型，并报告实际验收范围。"

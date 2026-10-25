@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "id": "top-metrics",
+  "version": "1.0.0",
+  "status": "proposed",
+  "name": "顶部导航 · 指标优先",
+  "description": "导航置于顶部公共区域，内容先展示指标，再展示设备流程。",
+  "navigation_position": "top",
+  "composition": "metrics-first",
+  "min_canvas_px": [
+    800,
+    480
+  ],
+  "regions": {
+    "status": [
+      0,
+      0,
+      1,
+      0.08
+    ],
+    "alarm": [
+      0,
+      0.08,
+      1,
+      0.06
+    ],
+    "navigation": [
+      0,
+      0.14,
+      1,
+      0.1
+    ],
+    "content": [
+      0,
+      0.24,
+      1,
+      0.76
+    ]
+  }
+}
