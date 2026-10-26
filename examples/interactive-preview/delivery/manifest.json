@@ -1,9 +1,19 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "pages": 2,
-  "assets": 16,
+  "assets": 18,
   "fonts": 0,
   "files": [
+    {
+      "file": "assets/boolean-lamp-off.png",
+      "sha256": "a64052b237620b9b86a4691ae7a76458211b7e67c0ba70b33a94d24bd33b5f71",
+      "bytes": 155
+    },
+    {
+      "file": "assets/boolean-lamp-on.png",
+      "sha256": "5caf8c2018f840514ec025c695246bb0c2332861b88eaa037274e858e4db248d",
+      "bytes": 155
+    },
     {
       "file": "assets/enable-s0.png",
       "sha256": "a78acba3a4ec0b94ea410326b1c1d5d679f37f50fed17820c34ec4768865ff09",
@@ -91,8 +101,8 @@
     },
     {
       "file": "index.html",
-      "sha256": "e0013dc089ad6dea4433c26f1ca78e6080a13853d8af0f654074b4cf1e2e936e",
-      "bytes": 34809
+      "sha256": "23ae264eff8e0ca299b7df1343c1e2499f1c9d54ebe5140f4ceff0947f02ff43",
+      "bytes": 50349
     },
     {
       "file": "preview/io.png",
@@ -106,8 +116,8 @@
     },
     {
       "file": "specs/design.json",
-      "sha256": "3e19055d7a24b88d63b5884dffbbdc8907ff28f48835d7ffccc6b8c5472027ca",
-      "bytes": 17253
+      "sha256": "e6466890454838d67706c73378d207ee0f620ab96f8288225e065ff758cac3d4",
+      "bytes": 43527
     }
   ]
 }

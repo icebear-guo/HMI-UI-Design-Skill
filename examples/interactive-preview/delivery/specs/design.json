@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.1",
-  "input_manifest_sha256": "f5ebc3de4e16686a2212fd52037e33e2ad76492d395153b5574e83a735b142cb",
+  "schema_version": "1.2",
+  "input_manifest_sha256": "65b1a99d1e4435bf92306cf7ae5947aa588f7f81fdcc233800afb16704c26a11",
   "pages": [
     {
       "id": "overview",
@@ -307,6 +307,7 @@
         140,
         56
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         140,
         56
@@ -330,6 +331,7 @@
         140,
         56
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         140,
         56
@@ -353,6 +355,7 @@
         140,
         56
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         140,
         56
@@ -376,6 +379,7 @@
         140,
         56
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         140,
         56
@@ -399,6 +403,7 @@
         160,
         56
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         160,
         56
@@ -422,6 +427,7 @@
         160,
         56
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         160,
         56
@@ -445,6 +451,7 @@
         220,
         72
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         220,
         72
@@ -468,6 +475,7 @@
         220,
         72
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         220,
         72
@@ -491,6 +499,7 @@
         180,
         44
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         180,
         44
@@ -514,6 +523,7 @@
         180,
         44
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         180,
         44
@@ -537,6 +547,7 @@
         180,
         44
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         180,
         44
@@ -560,6 +571,7 @@
         180,
         44
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         180,
         44
@@ -583,6 +595,7 @@
         280,
         80
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         280,
         80
@@ -606,6 +619,7 @@
         280,
         80
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         280,
         80
@@ -629,6 +643,7 @@
         340,
         140
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         340,
         140
@@ -652,6 +667,7 @@
         340,
         140
       ],
+      "asset_role": "control_plate",
       "actual_size_px": [
         340,
         140
@@ -665,6 +681,54 @@
       "rgba_sha256": "48c823e9fb87d93ff5fdd5bba5d380cfea183ab542a0b5fbd121a4f6520851c1",
       "sha256": "2acee3bdf751269d7672ce116ac2d936eb8ce9ef59623c83bc06b3519e4c02d6",
       "bytes": 654
+    },
+    {
+      "id": "boolean-lamp-off",
+      "file": "assets/boolean-lamp-off.png",
+      "component_id": "boolean-lamp",
+      "state": "off",
+      "design_size_px": [
+        14,
+        14
+      ],
+      "asset_role": "indicator",
+      "actual_size_px": [
+        14,
+        14
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "3ad1b074bf57ddfc38675d45e4edc93b304304c45c741ffc2487427f9e9d7b30",
+      "sha256": "a64052b237620b9b86a4691ae7a76458211b7e67c0ba70b33a94d24bd33b5f71",
+      "bytes": 155
+    },
+    {
+      "id": "boolean-lamp-on",
+      "file": "assets/boolean-lamp-on.png",
+      "component_id": "boolean-lamp",
+      "state": "on",
+      "design_size_px": [
+        14,
+        14
+      ],
+      "asset_role": "indicator",
+      "actual_size_px": [
+        14,
+        14
+      ],
+      "export_scale_xy": [
+        1.0,
+        1.0
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "rgba_sha256": "0b04de415c87472eb54695c254b37bfd33a0b82912e58723d7ff01b7e7da8bf2",
+      "sha256": "5caf8c2018f840514ec025c695246bb0c2332861b88eaa037274e858e4db248d",
+      "bytes": 155
     }
   ],
   "fonts": [],
@@ -716,6 +780,1020 @@
       "parameter",
       "gauge",
       "bar"
+    ]
+  },
+  "element_inventory": {
+    "schema_version": "1.0",
+    "ui_revision": "synthetic-demo-v1",
+    "reviewed_page_ids": [
+      "overview",
+      "io"
+    ],
+    "elements": [
+      {
+        "id": "page-title-text",
+        "page_id": "overview",
+        "layer_id": "page-title",
+        "category": "editable_text",
+        "asset_role": "editable_text",
+        "rect_px": [
+          24,
+          12,
+          500,
+          28
+        ],
+        "required_states": [
+          "default"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "editable text",
+          "parameters": {
+            "text": "设备总览",
+            "font": {
+              "family": "sans-serif",
+              "size_px": 20,
+              "weight": 500
+            }
+          },
+          "state_map": {
+            "default": "render editable text"
+          }
+        }
+      },
+      {
+        "id": "start-plate",
+        "page_id": "overview",
+        "layer_id": "start",
+        "category": "graphic",
+        "asset_role": "control_plate",
+        "rect_px": [
+          24,
+          110,
+          140,
+          56
+        ],
+        "required_states": [
+          "s0",
+          "s1"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "s0",
+            "asset_id": "start-s0"
+          },
+          {
+            "state": "s1",
+            "asset_id": "start-s1"
+          }
+        ]
+      },
+      {
+        "id": "start-label",
+        "page_id": "overview",
+        "layer_id": "start",
+        "category": "editable_text",
+        "asset_role": "editable_text",
+        "rect_px": [
+          24,
+          110,
+          140,
+          56
+        ],
+        "required_states": [
+          "default"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "editable text",
+          "parameters": {
+            "text": "启动请求",
+            "font_family": "sans-serif"
+          },
+          "state_map": {
+            "default": "keep label separate from plate"
+          }
+        }
+      },
+      {
+        "id": "start-value",
+        "page_id": "overview",
+        "layer_id": "start",
+        "category": "dynamic_content",
+        "asset_role": "dynamic_content",
+        "rect_px": [
+          24,
+          110,
+          140,
+          56
+        ],
+        "required_states": [
+          "value"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "native momentary",
+          "parameters": {
+            "variable": "start-command",
+            "format": "ON/OFF text"
+          },
+          "state_map": {
+            "value": "display the bound local value"
+          }
+        }
+      },
+      {
+        "id": "start-lamp",
+        "page_id": "overview",
+        "layer_id": "start",
+        "category": "graphic",
+        "asset_role": "indicator",
+        "rect_px": [
+          34,
+          131.0,
+          14,
+          14
+        ],
+        "required_states": [
+          "off",
+          "on"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "off",
+            "asset_id": "boolean-lamp-off"
+          },
+          {
+            "state": "on",
+            "asset_id": "boolean-lamp-on"
+          }
+        ]
+      },
+      {
+        "id": "enable-plate",
+        "page_id": "overview",
+        "layer_id": "enable",
+        "category": "graphic",
+        "asset_role": "control_plate",
+        "rect_px": [
+          184,
+          110,
+          140,
+          56
+        ],
+        "required_states": [
+          "s0",
+          "s1"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "s0",
+            "asset_id": "enable-s0"
+          },
+          {
+            "state": "s1",
+            "asset_id": "enable-s1"
+          }
+        ]
+      },
+      {
+        "id": "enable-label",
+        "page_id": "overview",
+        "layer_id": "enable",
+        "category": "editable_text",
+        "asset_role": "editable_text",
+        "rect_px": [
+          184,
+          110,
+          140,
+          56
+        ],
+        "required_states": [
+          "default"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "editable text",
+          "parameters": {
+            "text": "使能切换",
+            "font_family": "sans-serif"
+          },
+          "state_map": {
+            "default": "keep label separate from plate"
+          }
+        }
+      },
+      {
+        "id": "enable-value",
+        "page_id": "overview",
+        "layer_id": "enable",
+        "category": "dynamic_content",
+        "asset_role": "dynamic_content",
+        "rect_px": [
+          184,
+          110,
+          140,
+          56
+        ],
+        "required_states": [
+          "value"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "native toggle",
+          "parameters": {
+            "variable": "enabled",
+            "format": "ON/OFF text"
+          },
+          "state_map": {
+            "value": "display the bound local value"
+          }
+        }
+      },
+      {
+        "id": "enable-lamp",
+        "page_id": "overview",
+        "layer_id": "enable",
+        "category": "graphic",
+        "asset_role": "indicator",
+        "rect_px": [
+          194,
+          131.0,
+          14,
+          14
+        ],
+        "required_states": [
+          "off",
+          "on"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "off",
+            "asset_id": "boolean-lamp-off"
+          },
+          {
+            "state": "on",
+            "asset_id": "boolean-lamp-on"
+          }
+        ]
+      },
+      {
+        "id": "lamp-control-plate",
+        "page_id": "overview",
+        "layer_id": "lamp-control",
+        "category": "graphic",
+        "asset_role": "control_plate",
+        "rect_px": [
+          344,
+          110,
+          160,
+          56
+        ],
+        "required_states": [
+          "s0",
+          "s1"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "s0",
+            "asset_id": "lamp-control-s0"
+          },
+          {
+            "state": "s1",
+            "asset_id": "lamp-control-s1"
+          }
+        ]
+      },
+      {
+        "id": "lamp-control-label",
+        "page_id": "overview",
+        "layer_id": "lamp-control",
+        "category": "editable_text",
+        "asset_role": "editable_text",
+        "rect_px": [
+          344,
+          110,
+          160,
+          56
+        ],
+        "required_states": [
+          "default"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "editable text",
+          "parameters": {
+            "text": "指示灯",
+            "font_family": "sans-serif"
+          },
+          "state_map": {
+            "default": "keep label separate from plate"
+          }
+        }
+      },
+      {
+        "id": "lamp-control-value",
+        "page_id": "overview",
+        "layer_id": "lamp-control",
+        "category": "dynamic_content",
+        "asset_role": "dynamic_content",
+        "rect_px": [
+          344,
+          110,
+          160,
+          56
+        ],
+        "required_states": [
+          "value"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "native indicator",
+          "parameters": {
+            "variable": "lamp",
+            "format": "ON/OFF text"
+          },
+          "state_map": {
+            "value": "display the bound local value"
+          }
+        }
+      },
+      {
+        "id": "lamp-control-lamp",
+        "page_id": "overview",
+        "layer_id": "lamp-control",
+        "category": "graphic",
+        "asset_role": "indicator",
+        "rect_px": [
+          354,
+          131.0,
+          14,
+          14
+        ],
+        "required_states": [
+          "off",
+          "on"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "off",
+            "asset_id": "boolean-lamp-off"
+          },
+          {
+            "state": "on",
+            "asset_id": "boolean-lamp-on"
+          }
+        ]
+      },
+      {
+        "id": "level-set-plate",
+        "page_id": "overview",
+        "layer_id": "level-set",
+        "category": "graphic",
+        "asset_role": "control_plate",
+        "rect_px": [
+          24,
+          210,
+          220,
+          72
+        ],
+        "required_states": [
+          "s0",
+          "s1"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "s0",
+            "asset_id": "level-set-s0"
+          },
+          {
+            "state": "s1",
+            "asset_id": "level-set-s1"
+          }
+        ]
+      },
+      {
+        "id": "level-set-label",
+        "page_id": "overview",
+        "layer_id": "level-set",
+        "category": "editable_text",
+        "asset_role": "editable_text",
+        "rect_px": [
+          24,
+          210,
+          220,
+          72
+        ],
+        "required_states": [
+          "default"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "editable text",
+          "parameters": {
+            "text": "液位设定",
+            "font_family": "sans-serif"
+          },
+          "state_map": {
+            "default": "keep label separate from plate"
+          }
+        }
+      },
+      {
+        "id": "level-set-value",
+        "page_id": "overview",
+        "layer_id": "level-set",
+        "category": "dynamic_content",
+        "asset_role": "dynamic_content",
+        "rect_px": [
+          24,
+          210,
+          220,
+          72
+        ],
+        "required_states": [
+          "value"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "native parameter",
+          "parameters": {
+            "variable": "level",
+            "format": "number with unit"
+          },
+          "state_map": {
+            "value": "display the bound local value"
+          }
+        }
+      },
+      {
+        "id": "level-gauge-dynamic",
+        "page_id": "overview",
+        "layer_id": "level-gauge",
+        "category": "dynamic_content",
+        "asset_role": "dynamic_content",
+        "rect_px": [
+          280,
+          210,
+          240,
+          260
+        ],
+        "required_states": [
+          "value"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "native gauge",
+          "parameters": {
+            "variable": "level",
+            "min": 0,
+            "max": 100,
+            "unit": "%",
+            "orientation": "horizontal"
+          },
+          "state_map": {
+            "value": "bind readout and needle/fill to the same local value"
+          }
+        }
+      },
+      {
+        "id": "level-bar-dynamic",
+        "page_id": "overview",
+        "layer_id": "level-bar",
+        "category": "dynamic_content",
+        "asset_role": "dynamic_content",
+        "rect_px": [
+          560,
+          210,
+          160,
+          260
+        ],
+        "required_states": [
+          "value"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "native bar",
+          "parameters": {
+            "variable": "level",
+            "min": 0,
+            "max": 100,
+            "unit": "%",
+            "orientation": "vertical"
+          },
+          "state_map": {
+            "value": "bind readout and needle/fill to the same local value"
+          }
+        }
+      },
+      {
+        "id": "nav-overview-plate",
+        "page_id": "overview",
+        "layer_id": "nav-overview",
+        "category": "graphic",
+        "asset_role": "control_plate",
+        "rect_px": [
+          24,
+          540,
+          180,
+          44
+        ],
+        "required_states": [
+          "s0",
+          "s1"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "s0",
+            "asset_id": "nav-overview-s0"
+          },
+          {
+            "state": "s1",
+            "asset_id": "nav-overview-s1"
+          }
+        ]
+      },
+      {
+        "id": "nav-overview-label",
+        "page_id": "overview",
+        "layer_id": "nav-overview",
+        "category": "editable_text",
+        "asset_role": "editable_text",
+        "rect_px": [
+          24,
+          540,
+          180,
+          44
+        ],
+        "required_states": [
+          "default"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "editable text",
+          "parameters": {
+            "text": "总览",
+            "font_family": "sans-serif"
+          },
+          "state_map": {
+            "default": "keep label separate from plate"
+          }
+        }
+      },
+      {
+        "id": "nav-io-plate",
+        "page_id": "overview",
+        "layer_id": "nav-io",
+        "category": "graphic",
+        "asset_role": "control_plate",
+        "rect_px": [
+          224,
+          540,
+          180,
+          44
+        ],
+        "required_states": [
+          "s0",
+          "s1"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "s0",
+            "asset_id": "nav-io-s0"
+          },
+          {
+            "state": "s1",
+            "asset_id": "nav-io-s1"
+          }
+        ]
+      },
+      {
+        "id": "nav-io-label",
+        "page_id": "overview",
+        "layer_id": "nav-io",
+        "category": "editable_text",
+        "asset_role": "editable_text",
+        "rect_px": [
+          224,
+          540,
+          180,
+          44
+        ],
+        "required_states": [
+          "default"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "editable text",
+          "parameters": {
+            "text": "IO 监视",
+            "font_family": "sans-serif"
+          },
+          "state_map": {
+            "default": "keep label separate from plate"
+          }
+        }
+      },
+      {
+        "id": "page-title-text",
+        "page_id": "io",
+        "layer_id": "page-title",
+        "category": "editable_text",
+        "asset_role": "editable_text",
+        "rect_px": [
+          24,
+          12,
+          500,
+          28
+        ],
+        "required_states": [
+          "default"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "editable text",
+          "parameters": {
+            "text": "IO 监视",
+            "font": {
+              "family": "sans-serif",
+              "size_px": 20,
+              "weight": 500
+            }
+          },
+          "state_map": {
+            "default": "render editable text"
+          }
+        }
+      },
+      {
+        "id": "input-channel-plate",
+        "page_id": "io",
+        "layer_id": "input-channel",
+        "category": "graphic",
+        "asset_role": "control_plate",
+        "rect_px": [
+          24,
+          110,
+          280,
+          80
+        ],
+        "required_states": [
+          "s0",
+          "s1"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "s0",
+            "asset_id": "input-channel-s0"
+          },
+          {
+            "state": "s1",
+            "asset_id": "input-channel-s1"
+          }
+        ]
+      },
+      {
+        "id": "input-channel-label",
+        "page_id": "io",
+        "layer_id": "input-channel",
+        "category": "editable_text",
+        "asset_role": "editable_text",
+        "rect_px": [
+          24,
+          110,
+          280,
+          80
+        ],
+        "required_states": [
+          "default"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "editable text",
+          "parameters": {
+            "text": "输入通道 0",
+            "font_family": "sans-serif"
+          },
+          "state_map": {
+            "default": "keep label separate from plate"
+          }
+        }
+      },
+      {
+        "id": "input-channel-value",
+        "page_id": "io",
+        "layer_id": "input-channel",
+        "category": "dynamic_content",
+        "asset_role": "dynamic_content",
+        "rect_px": [
+          24,
+          110,
+          280,
+          80
+        ],
+        "required_states": [
+          "value"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "native io-input",
+          "parameters": {
+            "variable": "input-0",
+            "format": "ON/OFF text"
+          },
+          "state_map": {
+            "value": "display the bound local value"
+          }
+        }
+      },
+      {
+        "id": "input-channel-lamp",
+        "page_id": "io",
+        "layer_id": "input-channel",
+        "category": "graphic",
+        "asset_role": "indicator",
+        "rect_px": [
+          34,
+          143.0,
+          14,
+          14
+        ],
+        "required_states": [
+          "off",
+          "on"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "off",
+            "asset_id": "boolean-lamp-off"
+          },
+          {
+            "state": "on",
+            "asset_id": "boolean-lamp-on"
+          }
+        ]
+      },
+      {
+        "id": "output-channel-plate",
+        "page_id": "io",
+        "layer_id": "output-channel",
+        "category": "graphic",
+        "asset_role": "control_plate",
+        "rect_px": [
+          344,
+          110,
+          340,
+          140
+        ],
+        "required_states": [
+          "s0",
+          "s1"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "s0",
+            "asset_id": "output-channel-s0"
+          },
+          {
+            "state": "s1",
+            "asset_id": "output-channel-s1"
+          }
+        ]
+      },
+      {
+        "id": "output-channel-label",
+        "page_id": "io",
+        "layer_id": "output-channel",
+        "category": "editable_text",
+        "asset_role": "editable_text",
+        "rect_px": [
+          344,
+          110,
+          340,
+          140
+        ],
+        "required_states": [
+          "default"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "editable text",
+          "parameters": {
+            "text": "输出通道 0",
+            "font_family": "sans-serif"
+          },
+          "state_map": {
+            "default": "keep label separate from plate"
+          }
+        }
+      },
+      {
+        "id": "output-channel-value",
+        "page_id": "io",
+        "layer_id": "output-channel",
+        "category": "dynamic_content",
+        "asset_role": "dynamic_content",
+        "rect_px": [
+          344,
+          110,
+          340,
+          140
+        ],
+        "required_states": [
+          "value"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "native output",
+          "parameters": {
+            "variable": "output-0",
+            "format": "ON/OFF text"
+          },
+          "state_map": {
+            "value": "display the bound local value"
+          }
+        }
+      },
+      {
+        "id": "output-channel-lamp",
+        "page_id": "io",
+        "layer_id": "output-channel",
+        "category": "graphic",
+        "asset_role": "indicator",
+        "rect_px": [
+          354,
+          173.0,
+          14,
+          14
+        ],
+        "required_states": [
+          "off",
+          "on"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "off",
+            "asset_id": "boolean-lamp-off"
+          },
+          {
+            "state": "on",
+            "asset_id": "boolean-lamp-on"
+          }
+        ]
+      },
+      {
+        "id": "level-bar-h-dynamic",
+        "page_id": "io",
+        "layer_id": "level-bar-h",
+        "category": "dynamic_content",
+        "asset_role": "dynamic_content",
+        "rect_px": [
+          24,
+          300,
+          660,
+          130
+        ],
+        "required_states": [
+          "value"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "native bar",
+          "parameters": {
+            "variable": "level",
+            "min": 0,
+            "max": 100,
+            "unit": "%",
+            "orientation": "horizontal"
+          },
+          "state_map": {
+            "value": "bind readout and needle/fill to the same local value"
+          }
+        }
+      },
+      {
+        "id": "nav-overview-plate",
+        "page_id": "io",
+        "layer_id": "nav-overview",
+        "category": "graphic",
+        "asset_role": "control_plate",
+        "rect_px": [
+          24,
+          540,
+          180,
+          44
+        ],
+        "required_states": [
+          "s0",
+          "s1"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "s0",
+            "asset_id": "nav-overview-s0"
+          },
+          {
+            "state": "s1",
+            "asset_id": "nav-overview-s1"
+          }
+        ]
+      },
+      {
+        "id": "nav-overview-label",
+        "page_id": "io",
+        "layer_id": "nav-overview",
+        "category": "editable_text",
+        "asset_role": "editable_text",
+        "rect_px": [
+          24,
+          540,
+          180,
+          44
+        ],
+        "required_states": [
+          "default"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "editable text",
+          "parameters": {
+            "text": "总览",
+            "font_family": "sans-serif"
+          },
+          "state_map": {
+            "default": "keep label separate from plate"
+          }
+        }
+      },
+      {
+        "id": "nav-io-plate",
+        "page_id": "io",
+        "layer_id": "nav-io",
+        "category": "graphic",
+        "asset_role": "control_plate",
+        "rect_px": [
+          224,
+          540,
+          180,
+          44
+        ],
+        "required_states": [
+          "s0",
+          "s1"
+        ],
+        "delivery_mode": "export",
+        "asset_refs": [
+          {
+            "state": "s0",
+            "asset_id": "nav-io-s0"
+          },
+          {
+            "state": "s1",
+            "asset_id": "nav-io-s1"
+          }
+        ]
+      },
+      {
+        "id": "nav-io-label",
+        "page_id": "io",
+        "layer_id": "nav-io",
+        "category": "editable_text",
+        "asset_role": "editable_text",
+        "rect_px": [
+          224,
+          540,
+          180,
+          44
+        ],
+        "required_states": [
+          "default"
+        ],
+        "delivery_mode": "native",
+        "native_spec": {
+          "target_control": "editable text",
+          "parameters": {
+            "text": "IO 监视",
+            "font_family": "sans-serif"
+          },
+          "state_map": {
+            "default": "keep label separate from plate"
+          }
+        }
+      }
     ]
   }
 }
