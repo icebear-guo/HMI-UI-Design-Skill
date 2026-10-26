@@ -2,7 +2,7 @@
 
 用户要求完整设计交付时，提交可解压、离线操作的HTML原型与设计标注包，不能只给截图、标注热区、提示词、说明文档或一张拼图。用户明确只要求规范、提示词、局部修改或评审时，按指定范围交付。
 
-首次方向未定时，先按 [需求与打样流程](design-intake.md) 交付同一代表页的多方案HTML和待选择记录，选定后再展开完整包。方向样例不要求提前完成所有页面、切片或未知工程功能，不能将其宣称为最终交付。
+完整项目先按 [客户确认流程](project-workflow.md) 完成C1参数、C2实际样例HTML布局色调、C3规定数量的全套交互UI HTML三次确认。已给定偏好仍须交当前项目样例。确认完成前以HTML评审，不提前渲染PNG或切图；客户确认全套UI后才导出正式资产和构建最终包。
 
 ## 目录与文件
 
@@ -18,6 +18,8 @@ hmi-ui-delivery.zip            与目录内容一致的压缩包
 ```
 
 页面和切片数量以任务实际范围为准，不固定某个数量。目录名、文件名、示例和界面标题使用通用功能命名。原始可编辑源文件若确实存在，可另行附带并说明格式；没有时不得声称已提供。
+
+资产范围按 [逐元素覆盖](asset-coverage.md) 执行：从C3已确认的各页HTML登记所有图形与必要状态，不只登记已经导出的文件。人形/装饰/导航/通信图标、独立灯态等默认单独导出；原生或背景合并例外须逐项规格和客户确认。最终清单1.2保存element_inventory，缺项或缺少有效例外时失败。
 
 ## 离线标注入口
 
@@ -39,6 +41,8 @@ hmi-ui-delivery.zip            与目录内容一致的压缩包
 
 ## 构建助手
 
+本助手用于最终交付。完整项目调用前须运行 `scripts/check_project_workflow.py --record <项目记录> --for delivery`，三项当前版本客户确认未齐则停在对应HTML评审阶段。C3页面使用原生HTML/CSS/SVG完成，不得为调用此助手而提前渲染PNG。合成工具样例仅用于回归，不表示客户项目确认。
+
 `scripts/build_delivery.py` 只打包已经存在且校验通过的 PNG、显式图层数据和许可字体，不生图、不切片、不重绘、不恢复压平图层。依赖 Python 3.12+ 与 Pillow。输入为 UTF-8 JSON；路径相对 manifest 所在目录，禁止绝对路径、越界、链接与非法路径。
 
 ```powershell
@@ -47,21 +51,21 @@ python .\scripts\build_delivery.py --manifest .\delivery-manifest.json --out .\e
 
 `--out` 的父目录必须存在，目标目录和并列 `.zip` 必须均不存在；已有交付不覆盖。构建前验证输入和全部页面/图层边界；构建后对复制文件核对哈希。普通读写失败会清理本次新建输出，外部进程同时改动或强制终止不具备事务保证。
 
-### 输入契约 1.1
+### 输入契约 1.2
 
-根字段：`schema_version="1.1"`、非空 `pages`、非空 `assets`、`simulation`；`fonts`可省略。simulation中的变量、适用交互和图层行为契约见 [功能原型规范](interactive-preview.md)。1.0仅兼容旧标注包，不能称为当前完整UI交付。缺少实际页面、切片或功能原型时先补齐或明确报告缺口。
+根字段：`schema_version="1.2"`、非空pages/assets、simulation和element_inventory；fonts可省略。交互见 [原型规范](interactive-preview.md)，盘点见 [资产覆盖](asset-coverage.md)。element_inventory可为对象或相对JSON路径，构建后解析到specs/design.json。旧1.0/1.1仅兼容原检查范围，缺少盘点时标记missing_legacy_inventory，不能称为当前完整范围通过。
 
 | 对象 | 必填字段 | 可选字段/约束 |
 |---|---|---|
 | page | `id,name,design_size_px,preview,layers` | layers非空；preview为真实静态PNG |
 | layer | `id,name,type,rect_px` | `text`、`fill="#RRGGBB"`、`font`、`interaction`；功能组件必须有text及interaction；矩形为逻辑 `[x,y,w,h]` |
 | font属性 | `family,size_px` | `weight` 为100–900整数或normal/bold；只记录已知信息 |
-| asset | `id,file,component_id,state,design_size_px` | file为独立PNG；同组件状态唯一且设计/实际画布一致 |
+| asset | `id,file,component_id,asset_role,state,design_size_px` | file为独立PNG；同组件同角色内状态唯一、画布一致；底板与图标可不同尺寸 |
 | font资源 | `file,usage_allowed=true` | `family`可选；格式ttf/otf/woff/woff2，显式许可后才复制 |
 
 ID/组件ID使用小写ASCII字母、数字、连字符或下划线；页面ID、资产ID各自唯一，图层ID在各页面内唯一。尺寸为有限正数，矩形原点非负；不允许画面越界或非等比图像。输出文件用这些安全ID重命名，保持组件映射。
 
-`layer.type` 为 `button` 或 `control` 时，必须有 `component_id=layer.id` 的 `s0` 和 `s1` 资产，两片设计尺寸均等于该图层矩形宽高。该约束用于新设计的按钮交付；接手未知旧状态时应先完成明确映射，再制作符合新规范的交付，不把未知编号伪称已实现按钮反馈。
+layer.type为button/control时，必须通过该实例的inventory引用asset_role=control_plate的s0/s1，两片设计尺寸等于该图层矩形宽高，可复用共享底板而不要求component_id等于每个实例ID。图标、灯等分别映射自身角色与状态，不覆盖底板反馈。旧1.0/1.1仍按既有component_id规则检查。
 
 ## 验收与交付
 

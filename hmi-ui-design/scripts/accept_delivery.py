@@ -139,7 +139,7 @@ def check_manifest(root, state):
     require({"index.html", "manifest.json", "specs/design.json"} <= files.keys(), "Missing required files")
     manifest = json_value(files["manifest.json"].read_text(encoding="utf-8-sig"))
     model = json_value(files["specs/design.json"].read_text(encoding="utf-8-sig"))
-    require(manifest["schema_version"] == model["schema_version"] and model["schema_version"] in {"1.0", "1.1"}, "Unsupported schema")
+    require(manifest["schema_version"] == model["schema_version"] and model["schema_version"] in {"1.0", "1.1", "1.2"}, "Unsupported schema")
     require(isinstance(manifest["files"], list) and manifest["files"], "Empty manifest inventory")
     listed = set()
     for item in manifest["files"]:
@@ -221,14 +221,14 @@ def check_design(root, state):
         design, size, pixel_hash = png(root, asset, "file", "actual_size_px", "export_scale_xy")
         require(relative(asset["file"]).parts[0] == "assets", "Asset must reference assets folder")
         referenced.add(asset["file"])
-        group = groups.setdefault(identifier, {})
+        group = groups.setdefault((identifier, asset.get("asset_role", "control_plate")), {})
         require(code.casefold() not in group, "Duplicate component state")
         require(not group or next(iter(group.values()))[:2] == (design, size), "State canvases differ")
         group[code.casefold()] = (design, size, pixel_hash)
     for page in model["pages"]:
         for layer in page["layers"]:
-            if layer["type"].lower() in {"button", "control"}:
-                states = groups.get(layer["id"], {})
+            if model["schema_version"] != "1.2" and layer["type"].lower() in {"button", "control"}:
+                states = groups.get((layer["id"], "control_plate"), {})
                 require({"s0", "s1"} <= states.keys(), "Button is missing s0/s1")
                 require(all(states[s][0] == layer["rect_px"][2:] for s in ("s0", "s1")), "Button canvas differs from layer")
                 require(states["s0"][2] != states["s1"][2], "Button states have identical RGBA pixels")
@@ -255,6 +255,13 @@ def check_fonts(root, state):
 def check_interactions(root, state):
     from interaction_contract import validate_simulation
     return validate_simulation(state["model"])
+
+
+def check_element_coverage(root, state):
+    from asset_coverage import validate_asset_coverage
+    result = validate_asset_coverage(state["model"])
+    state["element_coverage"] = result
+    return result
 
 
 def check_zip(root, state):
@@ -287,6 +294,7 @@ def acceptance(package, scope, node):
         require(root.is_dir(), "Package must be a directory")
         for name, check in (("manifest_and_files", check_manifest), ("html_data_and_resources", check_html),
                             ("images_layers_and_states", check_design), ("interaction_contract", check_interactions),
+                            ("visible_element_coverage", check_element_coverage),
                             ("fonts", check_fonts), ("zip", check_zip)):
             try:
                 detail = check(root, state)
@@ -323,6 +331,7 @@ def acceptance(package, scope, node):
     return {"schema_version": "1.0", "scope": scope, "package": str(root), "overall": overall,
             "file_acceptance": file_status, "logic_acceptance": logic_status, "logic_environment": "pure-js-simulation",
             "prototype_delivery": "provided" if state.get("model", {}).get("simulation") else "missing_annotation_only",
+            "element_coverage": state.get("element_coverage", {"status":"not_checked"}),
             "browser_acceptance": "blocked", "visual_acceptance": "not_checked", "browser_verified": False,
             "limitation": "No browser, network, server or OS UI was accessed. Pure logic is not browser or visual acceptance.",
             "checks": checks}, {"pass": 0, "fail": 1, "blocked": 3}[overall]

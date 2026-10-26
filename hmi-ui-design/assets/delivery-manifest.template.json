@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "pages": [
     {
       "id": "overview",
@@ -279,7 +279,8 @@
       "design_size_px": [
         140,
         56
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "start-s1",
@@ -289,7 +290,8 @@
       "design_size_px": [
         140,
         56
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "enable-s0",
@@ -299,7 +301,8 @@
       "design_size_px": [
         140,
         56
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "enable-s1",
@@ -309,7 +312,8 @@
       "design_size_px": [
         140,
         56
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "lamp-control-s0",
@@ -319,7 +323,8 @@
       "design_size_px": [
         160,
         56
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "lamp-control-s1",
@@ -329,7 +334,8 @@
       "design_size_px": [
         160,
         56
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "level-set-s0",
@@ -339,7 +345,8 @@
       "design_size_px": [
         220,
         72
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "level-set-s1",
@@ -349,7 +356,8 @@
       "design_size_px": [
         220,
         72
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "nav-overview-s0",
@@ -359,7 +367,8 @@
       "design_size_px": [
         180,
         44
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "nav-overview-s1",
@@ -369,7 +378,8 @@
       "design_size_px": [
         180,
         44
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "nav-io-s0",
@@ -379,7 +389,8 @@
       "design_size_px": [
         180,
         44
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "nav-io-s1",
@@ -389,7 +400,8 @@
       "design_size_px": [
         180,
         44
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "input-channel-s0",
@@ -399,7 +411,8 @@
       "design_size_px": [
         280,
         80
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "input-channel-s1",
@@ -409,7 +422,8 @@
       "design_size_px": [
         280,
         80
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "output-channel-s0",
@@ -419,7 +433,8 @@
       "design_size_px": [
         340,
         140
-      ]
+      ],
+      "asset_role": "control_plate"
     },
     {
       "id": "output-channel-s1",
@@ -429,6 +444,29 @@
       "design_size_px": [
         340,
         140
+      ],
+      "asset_role": "control_plate"
+    },
+    {
+      "id": "boolean-lamp-off",
+      "file": "assets/boolean-lamp-off.png",
+      "component_id": "boolean-lamp",
+      "asset_role": "indicator",
+      "state": "off",
+      "design_size_px": [
+        14,
+        14
+      ]
+    },
+    {
+      "id": "boolean-lamp-on",
+      "file": "assets/boolean-lamp-on.png",
+      "component_id": "boolean-lamp",
+      "asset_role": "indicator",
+      "state": "on",
+      "design_size_px": [
+        14,
+        14
       ]
     }
   ],
@@ -482,5 +520,6 @@
       "gauge",
       "bar"
     ]
-  }
+  },
+  "element_inventory": "element-inventory.template.json"
 }

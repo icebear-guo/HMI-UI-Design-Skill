@@ -1,4 +1,4 @@
 interface:
   display_name: "HMI UI 设计专家"
-  short_description: "工业HMI参数引导、配色布局HTML打样、双态切片与可操作原型交付"
-  default_prompt: "请使用 $hmi-ui-design，先补齐设备尺寸、分辨率、导航与色调等必要参数，用同一代表页面提供多种布局与配色HTML供我选择，确定方向后再展开其余页面、s0/s1切片和可操作原型，并报告实际验收范围。"
+  short_description: "工业HMI分阶段客户确认：参数、样例HTML、全套交互HTML，确认后切图交付"
+  default_prompt: "请使用 $hmi-ui-design，先告知项目清单并让我确认初始参数和页面数量，再交样例HTML确认布局色调，然后完成规定数量的交互UI HTML让我确认；三项全部确认前以HTML评审，不渲染PNG、不切图，确认后才最终输出。"

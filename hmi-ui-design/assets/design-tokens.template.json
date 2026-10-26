@@ -10,7 +10,7 @@
     "layout": {"id": null, "version": null},
     "variant_id": null,
     "selection_record": null,
-    "note": "明确选择后写入ID和版本，并用已解析的主题与布局替换本次项目参数；模板初值不是用户选择"
+    "note": "客户审阅并确认实际样例HTML后写入ID和版本；此字段仅记录C2方向，不代表C1/C2/C3全部通过。正式PNG、切片与最终输出须另查当前项目流程记录"
   },
   "configuration": {
     "type": "design_proposal",
@@ -22,17 +22,7 @@
     "height_px": 600,
     "orientation": "landscape",
     "visible_width_mm": null,
-    "visible_height_mm": null,
-    "viewing_distance_mm": null
-  },
-  "platform": {
-    "name": null,
-    "version": null,
-    "alpha_support": "unverified",
-    "svg_support": "unverified",
-    "asset_memory_limit_bytes": null,
-    "font_family": null,
-    "input_method": null
+    "visible_height_mm": null
   },
   "layout": {
     "base_unit_px": 8,
@@ -61,7 +51,6 @@
     "candidate_min_target_px": [48, 48],
     "candidate_gap_px": 8,
     "verified_on_device": false,
-    "glove_mode": "unverified",
     "note": "像素值仅供草案，须结合可见物理尺寸、触摸精度与现场任务验证"
   },
   "colors": {

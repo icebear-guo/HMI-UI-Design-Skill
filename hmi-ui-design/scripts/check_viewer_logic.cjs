@@ -129,6 +129,7 @@ function inspect(file) {
       }
     }, 'Mock element tree contains only the original page image');
 
+    const expectedPlates = (pageId, layerId) => { if (model.element_inventory) { const e = model.element_inventory.elements.find(e => e.page_id === pageId && e.layer_id === layerId && e.asset_role === 'control_plate' && e.delivery_mode === 'export'); return e ? e.asset_refs.map(r => model.assets.find(a => a.id === r.asset_id)) : []; } return model.assets.filter(a => a.component_id === layerId && (a.asset_role || 'control_plate') === 'control_plate'); };
     const buttons = model.pages.flatMap((page, pageIndex) => page.layers
       .filter(l => ['button', 'control'].includes(l.type.toLowerCase())).map(layer => ({pageIndex, layer})));
     if (buttons.length) check('button_pointer_and_keyboard_feedback', () => {
@@ -137,7 +138,7 @@ function inspect(file) {
         const preview = all(nodes.inspector).find(n => n.attributes['aria-label'] === '按住预览按钮交互反馈');
         assert.ok(preview, `No state preview for ${layer.id}`);
         const face = all(preview).find(n => n.tag === 'img');
-        const states = model.assets.filter(a => a.component_id === layer.id);
+        const states = expectedPlates(model.pages[pageIndex].id, layer.id);
         const s0 = states.find(a => a.state.toLowerCase() === 's0');
         const s1 = states.find(a => a.state.toLowerCase() === 's1');
         assert.ok(s0 && s1, 'Missing s0/s1 pair'); assert.equal(face.src, s0.file);
@@ -196,7 +197,7 @@ function inspect(file) {
           assert.equal(control.attributes['data-state'], 's1');
           if (it.kind === 'momentary') assert.equal(read(d.id), true);
           invoke(control, 'onpointerup'); assert.equal(control.attributes['data-state'], 's0');
-          const s0 = model.assets.find(a => a.component_id === l.id && a.state === 's0');
+          const s0 = expectedPlates(model.pages[i].id, l.id).find(a => a.state === 's0');
           assert.equal(all(control).find(n => n.tag === 'img').src, s0.file);
         }
         if (it.kind === 'momentary') {

@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "scope": "full-ui-project",
+  "project_revision": "r1",
+  "page_count": null,
+  "page_ids": [],
+  "stages": {
+    "parameters": {
+      "revision": "p1",
+      "status": "pending",
+      "artifact_dir": "review/parameters-p1",
+      "entry": "project-brief.md",
+      "files": [],
+      "depends_on": {},
+      "customer_confirmation": null
+    },
+    "direction": {
+      "revision": "d1",
+      "status": "pending",
+      "artifact_dir": "review/direction-d1",
+      "entry": "index.html",
+      "files": [],
+      "depends_on": {"parameters": null},
+      "customer_confirmation": null
+    },
+    "interactive_ui": {
+      "revision": "u1",
+      "status": "pending",
+      "artifact_dir": "review/ui-u1",
+      "entry": "index.html",
+      "files": [],
+      "depends_on": {"parameters": null, "direction": null},
+      "pages": [],
+      "customer_confirmation": null
+    }
+  }
+}

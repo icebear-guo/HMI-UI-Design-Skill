@@ -24,7 +24,7 @@ def validate_simulation(model):
         need(not any("interaction" in layer for page in model["pages"] for layer in page["layers"]),
              "Use schema 1.1 for layer interactions")
         return "Legacy annotation-only package; no functional prototype"
-    need(model["schema_version"] == "1.1", "Unsupported simulation schema")
+    need(model["schema_version"] in {"1.1", "1.2"}, "Unsupported simulation schema")
     fields(simulation, ("variables", "required_features"))
     need(isinstance(simulation["variables"], list), "variables must be an array")
     variables = {}

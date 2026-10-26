@@ -15,9 +15,10 @@ import zipfile
 from PIL import Image
 sys.dont_write_bytecode = True
 from interaction_contract import validate_simulation
+from asset_coverage import validate_asset_coverage, ROLES
 
 
-VERSION = "1.1"
+VERSION = "1.2"
 ID = re.compile(r"[a-z0-9][a-z0-9_-]{0,63}\Z")
 BAD = re.compile(r'[<>:"|?*\x00-\x1f]')
 DEVICE = re.compile(r"^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\.|$)", re.I)
@@ -113,8 +114,8 @@ def prepare(manifest_path):
     manifest_path = manifest_path.resolve(strict=True)
     raw = manifest_path.read_bytes()
     data = json.loads(raw.decode("utf-8-sig"), object_pairs_hook=duplicate_keys)
-    keys(data, {"schema_version", "pages", "assets"}, {"fonts", "simulation"}, "manifest")
-    require(data["schema_version"] in {"1.0", VERSION}, "schema_version must be '1.0' or '1.1'")
+    keys(data, {"schema_version", "pages", "assets"}, {"fonts", "simulation", "element_inventory"}, "manifest")
+    require(data["schema_version"] in {"1.0", "1.1", VERSION}, "schema_version must be '1.0', '1.1' or '1.2'")
     require(isinstance(data["pages"], list) and data["pages"], "Complete delivery requires pages")
     require(isinstance(data["assets"], list) and data["assets"], "Complete delivery requires independent assets")
     require(isinstance(data.get("fonts", []), list), "fonts must be an array")
@@ -155,24 +156,28 @@ def prepare(manifest_path):
                       "actual_preview_px": info.pop("actual_size_px"), "preview_scale_xy": info.pop("export_scale_xy"),
                       "layers": layers, **info})
     for a in data["assets"]:
-        keys(a, {"id", "file", "component_id", "state", "design_size_px"}, set(), "asset")
+        keys(a, {"id", "file", "component_id", "state", "design_size_px"}, {"asset_role"}, "asset")
         unique(a["id"], asset_ids, "asset id")
         identifier(a["component_id"], "component_id")
         state = text(a["state"], "asset state")
-        pair = (a["component_id"].casefold(), state.casefold())
+        role = a.get("asset_role", "control_plate")
+        if "asset_role" in a:
+            require(isinstance(role, str) and role in ROLES, "Unknown asset_role")
+        pair = (a["component_id"].casefold(), role, state.casefold())
         require(pair not in component_states, "Duplicate state for component")
         component_states.add(pair)
         design = numbers(a["design_size_px"], 2, "asset design_size_px", True)
         source = input_file(root, a["file"])
         info = png_info(source, design)
         signature = (design, info["actual_size_px"])
-        if a["component_id"] in component_sizes:
-            require(component_sizes[a["component_id"]] == signature, "Component state canvases differ")
-        component_sizes[a["component_id"]] = signature
+        group_key = (a["component_id"], role)
+        if group_key in component_sizes:
+            require(component_sizes[group_key] == signature, "Component role state canvases differ")
+        component_sizes[group_key] = signature
         relative = f"assets/{a['id']}.png"
         copies.append((source, relative))
         assets.append({"id": a["id"], "file": relative, "component_id": a["component_id"],
-                       "state": state, "design_size_px": design, **info})
+                       "state": state, "design_size_px": design, **({"asset_role":role} if "asset_role" in a else {}), **info})
     for index, f in enumerate(data.get("fonts", []), 1):
         keys(f, {"file", "usage_allowed"}, {"family"}, "font resource")
         require(f["usage_allowed"] is True, "Font distribution permission must be explicit")
@@ -185,8 +190,8 @@ def prepare(manifest_path):
                       "sha256": hash_file(source), "bytes": source.stat().st_size})
     for page in pages:
         for layer in page["layers"]:
-            if layer["type"].lower() in {"button", "control"}:
-                states = {a["state"].casefold(): a for a in assets if a["component_id"] == layer["id"]}
+            if data["schema_version"] != "1.2" and layer["type"].lower() in {"button", "control"}:
+                states = {a["state"].casefold(): a for a in assets if a["component_id"] == layer["id"] and a.get("asset_role", "control_plate")=="control_plate"}
                 require({"s0", "s1"} <= states.keys(), f"Button {layer['id']} requires s0 and s1 assets")
                 require(all(states[s]["design_size_px"] == layer["rect_px"][2:] for s in ("s0", "s1")),
                         f"Button {layer['id']} asset canvas must match its logical rectangle")
@@ -196,7 +201,13 @@ def prepare(manifest_path):
               "pages": pages, "assets": assets, "fonts": fonts}
     if "simulation" in data:
         result["simulation"] = data["simulation"]
+    if "element_inventory" in data:
+        inventory = data["element_inventory"]
+        if isinstance(inventory, str):
+            inventory = json.loads(input_file(root, inventory).read_text(encoding="utf-8-sig"), object_pairs_hook=duplicate_keys)
+        result["element_inventory"] = inventory
     validate_simulation(result)
+    validate_asset_coverage(result)
     return result, copies
 
 
