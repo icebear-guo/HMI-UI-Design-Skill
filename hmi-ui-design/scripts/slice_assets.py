@@ -9,6 +9,7 @@ import re
 import sys
 import warnings
 from pathlib import Path
+from generation_failure import preserve_failure
 
 VERSION = "1.0"
 REPORT_NAME = "slice-report.json"
@@ -239,8 +240,8 @@ def prepare(manifest_path, out_path, dry_run):
     return report, prepared, report_path
 
 
-def write_batch(prepared):
-    """Exclusive creation; roll back only paths created by this invocation on failure."""
+def write_batch(prepared, failure_directory=None):
+    """Exclusive creation; retain partial output on failure, never delete on retry."""
     created_files = []
     created_dirs = []
     try:
@@ -259,17 +260,13 @@ def write_batch(prepared):
             with destination.open("xb") as stream:
                 created_files.append(destination)
                 stream.write(payload)
-    except BaseException:
-        for path in reversed(created_files):
-            try:
-                path.unlink()
-            except OSError:
-                pass
-        for path in reversed(created_dirs):
-            try:
-                path.rmdir()
-            except OSError:
-                pass
+    except BaseException as error:
+        if created_files or created_dirs:
+            owned_directory = created_dirs[0] if created_dirs else created_files[0].parent
+            if failure_directory is not None and Path(failure_directory).is_dir():
+                owned_directory = Path(failure_directory)
+            preserve_failure(owned_directory, error, created_files=[str(p) for p in created_files],
+                             created_directories=[str(p) for p in created_dirs])
         raise
 
 
@@ -283,12 +280,13 @@ def main():
         report, prepared, report_path = prepare(args.manifest, args.out, args.dry_run)
         if not args.dry_run:
             report_bytes = (json.dumps(report, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
-            write_batch(prepared + [(report_path, report_bytes)])
+            write_batch(prepared + [(report_path, report_bytes)], failure_directory=report_path.parent)
         print(json.dumps(report, ensure_ascii=False, indent=2))
         return 0
     except (Invalid, OSError, ValueError, KeyError, SyntaxError, Image.DecompressionBombError, Image.DecompressionBombWarning) as error:
         print(json.dumps({"schema_version": VERSION, "tool": "slice_assets.py", "status": "failed",
-                          "error_type": type(error).__name__, "message": str(error)}, ensure_ascii=False), file=sys.stderr)
+                          "error_type": type(error).__name__, "message": str(error),
+                          "retained_evidence": getattr(error, '__notes__', [])}, ensure_ascii=False), file=sys.stderr)
         return 2
 
 

@@ -6,10 +6,11 @@ import json
 import math
 from pathlib import Path
 import re
-import shutil
 import sys
 import tempfile
 import zipfile
+from branding import resolve_brand
+from generation_failure import preserve_failure
 
 sys.dont_write_bytecode = True
 ASSETS = Path(__file__).resolve().parents[1] / "assets"
@@ -120,7 +121,7 @@ def resolve_catalog(assets):
 
 def prepare(path, assets=ASSETS):
     data, digest = load(path)
-    fields(data, {"schema_version", "title", "canvas_px", "physical_size", "representative_page_id", "navigation_items", "snapshot", "variants", "assumptions"})
+    fields(data, {"schema_version", "title", "canvas_px", "physical_size", "representative_page_id", "navigation_items", "snapshot", "variants", "assumptions"}, {"company_name"})
     need(data["schema_version"] == "1.0", "Unsupported proposal schema")
     label(data["title"])
     size = data["canvas_px"]
@@ -177,7 +178,7 @@ def prepare(path, assets=ASSETS):
                     card_width, card_height = width*ratio-gap/2, (usable-gap*(count-1))/count
                 need(card_width >= 180*scale-1e-8 and card_height >= 80*scale-1e-8,
                      "Metric content exceeds selected layout capacity; choose a different composition or adapt the layout")
-    return {**data, "input_sha256": digest, "themes": themes, "layouts": layouts, "selection_status": "pending"}
+    return {**data, "brand_label": resolve_brand(data.get("company_name")), "input_sha256": digest, "themes": themes, "layouts": layouts, "selection_status": "pending"}
 
 
 def build(path, out, assets=ASSETS):
@@ -210,15 +211,15 @@ def build(path, out, assets=ASSETS):
             with zipfile.ZipFile(stream,"w",zipfile.ZIP_DEFLATED) as zipped:
                 for file in sorted(out.iterdir()):
                     zipped.write(file, out.name+"/"+file.name)
-    except BaseException:
+    except BaseException as error:
+        details = {'staging_directory': str(stage), 'output_directory': str(out),
+                   'output_owned': owned, 'archive': str(archive),
+                   'archive_owned_and_incomplete': archive_owned}
+        preserve_failure(stage, error, **details)
         if owned:
-            if archive_owned and archive.exists():
-                archive.unlink()
-            shutil.rmtree(out)
+            preserve_failure(out, error, **details)
         raise
-    finally:
-        shutil.rmtree(stage)
-    return {"status":"written", "directory":str(out), "zip":str(archive), "variants":len(model["variants"]), "selection":"pending", "browser_verified":False}
+    return {"status":"written", "directory":str(out), "zip":str(archive), "variants":len(model["variants"]), "selection":"pending", "browser_verified":False, "retained_staging_directory":str(stage)}
 
 
 def main():
@@ -229,7 +230,7 @@ def main():
     try:
         print(json.dumps(build(args.manifest,args.out),ensure_ascii=False))
     except (ValueError,OSError,KeyError,TypeError) as error:
-        print(json.dumps({"status":"fail","error":str(error)},ensure_ascii=False));return 1
+        print(json.dumps({"status":"fail","error":str(error),"retained_evidence":getattr(error,'__notes__',[])},ensure_ascii=False));return 1
     return 0
 
 

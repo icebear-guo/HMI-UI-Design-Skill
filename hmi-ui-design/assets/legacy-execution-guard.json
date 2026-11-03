@@ -1,0 +1,62 @@
+{
+  "schema_version": "hmi-legacy-profile-guard/1.0",
+  "basis": "Read-only compatibility restrictions transcribed from the audited engineering codecs; not a new MCGS execution profile.",
+  "profile": {
+    "schema_version": "mcgs-execution-profile/1.0",
+    "profile_id": "pro351-calibrated-core-20261102",
+    "target_version": "McgsPro 3.5.1.6963",
+    "profile_sha256": "0f76aeaac8e7693e524ee24803de85036ba71e6a520632cf02b72f77b6bc7025",
+    "content_sha256": "3b264b5e402d0165900a950bf7289571c5575d46811326dd92879bc84c58a275"
+  },
+  "constraints": {
+    "momentary": {
+      "scopes": [
+        "local_demo"
+      ],
+      "command_data_types": [
+        "boolean",
+        "number"
+      ],
+      "value_types": [
+        "number"
+      ]
+    },
+    "numeric_input": {
+      "data_types": [
+        "number"
+      ]
+    },
+    "numeric_output": {
+      "data_types": [
+        "boolean",
+        "number"
+      ]
+    },
+    "button_text": {
+      "states": [
+        "s0",
+        "s1"
+      ],
+      "horizontal": [
+        "left",
+        "center"
+      ],
+      "vertical": [
+        "top",
+        "center"
+      ],
+      "local_bounds": "whole_button"
+    }
+  },
+  "engineering_sources": {
+    "native_capabilities.py": "0143d9d6fa2a1f1fcbcaa5835b21280b2110e05e009155efb379349ef8b461b8",
+    "native_ui_style.py": "b78d4f791a891a51ad422dbdee297aa4265336506d041e46c736116cada8be45",
+    "native_numeric.py": "52d76d3eb47307e78cce9086827bf3c8ed89b964827f28cd0041cf29ceeb249b",
+    "pro_native.py": "4949e29f020f59a3993388cd56e8859d768e9083f1edd729b825aa9e87865079"
+  },
+  "limits": [
+    "No resolved template donor evidence is supplied by this generic profile.",
+    "No general plan-to-MCP executor or native runtime validation is implied.",
+    "Unknown/changed profiles require jointly verified constraints; never assume support."
+  ]
+}

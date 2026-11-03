@@ -20,7 +20,9 @@
       "artifact_dir": "review/direction-d1",
       "entry": "index.html",
       "files": [],
-      "depends_on": {"parameters": null},
+      "depends_on": {
+        "parameters": null
+      },
       "customer_confirmation": null
     },
     "interactive_ui": {
@@ -29,9 +31,13 @@
       "artifact_dir": "review/ui-u1",
       "entry": "index.html",
       "files": [],
-      "depends_on": {"parameters": null, "direction": null},
+      "depends_on": {
+        "parameters": null,
+        "direction": null
+      },
       "pages": [],
       "customer_confirmation": null
     }
-  }
+  },
+  "mcgs_export": null
 }

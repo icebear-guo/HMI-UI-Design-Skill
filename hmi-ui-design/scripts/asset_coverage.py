@@ -53,7 +53,8 @@ def validate_asset_coverage(model):
         states = element["required_states"]
         need(isinstance(states,list) and states and all(isinstance(s,str) and s.strip() for s in states)
              and len({s.casefold() for s in states})==len(states), "Explicit unique required states are required")
-        need(mode in {"export", "native", "merged"}, "Unresolved or invalid element delivery mode")
+        need(mode != "merged", "Independent components cannot be baked into a background in a complete delivery: "+element["page_id"]+"/"+element["id"])
+        need(mode in {"export", "native"}, "Unresolved or invalid element delivery mode")
         if mode == "export":
             need(category=="graphic" and "native_spec" not in element and "merged_into" not in element and "customer_waiver" not in element, "Export element has conflicting delivery fields")
             refs = element.get("asset_refs")
@@ -83,9 +84,6 @@ def validate_asset_coverage(model):
             need(isinstance(spec["state_map"],dict) and set(spec["state_map"])==set(states), "Native state map is incomplete")
             for value in spec["state_map"].values():
                 nonempty(value,"Native state implementation")
-        else:
-            need(category=="graphic" and role!="indicator" and len(states)==1 and "asset_refs" not in element and "native_spec" not in element, "Dynamic indicator/state graphics cannot be merged into a static background")
-            nonempty(element.get("merged_into"),"Parent exported element")
         if category=="graphic" and mode!="export":
             waiver = element.get("customer_waiver")
             fields(waiver,{"status","ui_revision","reason","customer_message","message_ref","confirmed_at"})
@@ -98,7 +96,7 @@ def validate_asset_coverage(model):
                 raise ValueError("Invalid graphic exemption timestamp") from error
             waivers += 1
         elif "customer_waiver" in element:
-            need(False,"Waivers apply only to native/merged graphic exceptions")
+            need(False,"Waivers apply only to verified native graphic exceptions")
     need(set(mapped)==set(layers), "Missing element delivery decisions for layers: "+", ".join(p+"/"+l for p,l in sorted(set(layers)-set(mapped))))
     for key, layer in layers.items():
         entries = mapped[key]
@@ -112,13 +110,6 @@ def validate_asset_coverage(model):
             states = {ref["state"].casefold():assets[ref["asset_id"]] for ref in plate["asset_refs"]}
             if states["s0"].get("rgba_sha256") and states["s1"].get("rgba_sha256"):
                 need(states["s0"]["rgba_sha256"]!=states["s1"]["rgba_sha256"], "Button plate s0/s1 must have distinct decoded pixels")
-    for element in indexed.values():
-        if element["delivery_mode"]=="merged":
-            parent = indexed.get((element["page_id"],element["merged_into"]))
-            need(parent is not None and parent is not element and parent["delivery_mode"]=="export" and parent["asset_role"] in {"background","panel"}
-                 and len(parent["required_states"])==1, "Merged element must map to one exported static parent on the same page")
-            x,y,w,h = element["rect_px"]; px,py,pw,ph = parent["rect_px"]
-            need(px<=x and py<=y and x+w<=px+pw and y+h<=py+ph, "Merged child is outside its parent asset")
     need(used==set(assets), "Asset package includes files not mapped to any inventoried element")
     return {"status":"complete_registered_inventory", "pages":len(pages), "elements":len(indexed), "assets":len(used),
             "graphic_customer_exemptions":waivers, "visual_inventory_verified":False,

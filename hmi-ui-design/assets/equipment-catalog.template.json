@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.1",
+  "design_revision": "fill_actual_reviewed_revision",
+  "style": {
+    "default": "refined_industrial_pseudo_3d",
+    "camera": "consistent_three_quarter_weak_perspective",
+    "light": "soft_upper_left",
+    "background": "true_alpha",
+    "mechanical_art_contains_text_or_dynamic_lamps": false
+  },
+  "equipment": [],
+  "entry_required_fields": [
+    "id",
+    "equipment_type",
+    "source_component_id",
+    "source_file",
+    "design_size_px",
+    "ports",
+    "states",
+    "instances",
+    "prompt_or_source",
+    "output_files",
+    "mechanical_layers",
+    "separate_indicator_layers",
+    "separate_label_layers",
+    "ui_size_preview",
+    "structure_review",
+    "alpha_review",
+    "style_consistency_review",
+    "item_kind",
+    "flow_node_ids",
+    "representation"
+  ],
+  "note": "Unfilled template. First draw system/equipment/part flow relationships; then individually draw all equipment/parts as refined pseudo-3D atlas masters; finally assemble the process page. Empty node or equipment arrays do not pass.",
+  "process_flow": {
+    "source_file": "flow/system_equipment_parts.html",
+    "nodes": [],
+    "connections": []
+  }
+}

@@ -8,9 +8,9 @@
 </style>
 <header><h1 id="title">HMI 布局与配色打样</h1><p>项目流程：客户确认初始参数 → 确认本轮HTML布局与色调 → 确认全套交互HTML → 正式切图与最终输出。</p></header>
 <main>
-<div class="notice">当前为C2样例HTML评审 / 本地模拟：各方案共用画布、内容与初始数据。本轮确认布局与色调后，才制作规定数量的全套交互HTML交客户确认；三项确认完成前不提前渲染PNG或切片。这里只展开代表页，其他导航项用于比较位置与容量。</div>
+<div class="notice">当前为流程2样例HTML评审 / 本地模拟：各方案共用画布、内容与初始数据。本轮确认布局与色调后，才制作规定数量的全套交互HTML交客户确认；三项确认完成前不提前渲染PNG或切片。这里只展开代表页，其他导航项用于比较位置与容量。</div>
 <div id="tools" class="tools"></div><div id="variants" class="grid"></div>
-<section class="choice"><h2>组合你希望保留的方向</h2><p>可以选整套或混选布局与配色。请查看组合后的最新HTML，再确认本轮方向；导出的选择记录仅针对C2，不代替C3全套UI确认，也不放行切图。生成页面或默认高亮不代表客户确认。</p><div id="choice-tools" class="tools"></div><div id="custom"></div><p id="choice-status" role="status">等待选择</p></section>
+<section class="choice"><h2>组合你希望保留的方向</h2><p>可以选整套或混选布局与配色。请查看组合后的最新HTML，再确认本轮方向；导出的选择记录仅针对流程2，不代替流程3全套UI确认，也不放行切图。生成页面或默认高亮不代表客户确认。</p><div id="choice-tools" class="tools"></div><div id="custom"></div><p id="choice-status" role="status">等待选择</p></section>
 <p id="assumptions"></p><p class="meta">方向稿的按钮使用独立矢量底板与文字；最终交付仍需按项目完成PNG双态切片、功能原型及各范围验收。</p>
 </main>
 <script id="proposal-data" type="application/json">__PROPOSAL_DATA__</script>
@@ -37,10 +37,10 @@ function profilePair(themeKey,layoutKey){return {theme:model.themes[themeKey].pr
 function renderScene(host,themeKey,layoutKey){
   host.replaceChildren();const {theme,layout}=profilePair(themeKey,layoutKey),c=theme.colors,[W,H]=model.canvas_px,s=Math.min(W/1024,H/600),gap=16*s,svg=shape('svg',{viewBox:'0 0 '+W+' '+H,role:'group','aria-label':scene.page_title+'；'+theme.name+'；'+layout.name,'data-theme':theme.id,'data-layout':layout.id,'font-family':'sans-serif'});host.append(svg);rect(svg,0,0,W,H,c.background,null,0);
   const regions=Object.fromEntries(Object.entries(layout.regions).map(([key,r])=>[key,[r[0]*W,r[1]*H,r[2]*W,r[3]*H]]));
-  const [sx,sy,sw,sh]=regions.status;rect(svg,sx,sy,sw,sh,c.surface,c.divider,0);text(svg,sx+gap,sy+sh/2,scene.page_title,21*s,c.text_primary);text(svg,sx+sw-gap,sy+sh/2,scene.object_label+' · '+scene.mode+' · '+scene.connection,14*s,c.text_secondary,{'text-anchor':'end'});
+  const [sx,sy,sw,sh]=regions.status;rect(svg,sx,sy,sw,sh,c.surface,c.divider,0);text(svg,sx+gap,sy+sh/2,model.brand_label+" · "+scene.page_title,18*s,c.text_primary);text(svg,sx+sw-gap,sy+sh/2,scene.object_label+' · '+scene.mode+' · '+scene.connection,14*s,c.text_secondary,{'text-anchor':'end'});
   const [ax,ay,aw,ah]=regions.alarm;rect(svg,ax,ay,aw,ah,c.surface_alt,c.divider,0);rect(svg,ax,ay,5*s,ah,c.warning,null,0);text(svg,ax+gap,ay+ah/2,scene.alarm,14*s,c.text_primary);
   const [nx,ny,nw,nh]=regions.navigation;rect(svg,nx,ny,nw,nh,c.surface,c.divider,0);const vertical=layout.navigation_position==='left',n=model.navigation_items.length;
-  model.navigation_items.forEach((item,i)=>{const cellH=Math.min(56*s,(nh-2*gap)/n),x=nx+gap+(vertical?0:i*(nw-2*gap)/n),y=ny+gap+(vertical?i*cellH:0),w=vertical?nw-2*gap:(nw-2*gap)/n-8*s,h=vertical?cellH-8*s:nh-2*gap,active=item.id===model.representative_page_id;rect(svg,x,y,w,h,active?c.accent:c.surface_alt,c.divider);text(svg,x+w/2,y+h/2,item.label,Math.min(16*s,w/(item.label.length+1),h*.45),active?c.text_on_accent:c.text_primary,{'text-anchor':'middle'});});
+  model.navigation_items.forEach((item,i)=>{const cellH=Math.min(56*s,(nh-2*gap)/n),x=nx+gap+(vertical?0:i*(nw-2*gap)/n),y=ny+gap+(vertical?i*cellH:0),w=vertical?nw-2*gap:(nw-2*gap)/n-8*s,h=vertical?cellH-8*s:nh-2*gap,active=item.id===model.representative_page_id;const navButton=add(svg,'g',{'data-component':'nav_'+item.id,role:'button',tabindex:0,'aria-label':item.label});rect(navButton,x,y,w,h,active?c.accent:c.surface_alt,c.divider);text(navButton,x+w/2,y+h/2,item.label,Math.min(16*s,w/(item.label.length+1),h*.45),active?c.text_on_accent:c.text_primary,{'text-anchor':'middle'});});
   const [rx,ry,rw,rh]=regions.content,body=[rx+gap,ry+gap,rw-2*gap,rh-2*gap],actionH=48*s,[bx,by,bw,bh]=body,usable=bh-actionH-gap;
   let process,metrics;if(layout.composition==='balanced-columns'){process=[bx,by,bw*.60-gap/2,usable];metrics=[bx+bw*.60+gap/2,by,bw*.40-gap/2,usable];}else if(layout.composition==='process-focus'){process=[bx,by,bw*.70-gap/2,usable];metrics=[bx+bw*.70+gap/2,by,bw*.30-gap/2,usable];}else{metrics=[bx,by,bw,usable*.38-gap/2];process=[bx,by+usable*.38+gap/2,bw,usable*.62-gap/2];}
   const [px,py,pw,ph]=process;rect(svg,px,py,pw,ph,c.surface,c.divider);text(svg,px+gap,py+24*s,'工序与单元状态',17*s,c.text_primary);const count=scene.units.length,unitW=(pw-gap*(count+1))/count,unitH=Math.min(80*s,ph*.32),unitY=py+48*s;

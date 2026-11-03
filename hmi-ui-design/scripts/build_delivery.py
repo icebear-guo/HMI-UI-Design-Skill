@@ -11,6 +11,9 @@ import shutil
 import sys
 import tempfile
 import zipfile
+from html import escape
+from branding import resolve_brand
+from generation_failure import preserve_failure
 
 from PIL import Image
 sys.dont_write_bytecode = True
@@ -114,7 +117,7 @@ def prepare(manifest_path):
     manifest_path = manifest_path.resolve(strict=True)
     raw = manifest_path.read_bytes()
     data = json.loads(raw.decode("utf-8-sig"), object_pairs_hook=duplicate_keys)
-    keys(data, {"schema_version", "pages", "assets"}, {"fonts", "simulation", "element_inventory"}, "manifest")
+    keys(data, {"schema_version", "pages", "assets"}, {"fonts", "simulation", "element_inventory", "company_name"}, "manifest")
     require(data["schema_version"] in {"1.0", "1.1", VERSION}, "schema_version must be '1.0', '1.1' or '1.2'")
     require(isinstance(data["pages"], list) and data["pages"], "Complete delivery requires pages")
     require(isinstance(data["assets"], list) and data["assets"], "Complete delivery requires independent assets")
@@ -169,6 +172,7 @@ def prepare(manifest_path):
         design = numbers(a["design_size_px"], 2, "asset design_size_px", True)
         source = input_file(root, a["file"])
         info = png_info(source, design)
+        require(info["actual_size_px"] == design, "Independent component PNG must be 1:1 with its design canvas")
         signature = (design, info["actual_size_px"])
         group_key = (a["component_id"], role)
         if group_key in component_sizes:
@@ -197,7 +201,7 @@ def prepare(manifest_path):
                         f"Button {layer['id']} asset canvas must match its logical rectangle")
                 require(states["s0"]["rgba_sha256"] != states["s1"]["rgba_sha256"],
                         f"Button {layer['id']} s0 and s1 must contain different RGBA pixels")
-    result = {"schema_version": data["schema_version"], "input_manifest_sha256": hashlib.sha256(raw).hexdigest(),
+    result = {"brand_label": resolve_brand(data.get("company_name")), "schema_version": data["schema_version"], "input_manifest_sha256": hashlib.sha256(raw).hexdigest(),
               "pages": pages, "assets": assets, "fonts": fonts}
     if "simulation" in data:
         result["simulation"] = data["simulation"]
@@ -235,7 +239,7 @@ def build(manifest_path, out):
             require(hash_file(source) == hash_file(stage / relative), "Copied file hash differs")
         if not model["fonts"]:
             (stage / "fonts/README.txt").write_text("未提供可随交付分发的字体文件。请确认目标设备字体与回退方案。\n", encoding="utf-8")
-        (stage / "index.html").write_text(template.replace("__DESIGN_DATA__", encoded), encoding="utf-8")
+        (stage / "index.html").write_text(template.replace("__DESIGN_DATA__", encoded).replace("__BRAND_LABEL__",escape(model["brand_label"])), encoding="utf-8")
         payload = json.dumps(model, ensure_ascii=False, indent=2) + "\n"
         (stage / "specs/design.json").write_text(payload, encoding="utf-8")
         manifest = {"schema_version": model["schema_version"], "pages": len(model["pages"]), "assets": len(model["assets"]),
@@ -254,17 +258,16 @@ def build(manifest_path, out):
                 for file in sorted(out.rglob("*")):
                     if file.is_file():
                         zipped.write(file, (Path(out.name) / file.relative_to(out)).as_posix())
-    except BaseException:
-        if archive_written:
-            archive.unlink(missing_ok=True)
-        if written and out.parent == stage.parent:
-            shutil.rmtree(out)
+    except BaseException as error:
+        details = {'staging_directory': str(stage), 'output_directory': str(out),
+                   'output_owned': written, 'archive': str(archive),
+                   'archive_owned_and_incomplete': archive_written}
+        preserve_failure(stage, error, **details)
+        if written:
+            preserve_failure(out, error, **details)
         raise
-    finally:
-        require(stage.parent == out.parent and stage.name.startswith(".delivery-build-"), "Invalid cleanup target")
-        shutil.rmtree(stage)
     return {"status": "written", "directory": str(out), "zip": str(archive), "pages": len(model["pages"]),
-            "assets": len(model["assets"]), "fonts": len(model["fonts"])}
+            "assets": len(model["assets"]), "fonts": len(model["fonts"]), "retained_staging_directory": str(stage)}
 
 
 def main():
@@ -276,7 +279,7 @@ def main():
         print(json.dumps(build(args.manifest, args.out), ensure_ascii=False, indent=2))
         return 0
     except (ValueError, OSError, KeyError, TypeError, zipfile.BadZipFile) as error:
-        print(json.dumps({"status": "failed", "error": str(error)}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({"status": "failed", "error": str(error), "retained_evidence": getattr(error, '__notes__', [])}, ensure_ascii=False), file=sys.stderr)
         return 2
 
 
