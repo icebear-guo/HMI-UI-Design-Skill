@@ -115,9 +115,9 @@ class CoverageTests(unittest.TestCase):
     def test_graphic_cannot_be_called_editable_text(self):
         e=self.native_user(); e.update(category="editable_text",asset_role="editable_text"); self.reject_coverage()
 
-    def test_static_merge_requires_exported_parent(self):
+    def test_static_merge_is_rejected_in_complete_delivery(self):
         self.merged_user()
-        self.assertEqual(validate_asset_coverage(self.model)["graphic_customer_exemptions"],1)
+        self.reject_coverage()  # 1.05+ preserves every independent component.
 
     def test_missing_merge_parent_fails(self):
         self.merged_user()["merged_into"]="missing"; self.reject_coverage()

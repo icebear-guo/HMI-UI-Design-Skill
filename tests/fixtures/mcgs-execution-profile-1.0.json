@@ -1,0 +1,15 @@
+{
+  "schema_version": "mcgs-execution-profile/1.0",
+  "profile_id": "pro351-calibrated-core-20261102",
+  "target_version": "McgsPro 3.5.1.6963",
+  "numeric_core_layout": {"horizontal": "center", "vertical": "center", "padding_px": [0, 0, 0, 0]},
+  "numeric_core_appearance": {"fill_enabled": false, "border_enabled": false, "image_enabled": false},
+  "numeric_output_unit": "external_native_label",
+  "input_unit": "internal_or_external_explicit",
+  "automatic_actions": ["navigate", "momentary"],
+  "custom_actions": "dedicated_adapter_before_design_freeze",
+  "layout_background_pipe": "independent_registered_picture_components",
+  "reusable_tools": ["native_gallery", "native_numeric", "native_ui_style", "pro_native"],
+  "scope": "current automatic codecs; not all product capabilities or native GUI certification",
+  "full_project_executor": "not_implemented; no ad_hoc_unknown_field_writes"
+}

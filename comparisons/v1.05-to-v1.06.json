@@ -1,0 +1,40 @@
+{
+  "baseline_version": "1.05",
+  "target_version": "1.06",
+  "revision": "2026-11-03-v106-mcgs-interface-r1",
+  "scope": "skill resources; bytecode excluded; normalized text comparison",
+  "baseline_files": 85,
+  "target_files": 93,
+  "added": [
+    "assets/legacy-execution-guard.json",
+    "references/delivery-invariants.md",
+    "references/incremental-generation.md",
+    "references/mcgs-interface-compatibility.md",
+    "references/task-resources.md",
+    "scripts/prepare_render_manifest.py",
+    "scripts/render_cache.mjs",
+    "scripts/sync_component_sources.py"
+  ],
+  "changed": [
+    "SKILL.md",
+    "agents/openai.yaml",
+    "references/automatic-acceptance.md",
+    "references/equipment-atlas.md",
+    "references/executable-design-profile.md",
+    "references/export-validation.md",
+    "references/generation-lifecycle.md",
+    "references/handoff-schema.md",
+    "references/mcgs-export-workflow.md",
+    "references/project-workflow.md",
+    "references/quality-review.md",
+    "references/render-performance.md",
+    "scripts/execution_profile.py",
+    "scripts/export_handoff.py",
+    "scripts/handoff_policy.py",
+    "scripts/mcgs_plan.py",
+    "scripts/probe_render_environment.py",
+    "scripts/render_components.mjs",
+    "scripts/visual_inventory.mjs"
+  ],
+  "removed": []
+}

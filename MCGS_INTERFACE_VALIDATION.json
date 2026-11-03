@@ -1,0 +1,73 @@
+{
+  "skill_version": "1.06",
+  "revision": "2026-11-03-v106-mcgs-interface-r1",
+  "date": "2026-11-03",
+  "scope": "UI-side MCGS interface fixes; no engineering skill mutation, MCP writes or native runtime",
+  "tests": {
+    "total": 117,
+    "regular_and_interface_passed": 109,
+    "browser_separate_passed": 8,
+    "new_interface_tests": 27,
+    "formal_export_path_tests": 7,
+    "result": "pass_in_declared_scopes",
+    "execution": "117 discovered with 8 browser checks skipped in restricted run; those 8 separately passed in normal local isolation",
+    "initial_browser_attempt": "CDP Page.enable timed out in restricted environment; preserved, then independently revalidated",
+    "latest_targeted_interface_pass": "27 passed, including real strict/symbolic CLI paths"
+  },
+  "structure": "official quick_validate passed in UTF-8 mode; validation library read in normal local context",
+  "syntax": {
+    "python": 23,
+    "javascript": 5,
+    "result": "pass"
+  },
+  "relative_links": "pass",
+  "json_parse": "pass",
+  "generation_policy": {
+    "schema_version": "hmi-generation-policy/1.0",
+    "status": "pass",
+    "files_checked": 28,
+    "findings": [],
+    "scope": "static known deletion patterns only; indirect/dynamic code and host approval remain separate"
+  },
+  "protocols": {
+    "design": "1.05",
+    "plan": "mcgs-layout-plan/1.1",
+    "engineering_profile": "mcgs-execution-profile/1.0"
+  },
+  "known_legacy_profile": {
+    "schema_version": "mcgs-execution-profile/1.0",
+    "profile_id": "pro351-calibrated-core-20261102",
+    "target_version": "McgsPro 3.5.1.6963",
+    "profile_sha256": "0f76aeaac8e7693e524ee24803de85036ba71e6a520632cf02b72f77b6bc7025",
+    "content_sha256": "3b264b5e402d0165900a950bf7289571c5575d46811326dd92879bc84c58a275"
+  },
+  "audited_engineering_sources_still_match_at_release_read": {
+    "native_capabilities.py": true,
+    "native_ui_style.py": true,
+    "native_numeric.py": true,
+    "pro_native.py": true
+  },
+  "unchanged_incremental_and_performance_code": {
+    "render_components.mjs": true,
+    "render_cache.mjs": true,
+    "visual_inventory.mjs": true,
+    "probe_render_environment.py": true,
+    "sync_component_sources.py": true
+  },
+  "resolved_ui_issues": [
+    "U1 momentary scope/type/value checks",
+    "U2 numeric factory/native-type dispatch independent of business role",
+    "U3 current numeric input adapter data type checked early",
+    "U4 complete two-state native button caption layout",
+    "Representative design capability check without PNG or placeholder hashes",
+    "Profile identity and declared asset checksum drift rejected",
+    "Unsupported symbolic requirements preserved under separate artifact name"
+  ],
+  "not_verified": [
+    "Actual template donors",
+    "Engineering reader synchronization",
+    "MCP candidate writes and independent native readback",
+    "Native editor display, compile and runtime",
+    "Cancel/blur behavior and device execution"
+  ]
+}

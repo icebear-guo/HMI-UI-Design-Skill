@@ -1,0 +1,171 @@
+{
+  "skill_version": "1.06",
+  "handoff_schema": "1.05",
+  "validated_on": "2026-11-03",
+  "test_suite": {
+    "tests": 117,
+    "result": "pass_in_declared_scopes",
+    "regular_and_interface": 109,
+    "browser_separate": 8
+  },
+  "structure": "official quick_validate passed in UTF-8 mode",
+  "syntax": {
+    "python": 23,
+    "javascript": 5,
+    "result": "pass"
+  },
+  "json_files": 16,
+  "relative_links": "pass",
+  "yaml_syntax": "pass",
+  "generation_deletion_precheck": {
+    "files_checked": 28,
+    "status": "pass",
+    "findings": []
+  },
+  "environment_probe": {
+    "first_cache_hit": false,
+    "repeat_cache_hit": true,
+    "refresh_cache_hit": false,
+    "original_report_preserved": true
+  },
+  "benchmark_shared_documents": {
+    "source_documents": 7,
+    "captures": 260,
+    "runs": [
+      {
+        "run": "baseline_reload",
+        "wall_seconds": 36.11903179998626,
+        "reported_seconds": 35.5048907,
+        "components": 260,
+        "metrics": null
+      },
+      {
+        "run": "optimized_cold",
+        "wall_seconds": 18.644171299994923,
+        "reported_seconds": 18.014835799999997,
+        "components": 260,
+        "metrics": {
+          "page_loads": 7,
+          "rendered_components": 260,
+          "reused_components": 0,
+          "cache_lookup_seconds": 0.06396519999999954,
+          "environment_and_source_seconds": 0.14286540000000003,
+          "browser_start_seconds": 0.4709823000000001,
+          "capture_seconds": 17.066419600000007
+        }
+      },
+      {
+        "run": "optimized_unchanged",
+        "wall_seconds": 1.0167463999823667,
+        "reported_seconds": 0.9066065000000001,
+        "components": 260,
+        "metrics": {
+          "page_loads": 0,
+          "rendered_components": 0,
+          "reused_components": 260,
+          "cache_lookup_seconds": 0.6110638000000003,
+          "environment_and_source_seconds": 0.0581356,
+          "browser_start_seconds": 0,
+          "capture_seconds": 0
+        }
+      },
+      {
+        "run": "optimized_changed_page_source",
+        "wall_seconds": 4.615099400019972,
+        "reported_seconds": 3.9983678,
+        "components": 260,
+        "metrics": {
+          "page_loads": 1,
+          "rendered_components": 38,
+          "reused_components": 222,
+          "cache_lookup_seconds": 0.5597780000000006,
+          "environment_and_source_seconds": 0.08646120000000002,
+          "browser_start_seconds": 0.5712045,
+          "capture_seconds": 2.556849100000001
+        }
+      }
+    ],
+    "pixel_comparison": {
+      "strict_exact": "failed_for_69_images",
+      "max_rgb_delta": 1,
+      "max_alpha_delta": 0,
+      "declared_rgb_tolerance": 1,
+      "declared_alpha_tolerance": 0,
+      "bounded_comparison": "pass",
+      "outside_tolerance_ids": []
+    }
+  },
+  "benchmark_independent_components": {
+    "status": "pass",
+    "scope": "260 independent static component source documents; no model/human time",
+    "runs": [
+      {
+        "run": "cold",
+        "wall_seconds": 37.1562517999846,
+        "metrics": {
+          "page_loads": 260,
+          "rendered_components": 260,
+          "reused_components": 0,
+          "cache_lookup_seconds": 0.03335169999999994,
+          "environment_and_source_seconds": 0.4665541000000001,
+          "browser_start_seconds": 0.4385802,
+          "capture_seconds": 35.45092959999997
+        }
+      },
+      {
+        "run": "unchanged",
+        "wall_seconds": 1.00298630000907,
+        "metrics": {
+          "page_loads": 0,
+          "rendered_components": 0,
+          "reused_components": 260,
+          "cache_lookup_seconds": 0.4845795000000005,
+          "environment_and_source_seconds": 0.2315171,
+          "browser_start_seconds": 0,
+          "capture_seconds": 0
+        }
+      },
+      {
+        "run": "one_source_changed",
+        "wall_seconds": 2.555455099995015,
+        "metrics": {
+          "page_loads": 1,
+          "rendered_components": 1,
+          "reused_components": 259,
+          "cache_lookup_seconds": 0.5064412000000006,
+          "environment_and_source_seconds": 0.1511841,
+          "browser_start_seconds": 0.5587983000000002,
+          "capture_seconds": 0.5644246999999998
+        }
+      }
+    ],
+    "deleted_prior_files": 0
+  },
+  "limitations": [
+    "Synthetic static benchmark excludes model planning, illustration, human waiting and production-project runtime.",
+    "Human aesthetics, native MCGS editor/runtime, and remote GitHub CI were not executed.",
+    "Old custom task generators require integration; installation alone does not rewrite them."
+  ],
+  "baseline_counts": {
+    "1.03": {
+      "added": 36,
+      "changed": 32,
+      "removed": 0
+    },
+    "1.05": {
+      "added": 6,
+      "changed": 12,
+      "removed": 0
+    }
+  },
+  "initial_release_test_suite": {
+    "tests": 90,
+    "new_tests": 13,
+    "new_real_browser_tests": 8,
+    "result": "pass",
+    "elapsed_seconds": 27.963,
+    "post_change_targeted_checks": "5 source tests and 1 incremental renderer test passed"
+  },
+  "latest_revision": "2026-11-03-v106-mcgs-interface-r1",
+  "latest_interface_report": "MCGS_INTERFACE_VALIDATION.json"
+}
