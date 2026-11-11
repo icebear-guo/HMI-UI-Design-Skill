@@ -81,3 +81,4 @@ python .\scripts\slice_assets.py --manifest .\assets\slice-manifest.json --out .
 所有裁片在内存里完成校验和编码后才写出。输出目录必须与源图及 manifest 隔离，不能把包含输入的目录作为 `--out`；已有输出、已有报告一律拒绝覆盖，请换一个导出目录。输出目录、其祖先及子路径不得含符号链接或 Windows junction；在解析真实路径之前检查祖先，dry-run 同样拒绝。独占创建防止覆盖校验后的竞态文件；普通写入异常保留本次创建的文件及目录，并尽力写`.generation-failure-*.json`，不删除回滚。失败批次不得交付，按 [追加式生成](generation-lifecycle.md) 新建目录重试。断电、强制终止或外部进程同时修改目录不具备事务保证，导出时应独占目标目录。
 
 切片通过只代表几何、文件和像素校验通过；**不代表 UI 视觉验收、状态语义、安全规范或目标 HMI 软件导入验收通过**。
+

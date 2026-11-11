@@ -1,0 +1,76 @@
+{
+  "version": "2.11.0",
+  "release_date": "2026-11-10",
+  "channel": "stable",
+  "basis_revision": "v211-layout-defaults-test6",
+  "release_changes": [
+    "SKILL.md version/channel/revision/title",
+    "agents/openai.yaml display_name"
+  ],
+  "native_editor_runtime_unchanged_from_test6": true,
+  "default_layout_validation": {
+    "logical_checks": 32,
+    "browser_checks": 17,
+    "common_canvases": [
+      [
+        800,
+        480
+      ],
+      [
+        1024,
+        600
+      ],
+      [
+        1024,
+        768
+      ],
+      [
+        1920,
+        1080
+      ]
+    ],
+    "layouts": 2,
+    "themes": 4,
+    "combinations_per_canvas": 8,
+    "all_pass": true,
+    "evidence_hashes": {
+      "logic": "6cc6056721351e89fbf099f3b3a2dee1f85164e07fdc04d901f95298c58ead65",
+      "browser": "8f811e49b7433c30b372812f0b6d13bcf075d97e2460045d39d78b0f0f3b1ee6"
+    }
+  },
+  "prior_tool_validation": {
+    "font_and_source_and_native_and_browser_and_portability_checks": 121,
+    "basis": "V2.11 test5; inherited evidence, not rerun count for stable promotion"
+  },
+  "native_resolution_evidence": {
+    "1024x600": "prior_native_samples",
+    "1024x768": "editor_and_runtime_screenshots_and_saved_17_controls_geometry",
+    "800x480": "editor_and_runtime_screenshots_and_saved_15_controls_geometry",
+    "480x272": "runtime_screenshot; original geometry snapshot not retained before project resize",
+    "800x600": "runtime_screenshot; original geometry snapshot not retained before project resize",
+    "1366x768": "runtime_screenshot; original geometry snapshot not retained before project resize",
+    "1920x1080": "runtime_screenshot_and_saved_19_controls_geometry"
+  },
+  "limitations": [
+    "McgsPro 3.5.1.6963 / Windows only for native copy",
+    "Twelve implemented control families with bounded fields",
+    "No automatic conversion of HTML simulation to PLC/MCGS script",
+    "No whole-page automatic reflow engine",
+    "Login/permissions/clock require actual project integration",
+    "Native configuration/compile/reopen/runtime and physical panel evidence tracked separately",
+    "New default-guide execution across models not certified"
+  ],
+  "user_projects_in_package": false,
+  "source_mcp_required": false,
+  "clipboard_published_by_packaging": false,
+  "stable_packaging_checks": {
+    "relocated_native_generation": {
+      "checks": 13,
+      "all_pass": true
+    },
+    "zip_file_hash_readback": true,
+    "file_count": 154,
+    "runtime_matches_test6": true,
+    "personal_paths_or_credentials_found": false
+  }
+}

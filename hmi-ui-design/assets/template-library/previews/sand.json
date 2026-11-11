@@ -1,0 +1,343 @@
+{
+  "schema": "hmi-ui-editor-model/2.0-test",
+  "revision": "template-sand-20261105103319920743",
+  "title": "报警与趋势",
+  "width": 1024,
+  "height": 600,
+  "template": {
+    "id": "sand",
+    "library_revision": "1.0",
+    "components_independent": true
+  },
+  "variables": [
+    {
+      "name": "process_value",
+      "kind": 2,
+      "source_id": 1,
+      "scope": "design_only"
+    },
+    {
+      "name": "command",
+      "kind": 1,
+      "source_id": 2,
+      "scope": "design_only"
+    }
+  ],
+  "preview_initial": {
+    "process_value": 60,
+    "command": false
+  },
+  "components": [
+    {
+      "id": "sand_background",
+      "kind": "picture",
+      "rect": [
+        0,
+        0,
+        1024,
+        600
+      ],
+      "z": 0,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1024\" height=\"600\" viewBox=\"0 0 1024 600\"><rect x=\"0.5\" y=\"0.5\" width=\"1023\" height=\"599\" rx=\"0\" fill=\"#f1eee8\"/></svg>"
+    },
+    {
+      "id": "sand_header",
+      "kind": "picture",
+      "rect": [
+        0,
+        0,
+        1024,
+        66
+      ],
+      "z": 1,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1024\" height=\"66\" viewBox=\"0 0 1024 66\"><rect x=\"0.5\" y=\"0.5\" width=\"1023\" height=\"65\" rx=\"0\" fill=\"#3e454b\"/></svg>"
+    },
+    {
+      "id": "sand_title",
+      "kind": "label",
+      "rect": [
+        20,
+        12,
+        290,
+        52
+      ],
+      "z": 2,
+      "text": "报警与趋势",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 25,
+        "weight": 700,
+        "color": "#ffffff"
+      }
+    },
+    {
+      "id": "sand_brand",
+      "kind": "label",
+      "rect": [
+        760,
+        20,
+        1004,
+        48
+      ],
+      "z": 3,
+      "text": "工控北极熊（抖音）",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 16,
+        "weight": 400,
+        "color": "#ffffff"
+      }
+    },
+    {
+      "id": "sand_trend_card",
+      "kind": "picture",
+      "rect": [
+        20,
+        84,
+        654,
+        350
+      ],
+      "z": 4,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"634\" height=\"266\" viewBox=\"0 0 634 266\"><rect x=\"0.5\" y=\"0.5\" width=\"633\" height=\"265\" rx=\"8\" fill=\"#ffffff\"/></svg>"
+    },
+    {
+      "id": "sand_trend_title",
+      "kind": "label",
+      "rect": [
+        34,
+        94,
+        636,
+        126
+      ],
+      "z": 5,
+      "text": "实时趋势 / 原生曲线",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 19,
+        "weight": 700,
+        "color": "#343b43"
+      }
+    },
+    {
+      "id": "sand_trend",
+      "kind": "realtime_trend",
+      "rect": [
+        38,
+        138,
+        636,
+        330
+      ],
+      "z": 6,
+      "binding": {
+        "name": "process_value",
+        "kind": 2,
+        "id": 1
+      },
+      "x_major": 6,
+      "y_major": 5,
+      "time_minutes": 15,
+      "y_max": 200,
+      "curve_color": "#d48a29"
+    },
+    {
+      "id": "sand_signal_card",
+      "kind": "picture",
+      "rect": [
+        672,
+        84,
+        1004,
+        350
+      ],
+      "z": 7,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"332\" height=\"266\" viewBox=\"0 0 332 266\"><rect x=\"0.5\" y=\"0.5\" width=\"331\" height=\"265\" rx=\"8\" fill=\"#ffffff\"/></svg>"
+    },
+    {
+      "id": "sand_signal_title",
+      "kind": "label",
+      "rect": [
+        688,
+        94,
+        988,
+        126
+      ],
+      "z": 8,
+      "text": "采样信号",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 19,
+        "weight": 700,
+        "color": "#343b43"
+      }
+    },
+    {
+      "id": "sand_signal",
+      "kind": "numeric_input",
+      "rect": [
+        700,
+        146,
+        974,
+        188
+      ],
+      "z": 9,
+      "binding": {
+        "name": "process_value",
+        "kind": 2,
+        "id": 1
+      },
+      "digits": 0,
+      "min": 0,
+      "max": 1000,
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 28,
+        "weight": 700,
+        "color": "#d48a29"
+      }
+    },
+    {
+      "id": "sand_progress",
+      "kind": "percentage_fill",
+      "rect": [
+        700,
+        220,
+        974,
+        252
+      ],
+      "z": 10,
+      "binding": {
+        "name": "process_value",
+        "kind": 2,
+        "id": 1
+      },
+      "min": 0,
+      "max": 200,
+      "fill_color": "#d48a29",
+      "text_color": "#d94b40",
+      "background_color": "#ffffff",
+      "hide_text": false
+    },
+    {
+      "id": "sand_switch",
+      "kind": "bit_switch",
+      "rect": [
+        700,
+        282,
+        974,
+        326
+      ],
+      "z": 11,
+      "binding": {
+        "name": "command",
+        "kind": 1,
+        "id": 2
+      },
+      "action": "toggle",
+      "states": {
+        "s0": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"274\" height=\"44\" viewBox=\"0 0 274 44\"><rect x=\"0.5\" y=\"0.5\" width=\"273\" height=\"43\" rx=\"7\" fill=\"#faf0df\"/></svg>",
+        "s1": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"274\" height=\"44\" viewBox=\"0 0 274 44\"><rect x=\"0.5\" y=\"0.5\" width=\"273\" height=\"43\" rx=\"7\" fill=\"#d48a29\"/></svg>"
+      },
+      "captions": {
+        "s0": "试验开关",
+        "s1": "试验开关"
+      },
+      "state_colors": {
+        "s0": "#343b43",
+        "s1": "#ffffff"
+      },
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 17,
+        "weight": 700,
+        "color": "#343b43"
+      }
+    },
+    {
+      "id": "sand_realtime",
+      "kind": "alarm_browser",
+      "rect": [
+        20,
+        370,
+        502,
+        540
+      ],
+      "z": 12,
+      "alarm_mode": "realtime"
+    },
+    {
+      "id": "sand_history",
+      "kind": "alarm_browser",
+      "rect": [
+        522,
+        370,
+        1004,
+        540
+      ],
+      "z": 13,
+      "alarm_mode": "history"
+    },
+    {
+      "id": "sand_scope_note",
+      "kind": "label",
+      "rect": [
+        20,
+        556,
+        620,
+        586
+      ],
+      "z": 14,
+      "text": "试验页：同名变量共享；未连接实际设备。",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 12,
+        "weight": 400,
+        "color": "#8a8173"
+      }
+    },
+    {
+      "id": "sand_nav0",
+      "kind": "navigation",
+      "rect": [
+        650,
+        556,
+        816,
+        590
+      ],
+      "z": 15,
+      "text": "画面：设备运行总览",
+      "target_name": "设备运行总览",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 12,
+        "weight": 400,
+        "color": "#343b43"
+      },
+      "states": {
+        "s0": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"166\" height=\"34\" viewBox=\"0 0 166 34\"><rect x=\"0.5\" y=\"0.5\" width=\"165\" height=\"33\" rx=\"6\" fill=\"#faf0df\"/></svg>",
+        "s1": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"166\" height=\"34\" viewBox=\"0 0 166 34\"><rect x=\"0.5\" y=\"0.5\" width=\"165\" height=\"33\" rx=\"6\" fill=\"#d48a29\"/></svg>"
+      }
+    },
+    {
+      "id": "sand_nav1",
+      "kind": "navigation",
+      "rect": [
+        828,
+        556,
+        994,
+        590
+      ],
+      "z": 16,
+      "text": "画面：工艺参数设置",
+      "target_name": "工艺参数设置",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 12,
+        "weight": 400,
+        "color": "#343b43"
+      },
+      "states": {
+        "s0": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"166\" height=\"34\" viewBox=\"0 0 166 34\"><rect x=\"0.5\" y=\"0.5\" width=\"165\" height=\"33\" rx=\"6\" fill=\"#faf0df\"/></svg>",
+        "s1": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"166\" height=\"34\" viewBox=\"0 0 166 34\"><rect x=\"0.5\" y=\"0.5\" width=\"165\" height=\"33\" rx=\"6\" fill=\"#d48a29\"/></svg>"
+      }
+    }
+  ]
+}

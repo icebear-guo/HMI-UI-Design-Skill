@@ -1,0 +1,21 @@
+{
+  "schema": "hmi-ui-editor-pages/2.0-test",
+  "revision": "templates-20261105103319920743",
+  "pages": [
+    {
+      "id": "blue",
+      "name": "设备运行总览",
+      "model": "blue.json"
+    },
+    {
+      "id": "graphite",
+      "name": "工艺参数设置",
+      "model": "graphite.json"
+    },
+    {
+      "id": "sand",
+      "name": "报警与趋势",
+      "model": "sand.json"
+    }
+  ]
+}

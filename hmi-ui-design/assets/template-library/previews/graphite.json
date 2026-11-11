@@ -1,0 +1,573 @@
+{
+  "schema": "hmi-ui-editor-model/2.0-test",
+  "revision": "template-graphite-20261105103319920743",
+  "title": "工艺参数设置",
+  "width": 1024,
+  "height": 600,
+  "template": {
+    "id": "graphite",
+    "library_revision": "1.0",
+    "components_independent": true
+  },
+  "variables": [
+    {
+      "name": "process_value",
+      "kind": 2,
+      "source_id": 1,
+      "scope": "design_only"
+    },
+    {
+      "name": "command",
+      "kind": 1,
+      "source_id": 2,
+      "scope": "design_only"
+    }
+  ],
+  "preview_initial": {
+    "process_value": 60,
+    "command": false
+  },
+  "components": [
+    {
+      "id": "graphite_background",
+      "kind": "picture",
+      "rect": [
+        0,
+        0,
+        1024,
+        600
+      ],
+      "z": 0,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1024\" height=\"600\" viewBox=\"0 0 1024 600\"><rect x=\"0.5\" y=\"0.5\" width=\"1023\" height=\"599\" rx=\"0\" fill=\"#172229\"/></svg>"
+    },
+    {
+      "id": "graphite_header",
+      "kind": "picture",
+      "rect": [
+        0,
+        0,
+        1024,
+        66
+      ],
+      "z": 1,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1024\" height=\"66\" viewBox=\"0 0 1024 66\"><rect x=\"0.5\" y=\"0.5\" width=\"1023\" height=\"65\" rx=\"0\" fill=\"#102029\"/></svg>"
+    },
+    {
+      "id": "graphite_title",
+      "kind": "label",
+      "rect": [
+        20,
+        12,
+        290,
+        52
+      ],
+      "z": 2,
+      "text": "工艺参数设置",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 25,
+        "weight": 700,
+        "color": "#ffffff"
+      }
+    },
+    {
+      "id": "graphite_brand",
+      "kind": "label",
+      "rect": [
+        760,
+        20,
+        1004,
+        48
+      ],
+      "z": 3,
+      "text": "工控北极熊（抖音）",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 16,
+        "weight": 400,
+        "color": "#ffffff"
+      }
+    },
+    {
+      "id": "graphite_sidebar",
+      "kind": "picture",
+      "rect": [
+        20,
+        84,
+        232,
+        490
+      ],
+      "z": 4,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"212\" height=\"406\" viewBox=\"0 0 212 406\"><rect x=\"0.5\" y=\"0.5\" width=\"211\" height=\"405\" rx=\"8\" fill=\"#23343e\"/></svg>"
+    },
+    {
+      "id": "graphite_side_title",
+      "kind": "label",
+      "rect": [
+        34,
+        100,
+        218,
+        132
+      ],
+      "z": 5,
+      "text": "参数分组",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 19,
+        "weight": 700,
+        "color": "#eef6fa"
+      }
+    },
+    {
+      "id": "graphite_side0",
+      "kind": "label",
+      "rect": [
+        40,
+        160,
+        212,
+        194
+      ],
+      "z": 6,
+      "text": "基础设置",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 17,
+        "weight": 400,
+        "color": "#9eb5c0"
+      }
+    },
+    {
+      "id": "graphite_side1",
+      "kind": "label",
+      "rect": [
+        40,
+        226,
+        212,
+        260
+      ],
+      "z": 7,
+      "text": "运行参数",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 17,
+        "weight": 400,
+        "color": "#9eb5c0"
+      }
+    },
+    {
+      "id": "graphite_side2",
+      "kind": "label",
+      "rect": [
+        40,
+        292,
+        212,
+        326
+      ],
+      "z": 8,
+      "text": "操作控制",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 17,
+        "weight": 400,
+        "color": "#9eb5c0"
+      }
+    },
+    {
+      "id": "graphite_side3",
+      "kind": "label",
+      "rect": [
+        40,
+        358,
+        212,
+        392
+      ],
+      "z": 9,
+      "text": "维护设置",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 17,
+        "weight": 400,
+        "color": "#9eb5c0"
+      }
+    },
+    {
+      "id": "graphite_parameters",
+      "kind": "picture",
+      "rect": [
+        250,
+        84,
+        740,
+        490
+      ],
+      "z": 10,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"490\" height=\"406\" viewBox=\"0 0 490 406\"><rect x=\"0.5\" y=\"0.5\" width=\"489\" height=\"405\" rx=\"8\" fill=\"#23343e\"/></svg>"
+    },
+    {
+      "id": "graphite_parameter_title",
+      "kind": "label",
+      "rect": [
+        272,
+        100,
+        718,
+        136
+      ],
+      "z": 11,
+      "text": "参数编辑与状态控制",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 20,
+        "weight": 700,
+        "color": "#eef6fa"
+      }
+    },
+    {
+      "id": "graphite_parameter0",
+      "kind": "label",
+      "rect": [
+        274,
+        166,
+        470,
+        208
+      ],
+      "z": 12,
+      "text": "过程反馈",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 17,
+        "weight": 400,
+        "color": "#eef6fa"
+      }
+    },
+    {
+      "id": "graphite_parameter_value0",
+      "kind": "numeric_output",
+      "rect": [
+        496,
+        166,
+        706,
+        208
+      ],
+      "z": 13,
+      "binding": {
+        "name": "process_value",
+        "kind": 2,
+        "id": 1
+      },
+      "digits": 0,
+      "min": 0,
+      "max": 1000,
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 28,
+        "weight": 700,
+        "color": "#12bfa5"
+      }
+    },
+    {
+      "id": "graphite_parameter1",
+      "kind": "label",
+      "rect": [
+        274,
+        252,
+        470,
+        294
+      ],
+      "z": 14,
+      "text": "目标设定",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 17,
+        "weight": 400,
+        "color": "#eef6fa"
+      }
+    },
+    {
+      "id": "graphite_parameter_value1",
+      "kind": "numeric_input",
+      "rect": [
+        496,
+        252,
+        706,
+        294
+      ],
+      "z": 15,
+      "binding": {
+        "name": "process_value",
+        "kind": 2,
+        "id": 1
+      },
+      "digits": 0,
+      "min": 0,
+      "max": 1000,
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 28,
+        "weight": 700,
+        "color": "#12bfa5"
+      }
+    },
+    {
+      "id": "graphite_parameter2",
+      "kind": "label",
+      "rect": [
+        274,
+        338,
+        470,
+        380
+      ],
+      "z": 16,
+      "text": "本地请求",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 17,
+        "weight": 400,
+        "color": "#eef6fa"
+      }
+    },
+    {
+      "id": "graphite_parameter_value2",
+      "kind": "numeric_input",
+      "rect": [
+        496,
+        338,
+        706,
+        380
+      ],
+      "z": 17,
+      "binding": {
+        "name": "process_value",
+        "kind": 2,
+        "id": 1
+      },
+      "digits": 0,
+      "min": 0,
+      "max": 1000,
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 28,
+        "weight": 700,
+        "color": "#12bfa5"
+      }
+    },
+    {
+      "id": "graphite_apply",
+      "kind": "bit_switch",
+      "rect": [
+        280,
+        426,
+        478,
+        470
+      ],
+      "z": 18,
+      "binding": {
+        "name": "command",
+        "kind": 1,
+        "id": 2
+      },
+      "action": "momentary",
+      "states": {
+        "s0": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"198\" height=\"44\" viewBox=\"0 0 198 44\"><rect x=\"0.5\" y=\"0.5\" width=\"197\" height=\"43\" rx=\"7\" fill=\"#334e55\"/></svg>",
+        "s1": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"198\" height=\"44\" viewBox=\"0 0 198 44\"><rect x=\"0.5\" y=\"0.5\" width=\"197\" height=\"43\" rx=\"7\" fill=\"#12bfa5\"/></svg>"
+      },
+      "captions": {
+        "s0": "点动请求",
+        "s1": "点动请求"
+      },
+      "state_colors": {
+        "s0": "#eef6fa",
+        "s1": "#ffffff"
+      },
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 17,
+        "weight": 700,
+        "color": "#eef6fa"
+      }
+    },
+    {
+      "id": "graphite_mode",
+      "kind": "bit_switch",
+      "rect": [
+        506,
+        426,
+        706,
+        470
+      ],
+      "z": 19,
+      "binding": {
+        "name": "command",
+        "kind": 1,
+        "id": 2
+      },
+      "action": "toggle",
+      "states": {
+        "s0": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"44\" viewBox=\"0 0 200 44\"><rect x=\"0.5\" y=\"0.5\" width=\"199\" height=\"43\" rx=\"7\" fill=\"#334e55\"/></svg>",
+        "s1": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"44\" viewBox=\"0 0 200 44\"><rect x=\"0.5\" y=\"0.5\" width=\"199\" height=\"43\" rx=\"7\" fill=\"#12bfa5\"/></svg>"
+      },
+      "captions": {
+        "s0": "自动开关",
+        "s1": "自动开关"
+      },
+      "state_colors": {
+        "s0": "#eef6fa",
+        "s1": "#ffffff"
+      },
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 17,
+        "weight": 700,
+        "color": "#eef6fa"
+      }
+    },
+    {
+      "id": "graphite_right",
+      "kind": "picture",
+      "rect": [
+        758,
+        84,
+        1004,
+        490
+      ],
+      "z": 20,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"246\" height=\"406\" viewBox=\"0 0 246 406\"><rect x=\"0.5\" y=\"0.5\" width=\"245\" height=\"405\" rx=\"8\" fill=\"#23343e\"/></svg>"
+    },
+    {
+      "id": "graphite_right_title",
+      "kind": "label",
+      "rect": [
+        774,
+        100,
+        988,
+        136
+      ],
+      "z": 21,
+      "text": "过程反馈",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 19,
+        "weight": 700,
+        "color": "#eef6fa"
+      }
+    },
+    {
+      "id": "graphite_gauge",
+      "kind": "gauge",
+      "rect": [
+        786,
+        156,
+        976,
+        346
+      ],
+      "z": 22,
+      "binding": {
+        "name": "process_value",
+        "kind": 2,
+        "id": 1
+      },
+      "min": 0,
+      "max": 120,
+      "show_background": true,
+      "needle_color": "#12bfa5",
+      "needle_width": 7,
+      "needle_margin": 25
+    },
+    {
+      "id": "graphite_progress",
+      "kind": "percentage_fill",
+      "rect": [
+        784,
+        400,
+        976,
+        432
+      ],
+      "z": 23,
+      "binding": {
+        "name": "process_value",
+        "kind": 2,
+        "id": 1
+      },
+      "min": 0,
+      "max": 200,
+      "fill_color": "#12bfa5",
+      "text_color": "#d94b40",
+      "background_color": "#ffffff",
+      "hide_text": false
+    },
+    {
+      "id": "graphite_alarm_strip",
+      "kind": "alarm_strip",
+      "rect": [
+        20,
+        510,
+        1004,
+        550
+      ],
+      "z": 24,
+      "background_color": "#eaf2ff"
+    },
+    {
+      "id": "graphite_scope_note",
+      "kind": "label",
+      "rect": [
+        20,
+        556,
+        620,
+        586
+      ],
+      "z": 25,
+      "text": "试验页：同名变量共享；未连接实际设备。",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 12,
+        "weight": 400,
+        "color": "#9eb5c0"
+      }
+    },
+    {
+      "id": "graphite_nav0",
+      "kind": "navigation",
+      "rect": [
+        650,
+        556,
+        816,
+        590
+      ],
+      "z": 26,
+      "text": "画面：设备运行总览",
+      "target_name": "设备运行总览",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 12,
+        "weight": 400,
+        "color": "#eef6fa"
+      },
+      "states": {
+        "s0": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"166\" height=\"34\" viewBox=\"0 0 166 34\"><rect x=\"0.5\" y=\"0.5\" width=\"165\" height=\"33\" rx=\"6\" fill=\"#334e55\"/></svg>",
+        "s1": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"166\" height=\"34\" viewBox=\"0 0 166 34\"><rect x=\"0.5\" y=\"0.5\" width=\"165\" height=\"33\" rx=\"6\" fill=\"#12bfa5\"/></svg>"
+      }
+    },
+    {
+      "id": "graphite_nav1",
+      "kind": "navigation",
+      "rect": [
+        828,
+        556,
+        994,
+        590
+      ],
+      "z": 27,
+      "text": "画面：工艺参数设置",
+      "target_name": "工艺参数设置",
+      "font": {
+        "family": "微软雅黑",
+        "size_px": 12,
+        "weight": 400,
+        "color": "#eef6fa"
+      },
+      "states": {
+        "s0": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"166\" height=\"34\" viewBox=\"0 0 166 34\"><rect x=\"0.5\" y=\"0.5\" width=\"165\" height=\"33\" rx=\"6\" fill=\"#334e55\"/></svg>",
+        "s1": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"166\" height=\"34\" viewBox=\"0 0 166 34\"><rect x=\"0.5\" y=\"0.5\" width=\"165\" height=\"33\" rx=\"6\" fill=\"#12bfa5\"/></svg>"
+      }
+    }
+  ]
+}

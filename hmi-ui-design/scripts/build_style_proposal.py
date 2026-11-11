@@ -134,7 +134,10 @@ def prepare(path, assets=ASSETS):
     for item in data["navigation_items"]:
         fields(item, {"id", "label"}); label(item["label"])
     scene = data["snapshot"]
-    fields(scene, {"page_title", "object_label", "mode", "connection", "alarm", "metrics", "units", "actions"})
+    fields(scene, {"page_title", "object_label", "mode", "connection", "alarm", "metrics", "units", "actions"}, {"user_display", "time_display"})
+    scene.setdefault('user_display','未登录')
+    scene.setdefault('time_display','时间待接入')
+    label(scene['user_display']); label(scene['time_display'])
     for key in ("page_title", "object_label", "mode", "connection", "alarm"):
         label(scene[key])
     for key, maximum in (("metrics", 6), ("units", 6), ("actions", 4)):

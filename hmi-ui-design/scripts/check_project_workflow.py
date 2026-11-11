@@ -8,7 +8,7 @@ from pathlib import Path
 import re
 
 STAGES = ("parameters", "direction", "interactive_ui")
-REQUIRED = {"samples": 1, "ui": 2, "slicing": 3, "delivery": 3, "mcgs_export": 3}
+REQUIRED = {"samples": 1, "ui": 2, "slicing": 3, "delivery": 3}
 ID = re.compile(r"[a-z][a-z0-9_-]{0,63}\Z")
 SHA = re.compile(r"[0-9a-f]{64}\Z")
 BAD = re.compile(r'[<>:"|?*\x00-\x1f]')
@@ -148,8 +148,8 @@ def check(path, action):
     no_links(path.absolute())
     root = path.resolve(strict=True).parent
     record = json.loads(path.read_text(encoding="utf-8-sig"), object_pairs_hook=pairs_unique)
-    fields(record, {"schema_version", "scope", "project_revision", "page_count", "page_ids", "stages"}, {"mcgs_export", "review_policy"})
-    need(record["schema_version"] == "1.0" and record["scope"] == "full-ui-project", "Unsupported workflow scope/schema")
+    fields(record, {"schema_version", "scope", "project_revision", "page_count", "page_ids", "stages"}, {"review_policy"})
+    need(record["schema_version"] == "1.1" and record["scope"] == "full-ui-project", "Unsupported workflow scope/schema")
     need(isinstance(record["project_revision"], str) and record["project_revision"].strip(), "Project revision required")
     need(record["page_count"] is None or type(record["page_count"]) is int and record["page_count"] > 0, "Invalid page_count")
     need(isinstance(record["page_ids"], list) and all(isinstance(v, str) and ID.fullmatch(v) for v in record["page_ids"])
@@ -157,11 +157,11 @@ def check(path, action):
     fields(record["stages"], set(STAGES))
     policy=record.get('review_policy')
     if policy is not None:
-        fields(policy, {'mode','stages','customer_message','message_ref','recorded_at','project_revision','authorizes_mcgs_export'})
+        fields(policy, {'mode','stages','customer_message','message_ref','recorded_at','project_revision'})
         need(policy['mode']=='delegated' and policy['project_revision']==record['project_revision'], 'Explicit delegation must match the current project revision')
         need(isinstance(policy['stages'],list) and bool(policy['stages']) and set(policy['stages'])<=set(STAGES), 'Delegation needs explicit stage scope')
         need(all(isinstance(policy[k],str) and policy[k].strip() for k in ('customer_message','message_ref','recorded_at')), 'Actual delegation evidence required; do not infer it from an original task')
-        need(datetime.fromisoformat(policy['recorded_at'].replace('Z','+00:00')).tzinfo is not None and type(policy['authorizes_mcgs_export']) is bool, 'Delegation timestamp/export scope invalid')
+        need(datetime.fromisoformat(policy['recorded_at'].replace('Z','+00:00')).tzinfo is not None, 'Delegation timestamp/export scope invalid')
     results = {}
     for name in STAGES:
         try:
@@ -171,30 +171,8 @@ def check(path, action):
         results[name] = result
     needed = STAGES[:REQUIRED[action]]
     ready = all(results[name]["state"] in ("confirmed", "delegated") for name in needed)
-    export_choice = None
-    if action == "mcgs_export":
-        choice = record.get("mcgs_export")
-        reasons = []
-        if choice is None:
-            reasons.append("Ask whether to export MCGS assets and the complete implementation plan for the reviewed design")
-        else:
-            try:
-                fields(choice, {"decision", "design_revision", "reviewed_digest", "customer_message", "message_ref", "confirmed_at"}, {'basis'})
-                need(choice.get('basis','review_reply') in ('review_reply','explicit_delegation'), 'Invalid export decision basis')
-                if choice.get('basis')=='explicit_delegation':
-                    need(policy and policy['authorizes_mcgs_export'] is True and choice['message_ref']==policy['message_ref'], 'Delegated export needs explicit matching authorization')
-                need(choice["decision"] in {"export", "decline"}, "Invalid MCGS export choice")
-                need(all(isinstance(choice[k],str) and choice[k].strip() for k in ("design_revision","reviewed_digest","customer_message","message_ref","confirmed_at")), "Actual export decision evidence required")
-                need(datetime.fromisoformat(choice["confirmed_at"].replace("Z","+00:00")).tzinfo is not None, "Export decision timestamp needs timezone")
-                need(choice["design_revision"] == record["stages"]["interactive_ui"]["revision"], "Export decision is for a different design revision")
-                need(choice["reviewed_digest"] == results["interactive_ui"]["review_digest"], "Export decision is stale for current reviewed artifacts")
-                if choice["decision"] == "decline":reasons.append("User selected ordinary UI delivery without MCGS adaptation")
-            except (ValueError,TypeError) as error:
-                reasons.append(str(error))
-        export_choice = {"state": ("delegated" if choice and choice.get('basis')=='explicit_delegation' else "confirmed") if not reasons else "blocked", "reasons": reasons}
-        ready = ready and not reasons
     return {"status": "ready" if ready else "blocked", "action": action, "required_stages": list(needed),
-            "stages": list(results.values()), "mcgs_export": export_choice, "human_evidence_verified": False,
+            "stages": list(results.values()), "human_evidence_verified": False,
             "limitation": "Checks recorded evidence and artifact identity only; cannot authenticate customer messages or validate browser/device behavior."}
 
 

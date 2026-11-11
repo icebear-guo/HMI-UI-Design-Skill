@@ -1,0 +1,370 @@
+{
+  "current_version": "2.11-test1",
+  "native_generation": "embedded_neutral_structures_and_bundled_serializers",
+  "control_kinds": 12,
+  "source_mcp_required": false,
+  "external_donor_required": false,
+  "external_codec_skill_required": false,
+  "default_binding": "unbound",
+  "optional_binding": "names_pending_native_compile",
+  "preview_copy_requires_phase3_assets": false,
+  "legacy_mcgs_asset_export": "removed",
+  "native_configuration_save_runtime_new_neutral_branch": "not_checked",
+  "historical_evidence": {
+    "date_range": "2026-11-03/2026-11-04",
+    "mcgs_version": "3.5.1.6963",
+    "design_version": "2.00-test",
+    "machine_interfaces_unchanged": [
+      "handoff1.05",
+      "mcgs-layout-plan1.1",
+      "execution_profile1.0"
+    ],
+    "user_feedback": [
+      {
+        "scope": "50_same_class_buttons",
+        "quote": "50个批量重开正常",
+        "evidence_level": "user_saved_reopened"
+      },
+      {
+        "scope": "mixed_parent_rectangles_fix",
+        "quote": "修复后重开正常",
+        "evidence_level": "user_saved_reopened_and_independent_readback"
+      },
+      {
+        "scope": "R2_owned_input_skins_and_text_centering",
+        "quote": "复制后正常",
+        "evidence_level": "user_paste_display_report",
+        "save_reopen": "not_confirmed"
+      }
+    ],
+    "checks": {
+      "checks.json": {
+        "count": 29,
+        "all_pass": true,
+        "sha256": "8f75857d567356a1b11b26379cbf57b7ef11a0d993f21250f475a7b0b2911721"
+      },
+      "editor-checks.json": {
+        "count": 21,
+        "all_pass": true,
+        "sha256": "c4695459bbd07962d99ae00d4cefe05367974fb04596563fe0dc22f447869afb"
+      },
+      "server-checks.json": {
+        "count": 3,
+        "all_pass": true,
+        "sha256": "7e28fb473a1048929a89a48837c88b4b7ac171c8c6fe62f9345412c1df1b8e7f"
+      }
+    },
+    "publication_receipts": [
+      {
+        "case": "20261104_004344_754620",
+        "objects": 100,
+        "types": {
+          "picture": 29,
+          "label": 47,
+          "numeric_output": 6,
+          "numeric_input": 6,
+          "bit_switch": 6,
+          "lamp": 6
+        },
+        "selection": null,
+        "edited_components": null,
+        "buffer_sha256": "61da84ca3160518bc62aa5b50013b0dd9408f4627eb8a8863f7f3487f5035b4e",
+        "exact_readback": true,
+        "receipt_sha256": "250d4ae608aa81639498efbdf1fc3fc8e1cb40752bb49100a05c005fb262f19c"
+      },
+      {
+        "case": "20261104_094631_347190",
+        "objects": 94,
+        "types": {
+          "picture": 23,
+          "label": 47,
+          "numeric_output": 6,
+          "numeric_input": 6,
+          "bit_switch": 6,
+          "lamp": 6
+        },
+        "selection": null,
+        "edited_components": null,
+        "buffer_sha256": "2cb0397a6628a3247e936e7afe0ff2087968d8a0478ebc6ce72659494db80334",
+        "exact_readback": true,
+        "receipt_sha256": "e2958cc0128dbc7c62850a6719ec41b602025350f106a8f1eb156e877d80b3c9"
+      },
+      {
+        "case": "20261104_101014_988981",
+        "objects": 94,
+        "types": {
+          "picture": 23,
+          "label": 47,
+          "numeric_output": 7,
+          "numeric_input": 5,
+          "bit_switch": 6,
+          "lamp": 6
+        },
+        "selection": null,
+        "edited_components": 1,
+        "buffer_sha256": "e6a5ef8812346dcbb9ae2a26b93f877fdee439cd711a62071e683c51aef82557",
+        "exact_readback": true,
+        "receipt_sha256": "b5fe4de1aae204c989593b550b2713969d472558bb81f703719611f5485ef237"
+      },
+      {
+        "case": "20261104_101117_501781",
+        "objects": 1,
+        "types": {
+          "numeric_input": 1
+        },
+        "selection": [
+          "number_input_0"
+        ],
+        "edited_components": 1,
+        "buffer_sha256": "0fe457d2905ffdb0dc1662e41f7e3af3fdebd492f64447ffbf016727e4ceca55",
+        "exact_readback": true,
+        "receipt_sha256": "dba1ace93b3e147c1a8c68066f9f17066bf968a0a1e9442085be230bf62592c9"
+      },
+      {
+        "case": "20261104_115736_849044",
+        "objects": 94,
+        "types": {
+          "picture": 23,
+          "label": 47,
+          "numeric_output": 7,
+          "numeric_input": 5,
+          "bit_switch": 6,
+          "lamp": 6
+        },
+        "selection": null,
+        "edited_components": 1,
+        "buffer_sha256": "e6a5ef8812346dcbb9ae2a26b93f877fdee439cd711a62071e683c51aef82557",
+        "exact_readback": true,
+        "receipt_sha256": "b67f84e4a2027b5829ea0817b24441b8c96e6e1d6825b5f871399fd223d401fc"
+      }
+    ],
+    "native_compile": "user_confirmed_for_web_six_window_case",
+    "native_plc_runtime": "not_checked",
+    "release_verification": {
+      "editor-checks.json": {
+        "checks": 22,
+        "all_pass": true,
+        "sha256": "0c05769573de2c48eb83aa23335a66becad6b75e4f7602790202ae70542218b2",
+        "clipboard_written": false
+      },
+      "preview-checks.json": {
+        "checks": 7,
+        "all_pass": true,
+        "sha256": "5382339e521e04c08dd02ebea4df0a5e8e24d5bd4edd1fdc1b19de0ffeb4059f",
+        "clipboard_written": false
+      },
+      "guard-checks.json": {
+        "checks": 6,
+        "all_pass": true,
+        "sha256": "ecee7dac7b7cf7dfeaf60adc6404f297e6d287b4c0377125526c1598486b12a4",
+        "clipboard_written": false
+      }
+    },
+    "independent_forward_check": {
+      "mode": "read_only",
+      "scope": "dual_pump_layout_and_self_edit_request",
+      "closed_findings": [
+        "per_component_donor_selection",
+        "numeric_alias_conversion_fallback",
+        "source_svg_vs_native_image_edit_boundary"
+      ],
+      "native_runtime_evidence_added": false
+    },
+    "window_batch": {
+      "revision": "2026-11-04-v200-window-batch-test2",
+      "fixed_donor_windows": 6,
+      "fixed_donor_controls": 564,
+      "fixed_payload_readback": "pass",
+      "user_configuration_check": "pass",
+      "web_windows": 6,
+      "web_controls": 564,
+      "web_saved_fields": "pass",
+      "web_exact_image_slots": 353,
+      "web_old_windows_preserved": 16,
+      "web_saved_project_sha256": "fae50549662d7fe8180d1fcfbd27878a616adc23997ddece1fefcdda77bdb018",
+      "web_export_sha256": "49fb0665ae14b129a04e3b93cbdbde0b92d0284f55332b3de6de50770da8c2e4",
+      "user_compile_quote": "编译通过没有问题。",
+      "native_reopen": "not_separately_confirmed",
+      "device_runtime": "not_checked",
+      "private_mcp_and_donors_distributed": false,
+      "portable_session_checks": {
+        "windows-checks.json": 20,
+        "editor-checks.json": 22,
+        "preview-checks.json": 7,
+        "guard-checks.json": 6
+      },
+      "portable_validation_total": 55
+    },
+    "alarm_realtime_trend_field_edit": {
+      "date": "2026-11-04",
+      "mcgs_version": "3.5.1.6963",
+      "source_capture_sha256": "f784b839c1a94415172df3fc4710bebb2ea3f08f9f478b71ddbd8fdf3eb2cd71",
+      "published_buffer_sha256": "f006b85baf65e1b5a803e7155e280556a79f8e590024e4195a7a1c78c14289fd",
+      "saved_snapshot_sha256": "1b031e5e431b3e1b820e1eb183edf6b46578302bd92fc6d5e159e570cddf11b9",
+      "controls": 4,
+      "alarm_modes": [
+        1,
+        0
+      ],
+      "alarm_non_font_face_padding_core_bytes": "exact",
+      "alarm_font_semantics": "exact",
+      "trend_content_bytes_each": 1033,
+      "both_trend_contents": "exact_to_requested",
+      "original_windows_unchanged": 24,
+      "user_feedback": "没有问题",
+      "saved_readback": "pass",
+      "compile": "not_separately_confirmed",
+      "reopen": "not_separately_confirmed",
+      "runtime": "not_checked",
+      "general_web_types_added": false
+    },
+    "gauge_percentage_fill_field_edit": {
+      "date": "2026-11-04",
+      "mcgs_version": "3.5.1.6963",
+      "controls": 9,
+      "gauges": 3,
+      "percentage_fills": 6,
+      "source_capture_sha256": "dd5cefb1d00c088bf0067fefff68768fe65f99a99fc9209d5149ac1dd4de07e8",
+      "published_buffer_sha256": "5ddcb7f3aa1b4238d7f4698acb92485b0f3167260a133a6b30679b6c24739ae7",
+      "saved_snapshot_sha256": "b67916cf9645fa00f67b9019d1fbce9e1a6a3206562c152cfe16c5361290b085",
+      "gauges_complete_content_after_image_normalization": "exact",
+      "percentage_fills_complete_content": "all_six_570_bytes_exact",
+      "public_fill_color_with_high_flags": "exact",
+      "old_windows_unchanged": 25,
+      "user_feedback": "组态检测正常",
+      "saved_readback": "pass",
+      "runtime": "not_checked",
+      "compile_and_reopen": "not_separately_confirmed",
+      "general_editor_kinds_added": false
+    },
+    "button_navigation_field_edit": {
+      "date": "2026-11-04",
+      "controls": 8,
+      "saved_readback": "pass",
+      "saved_snapshot_sha256": "3a4beb59b51c1dee131f079af820870308be6b7e9ee92835444002ae052940b8",
+      "old_windows_unchanged": 26,
+      "user_property_checks": "pass",
+      "runtime": "not_separately_confirmed",
+      "general_editor_kinds_added": false
+    },
+    "alarm_scrollbar_field_edit": {
+      "date": "2026-11-04",
+      "controls": 3,
+      "saved_readback": "pass",
+      "saved_snapshot_sha256": "4c6f53cb569abf092d1184d1cd6188bc5901e9b8da2a522b42b4d5344921cdfe",
+      "old_windows_unchanged": 27,
+      "user_property_checks": "pass",
+      "runtime": "not_separately_confirmed",
+      "general_editor_kinds_added": false
+    },
+    "dynamic_local_binding_runtime": {
+      "date": "2026-11-04",
+      "case": "dynamic_binding_four_controls",
+      "user_quote": "联动正常",
+      "native_runtime": "user_confirmed_and_two_screenshots_match",
+      "observed_input_values": [
+        60,
+        120
+      ],
+      "zero_input": "not_shown_in_screenshots",
+      "vertical_direction": "bottom_to_top",
+      "horizontal_direction": "left_to_right",
+      "saved_readback_sha256": "f746e39be9db5a23f34a8d4893d5dec0f69ed6fb493a7d85cb36d6232c447b86",
+      "project_snapshot_sha256": "1f6d82607bbddac0fd5e8269fa49526a47f860daeae26f45b6cf77e3e2f5896f",
+      "old_windows_unchanged": 28,
+      "scope": "this local data binding and two measured rectangular fills; no PLC/device I/O claim",
+      "native_save_observations": [
+        {
+          "location": "appearance+32 and metadata property mirror+32",
+          "before": 0,
+          "after": 1,
+          "semantics": "unresolved; no general normalization rule"
+        },
+        {
+          "location": "vertical percentage content u32+35",
+          "before": 1,
+          "after": 0,
+          "semantics": "geometry-correlated candidate; runtime direction pending"
+        }
+      ],
+      "screenshots": [
+        {
+          "sha256": "7eb3ee1cad2df3787f622eb7d0c836c9fd197dcaf90dc89d44c428df3adda9a4",
+          "input": 120,
+          "gauge_reading": 120,
+          "vertical_percent": 12.0,
+          "horizontal_percent": 60.0
+        },
+        {
+          "sha256": "1a375da5560c07c37f76e7b27093fa94d3cab376a915d17b504e30ff225208e6",
+          "input": 60,
+          "gauge_reading": 60,
+          "vertical_percent": 6.0,
+          "horizontal_percent": 30.0
+        }
+      ],
+      "gauge_binding_policy": "same-project authentic cache; no arbitrary expression compiler",
+      "general_editor_kinds_added": false
+    },
+    "twelve_editor_types_and_templates_candidate": {
+      "skill_metadata": "pass",
+      "python_syntax_files": 42,
+      "reference_links_checked": 42,
+      "new_runtime_no_private_paths": "pass",
+      "browser_checks": 37,
+      "portability_checks": 28,
+      "independent_preview_browser_checks": 7,
+      "automated_checks_total": 72,
+      "native_new_three_page_batch": "awaiting_user_paste_save_configuration_check",
+      "installed_skill_changed": false,
+      "private_donors_mcp_or_runtime_screenshots_in_package": false,
+      "status": "candidate_not_installed_pending_native_batch"
+    },
+    "test6_distribution": {
+      "release_channel": "test",
+      "revision": "v200-twelve-controls-templates-test6",
+      "release_date": "2026-11-05",
+      "automated_checks": 72,
+      "runtime_code_identical_to_checked_candidate": true,
+      "window_clipboard_full_readback": "pass",
+      "new_mixed_batch_native_paste_save_configuration": "not_user_confirmed",
+      "new_machine_test": "pending_user_new_task",
+      "private_mcp_or_native_donors_in_package": false,
+      "external_native_codec_dependency": "mcgs-pro-offline-edit1.05 matched fingerprint"
+    }
+  },
+  "current_validation": {
+    "revision": "v211-shared-source-test1",
+    "automated_check_groups": {
+      "source": 17,
+      "browser": 32,
+      "portability": 13
+    },
+    "automated_checks_total": 62,
+    "public_browser_tool": "pass_in_current_environment",
+    "clipboard_published_by_this_validation": false,
+    "native_structures_and_codecs_unchanged": true,
+    "native_application_save_configuration_compile_runtime": "not_run",
+    "new_environment_agent_run": "pending"
+  },
+  "guidance_revision": {
+    "revision": "v211-shared-source-test1",
+    "industry_first_retained": true,
+    "shared_source_build": true,
+    "fresh_task_model_behavior": "pending_user_fresh_task"
+  },
+  "previous_validation": {
+    "skill_metadata": "pass",
+    "syntax_and_json": "pass",
+    "reference_links": 150,
+    "obsolete_mcgs_export_removed": true,
+    "source_mcp_required": false,
+    "external_donors_required": false,
+    "external_codec_skill_required": false,
+    "embedded_control_kinds": 12,
+    "browser_checks": 32,
+    "relocated_native_generation_checks": 13,
+    "automated_checks_total": 45,
+    "native_original_application_new_branch": "pending_user_paste_save_configuration_test"
+  }
+}

@@ -1,14 +1,18 @@
 # 自动验收
 
-1.06接口修订另核对execution-compatibility.json，详见[接口说明](mcgs-interface-compatibility.md)。codec_constraints_matched只说明当前编码约束匹配，不表示实际模板供体、原厂显示/行为或自动执行就绪；unsupported符号分支不能冒充正常工程执行计划。
-
 **1.06停止条件**：文件/机械fail修复受影响项；能力blocked、人工视觉awaiting_review、原厂not_run分别报告。工具能力未变时不循环重跑期待pass；不由partial触发全量重建或审美改稿。详细范围见[增量生产](incremental-generation.md)。
 
 完整 UI 设计交付后自动检查实际产物并生成报告，不要求用户逐个文件检查。自动检查的范围、执行环境和未完成项必须分开记录；文件或模拟逻辑通过不能直接写成真实浏览器验收通过。
 
+## 新版项目检查入口
+
+[同源项目](shared-project.md)使用`check_project_coverage.py`核对约定内容与实际模型，使用`check_editor_browser.cjs`检查真实文字/边界值、切页变量与瞬时释放。报告可用0/1/3退出码区分已检查范围通过、失败与未完成；不能只看状态字符串或初始截图。项目业务要另测条件不满足、输入无效、取消、无数据及同变量跨页变化。剪贴板发布与回读按批次回执记录，检查脚本不发布不等于整个项目从未复制。
+
+以下通用素材包验收仅适用于用户要求该出口时，不能拿旧包结构当HTML复制的前置要求。
+
 ## 自动执行范围
 
-项目阶段先按 [客户确认流程](project-workflow.md) 运行 `check_project_workflow.py`，核对记录、评审快照和页数。该检查只验证证据字段与文件身份，不能认证客户消息真伪，也不代表客户确认或浏览器验收。流程1/流程2/流程3未齐时只继续对应HTML评审，不提前渲染PNG、切图或最终打包。
+项目阶段按[当前流程](project-workflow.md)记录实际确认或明确委托，`prepare_review_record.py`可生成schema1.1记录后再用`check_project_workflow.py`核对。它验证证据字段与文件身份，不能认证客户消息真伪，也不代表浏览器验收。正式通用素材按对应范围确认/委托后制作，预览即时复制不等待全部阶段。
 
 方向打样阶段运行 [方案库构建与检查](style-library.md) 中的 `check_style_logic.cjs`；完整交付阶段运行下述验收。两者阶段不同，不能因方向样例的其他页面尚未展开而假装完整工程通过。
 
@@ -61,6 +65,3 @@ accept_delivery.py 本身没有浏览器执行能力，因此 `complete` 范围�
 报告中的 `prototype_delivery=provided` 表示1.1功能原型数据存在；`missing_annotation_only`表示旧包只有标注。该字段需结合文件契约与逻辑检查结果阅读，不能单凭字段存在宣称交互合格。旧包的限定文件检查通过不豁免当前完整交付的HTML原型要求。
 
 对自动检查实际失败的项目，修正后重跑受影响检查；访问受阻时记录具体条件，不无限重试，不自动扩权。
-
-
-MCGS交接schema1.05另运行export_handoff的资产有效内容、branding、数值排版与行为检查，见 [export-validation.md](export-validation.md)。accept_delivery的旧文件/纯逻辑通过不豁免这些要求。render_components支持实测视口截图及capture:false的实际DOM探测；总控器可按其报告核对已标注组件，但未自动完成页面PNG重组或所有视觉子层盘点；缺证据继续partial/not_checked。

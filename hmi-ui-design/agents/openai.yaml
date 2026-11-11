@@ -1,4 +1,4 @@
 interface:
-  display_name: "HMI UI 设计专家"
-  short_description: "分层HMI与交互HTML；按影响增量导出，人工确认视觉，MCGS适配按选择执行"
-  default_prompt: "请使用 $hmi-ui-design，按本次范围和已有阶段记录推进；需要设备插画时完成独立图鉴，修改只更新受影响内容，视觉效果交人工确认，MCGS适配按有效选择执行。"
+  display_name: "HMI UI V2.11"
+  short_description: "弹窗确认屏幕、设备和制作范围，先看HTML布局色调再展开五页或六页界面"
+  default_prompt: "$hmi-ui-design"

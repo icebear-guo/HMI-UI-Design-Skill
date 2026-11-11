@@ -1,0 +1,15 @@
+{
+  "schema": "hmi-native-codec/2.1-test",
+  "files": {
+    "mcs_button_control.py": "2d408d21ecaf30b43b368d60b1dcd1647f68022e5994275af913a7fe2b1cb888",
+    "mcs_input_text.py": "115529ad56fdc3460efd780e112c8f405e36c0a27035a91b45f24160eadd4a02",
+    "mcs_window_archive.py": "551222ad4a871ec493082eb354ff5b8c10ac61a36f01a642c3c0663330437ed7",
+    "native_capabilities.py": "4e0cb0ab4466245a84edd2b2a9145cdf1f1e38c0b428432ab4f03438d1404861",
+    "native_numeric.py": "52d76d3eb47307e78cce9086827bf3c8ed89b964827f28cd0041cf29ceeb249b",
+    "native_picture_control.py": "9b34d5d63b2a7faba74368fa3405052d6dd6efbe458922e01fa891e6baae1f08",
+    "native_support.py": "916965485755ecac46c2aa71b283d31ac72fcc13fa52be4b20f64957fa5689ad",
+    "native_ui_style.py": "b78d4f791a891a51ad422dbdee297aa4265336506d041e46c736116cada8be45",
+    "原生界面样式.py": "4aa61299fef9af12355fce3e64699ec06c2cfd294f70d3c3c7a0f071178bda8b"
+  },
+  "structure_sha256": "f2dc32b44de3cde7d18d5bc997d9db3a709febec5986b1a46c7125cc44168f5e"
+}

@@ -2,6 +2,12 @@
 
 适用项目中确实需要设备插画/工艺设备组件的任务。默认统一为精致的工业产品图鉴风格：伪3D/2.5D、三分之四视角、适度正交或弱透视、真实可识别结构。用户指定扁平/P&ID或其他风格时服从指定风格，不强加3D。
 
+## 需求与复用依据
+
+从 [需求引导](design-intake.md) 获取行业/设备用途、工艺对象、主要部件、连接关系、已有照片/图纸及表现偏好。资料不足时先核实影响结构的项目，未知细节标待核实。纯IO/参数任务无需强加设备插画。
+
+逐对象核对已有母版的结构、端口、朝向、状态、比例和风格：匹配则引用源ID/版本；局部不符则派生项目版本；库中没有就新增独立母版。内置泵/罐仅为起点，不能用它们替换包装机、烘箱等不同设备。设备名、数值、状态灯与管线仍分层，跨项目复用不带入旧文案/信号/工艺假设。复用与新增随需求/方向评审，不另加固定审批。
+
 ## 先画流程关系，再逐项图鉴，最后组合
 
 1. **先画系统/设备/零件流程关系图**：按工艺依据先画可编辑HTML/SVG关系图，列出系统、设备及需要独立表达的零件，明确包含层级、连接方向、介质、端口、分支/回路和稳定节点ID。可同图分区表达不同层级，不强制拆成三份文件。关系图可用节点符号表达拓扑，但必须标为流程关系稿，不能冒充设备插画。没有工艺依据的内部结构标待核实，不编造装配或管路。零件范围以本次流程图中应独立表达的实际对象为准，不要求无意义地拆出所有紧固件。
@@ -38,13 +44,11 @@
 
 此规范规定设计产物和检查，不保证任意生图工具必然达到某种质量，也不把生成设备图当工程认证结构图。
 
-
 ## 可执行流程/图鉴覆盖检查
 
 设备类项目使用equipment-catalog schema1.1，模板见assets/equipment-catalog.template.json。process_flow含source_file、nodes、connections；节点{id,name,level:system/equipment/part,parent_id,ports:[端口ID]}，连接{from_node,from_port,to_node,to_port,medium}。先执行`python scripts/check_equipment_flow.py --catalog 项目/equipment-catalog.json --phase flow`；这只检查关系完整性，不代表工程工艺已认证。
 
 每个图鉴equipment条目新增item_kind=equipment/part、flow_node_ids、representation="refined_pseudo_3d"，保留已有独立source_file/source_component_id、尺寸、机械层、状态、实例、接口及外部灯/标签分层。可复用母版映射多个同类流程节点。再执行--phase atlas；缺图鉴、缺节点、重复映射、引用错误或声明方框占位时失败。它不能自动判定美术是否精致，结构辨识/视角/材质/光照与真实可视尺寸仍按上述视觉规范检查。
 
-设备类handoff声明equipment_required=true与equipment_catalog_file（流程3快照内相对文件），catalog及其源图需纳入同一已审清单；export_handoff会再次检查流程/图鉴覆盖。无设备的纯IO等局部任务不强行创建空图鉴。模板控件不足只影响MCP落地；设计阶段仍完成流程和全部独立图鉴，按具体节点报告待适配，不能退回矩形示意并宣布完成。
-
 用户明确指定扁平/P&ID等其他风格时，catalog可记录style_override={representation,user_message,message_ref}，逐项representation与其一致。未给真实用户依据不允许借此把默认精致伪3D降成方框；工具不能认证用户话语，实际上下文由代理负责。
+

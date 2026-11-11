@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "id": "bottom-balanced",
+  "version": "1.1.0",
+  "status": "proposed",
+  "name": "底部导航 · 均衡分栏",
+  "description": "顶部状态栏与下方报警条，底部导航，主区按可用空间组织设备及数据。",
+  "navigation_position": "bottom",
+  "composition": "balanced-columns",
+  "min_canvas_px": [
+    800,
+    480
+  ],
+  "regions": {
+    "status": [
+      0,
+      0,
+      1,
+      0.12
+    ],
+    "alarm": [
+      0,
+      0.12,
+      1,
+      0.06
+    ],
+    "navigation": [
+      0,
+      0.9,
+      1,
+      0.1
+    ],
+    "content": [
+      0,
+      0.18,
+      1,
+      0.72
+    ]
+  }
+}

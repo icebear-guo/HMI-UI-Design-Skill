@@ -1,2 +1,2 @@
--r requirements.txt
-PyYAML>=6,<7
+Pillow>=10.0
+PyYAML>=6.0

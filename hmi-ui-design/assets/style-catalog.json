@@ -15,6 +15,11 @@
       "id": "warm-light",
       "version": "1.0.0",
       "file": "themes/warm-light.json"
+    },
+    {
+      "id": "navy-dark",
+      "version": "1.0.0",
+      "file": "themes/navy-dark.json"
     }
   ],
   "layouts": [
@@ -32,6 +37,16 @@
       "id": "top-metrics",
       "version": "1.0.0",
       "file": "layouts/top-metrics.json"
+    },
+    {
+      "id": "left-process",
+      "version": "1.1.0",
+      "file": "layouts/left-process-v1-1.json"
+    },
+    {
+      "id": "bottom-balanced",
+      "version": "1.1.0",
+      "file": "layouts/bottom-balanced-v1-1.json"
     }
   ]
 }

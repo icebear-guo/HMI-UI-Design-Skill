@@ -1,6 +1,6 @@
 # 1.06 增量生产与停止条件
 
-适用于修改、重试及已确认后的正式资产导出。新增工具不改变阶段确认与MCGS导出选择。现有handoff schema仍为1.05。
+本文的阶段/生产PNG约束只管理正式通用素材交付；HTML预览复制可以随时为本次所选控件即时渲染必要图片，不等待流程3，不批量导出未选中的素材。
 
 ## 先确定影响，再生产
 
@@ -47,8 +47,6 @@ node scripts/render_components.mjs project/render-manifest.json project/render/v
 
 项目schema为`hmi-render-project/1.0`，字段：browser、delivery_manifest（相对JSON）、captures={assets:{资产ID:{html,selector}},pages:{页面ID:{html,selector,brand_selector}}}，可选optimization、software_rendering。映射须完整且无多余ID。页预览需要实际公司标签。fonts、inventory等原delivery相对引用继续保留，不能借派生清单绕过原校验。
 
-工具统一渲染与普通交付的几何数据；MCGS完整业务字段仍由现有handoff输入及export_handoff校验，不宣称自动推断全部工程规格。
-
 ## 默认检查与停止
 
 - 人工判断布局/配色/精致程度；AI默认检查尺寸、边界、文本容纳、有效alpha、缺图缺态、引用及字段，并提供遮挡线索。机械检查不冒充审美通过。
@@ -56,3 +54,4 @@ node scripts/render_components.mjs project/render-manifest.json project/render/v
 - 不反复截图追求更好看；不把全流程、delegated或工具partial当作无限审美授权。有效的人工作品确认不因AI主观偏好失效。
 - 区分机械fail、能力blocked、人工awaiting_review及原厂not_run；能力未变时不重跑同一工具期待pass。保留最终完整清单对账，不重复渲染全部图片。
 - render-report.metrics分别记录环境/源处理、缓存查询、浏览器启动、捕获、页面加载次数及复用/渲染数量；checkpoints.jsonl保留逐组件完成证据。对话等待另计。
+

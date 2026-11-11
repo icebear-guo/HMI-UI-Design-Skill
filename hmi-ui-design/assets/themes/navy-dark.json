@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "id": "navy-dark",
+  "version": "1.0.0",
+  "status": "proposed",
+  "name": "深海蓝",
+  "description": "深蓝背景、蓝灰层次与青蓝操作强调，提供区别于中性浅色和石板深色的方案。",
+  "tone": "dark",
+  "colors": {
+    "background": "#071D33",
+    "surface": "#102B45",
+    "surface_alt": "#163951",
+    "text_primary": "#E8F4FC",
+    "text_secondary": "#ADC5DB",
+    "divider": "#486984",
+    "accent": "#38BDF8",
+    "text_on_accent": "#06263A",
+    "button_s0": "#1466A0",
+    "button_s1": "#0B416B",
+    "text_on_button": "#FFFFFF",
+    "indicator_on": "#34D399",
+    "indicator_off": "#7B93A7",
+    "warning": "#FFC857",
+    "fault": "#FF7269"
+  }
+}

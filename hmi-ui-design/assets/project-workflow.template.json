@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "scope": "full-ui-project",
   "project_revision": "r1",
   "page_count": null,
@@ -38,6 +38,5 @@
       "pages": [],
       "customer_confirmation": null
     }
-  },
-  "mcgs_export": null
+  }
 }

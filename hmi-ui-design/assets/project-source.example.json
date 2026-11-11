@@ -1,0 +1,880 @@
+{
+  "schema": "hmi-ui-project/1.0",
+  "revision": "shared-source-example-r1",
+  "canvas": {
+    "width": 1024,
+    "height": 600
+  },
+  "context": {
+    "industry": "结构验证样例，非客户行业默认值",
+    "equipment": "离线演示设备",
+    "tasks": [
+      "验证同源数值",
+      "验证条件与瞬时释放",
+      "验证局部编辑与复制模型"
+    ]
+  },
+  "font": {
+    "family": "微软雅黑",
+    "size_px": 18,
+    "weight": 400,
+    "color": "#24334A"
+  },
+  "variables": [
+    {
+      "name": "volume",
+      "kind": 2,
+      "initial": 500,
+      "min": 480,
+      "max": 520,
+      "digits": 1
+    },
+    {
+      "name": "io_value",
+      "kind": 2,
+      "initial": 0,
+      "min": 0,
+      "max": 1,
+      "digits": 0
+    },
+    {
+      "name": "permit",
+      "kind": 1,
+      "initial": true
+    },
+    {
+      "name": "running",
+      "kind": 1,
+      "initial": false
+    },
+    {
+      "name": "start_request",
+      "kind": 1,
+      "initial": false
+    },
+    {
+      "name": "stop_request",
+      "kind": 1,
+      "initial": false
+    }
+  ],
+  "assets": {
+    "background": {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1024\" height=\"600\"><rect width=\"1024\" height=\"600\" fill=\"#eef3f8\"/></svg>"
+    },
+    "idle": {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"50\" viewBox=\"0 0 100 50\" preserveAspectRatio=\"none\"><defs><linearGradient id=\"g\"><stop stop-color=\"#e6effa\"/><stop offset=\"1\" stop-color=\"#ffffff\"/></linearGradient></defs><rect width=\"100\" height=\"50\" rx=\"7\" fill=\"url(#g)\"/></svg>"
+    },
+    "pressed": {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"50\" viewBox=\"0 0 100 50\" preserveAspectRatio=\"none\"><defs><linearGradient id=\"g\"><stop stop-color=\"#73a7e6\"/><stop offset=\"1\" stop-color=\"#ffffff\"/></linearGradient></defs><rect width=\"100\" height=\"50\" rx=\"7\" fill=\"url(#g)\"/></svg>"
+    },
+    "start": {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"50\" viewBox=\"0 0 100 50\" preserveAspectRatio=\"none\"><defs><linearGradient id=\"g\"><stop stop-color=\"#5aa778\"/><stop offset=\"1\" stop-color=\"#ffffff\"/></linearGradient></defs><rect width=\"100\" height=\"50\" rx=\"7\" fill=\"url(#g)\"/></svg>"
+    },
+    "stop": {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"50\" viewBox=\"0 0 100 50\" preserveAspectRatio=\"none\"><defs><linearGradient id=\"g\"><stop stop-color=\"#d77878\"/><stop offset=\"1\" stop-color=\"#ffffff\"/></linearGradient></defs><rect width=\"100\" height=\"50\" rx=\"7\" fill=\"url(#g)\"/></svg>"
+    },
+    "icon": {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 40 40\"><path d=\"M5 20h30M20 5v30\" stroke=\"#2878ed\" stroke-width=\"4\"/></svg>"
+    },
+    "lamp_on": {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 40 40\"><circle cx=\"20\" cy=\"20\" r=\"19\" fill=\"#28a65e\"/></svg>"
+    },
+    "lamp_off": {
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 40 40\"><circle cx=\"20\" cy=\"20\" r=\"19\" fill=\"#aab4c0\"/></svg>"
+    }
+  },
+  "pages": [
+    {
+      "id": "overview",
+      "name": "运行总览",
+      "components": [
+        {
+          "id": "bg",
+          "kind": "picture",
+          "rect": [
+            0,
+            0,
+            1024,
+            600
+          ],
+          "svg": "@background"
+        },
+        {
+          "id": "title",
+          "kind": "label",
+          "text": "运行总览 · 同源结构演示",
+          "rect": [
+            28,
+            20,
+            760,
+            64
+          ],
+          "font": {
+            "size_px": 28,
+            "weight": 700
+          }
+        },
+        {
+          "id": "note",
+          "kind": "label",
+          "text": "仅本地模拟；原生控件默认未绑定，MCGS逻辑另行配置",
+          "rect": [
+            28,
+            500,
+            996,
+            530
+          ],
+          "font": {
+            "size_px": 16
+          }
+        },
+        {
+          "id": "icon",
+          "kind": "picture",
+          "rect": [
+            930,
+            20,
+            990,
+            70
+          ],
+          "svg": "@icon"
+        },
+        {
+          "id": "nav_overview",
+          "kind": "navigation",
+          "rect": [
+            28,
+            540,
+            340,
+            588
+          ],
+          "text": "运行总览",
+          "target_name": "运行总览",
+          "states": {
+            "s0": "@idle",
+            "s1": "@pressed"
+          }
+        },
+        {
+          "id": "nav_parameters",
+          "kind": "navigation",
+          "rect": [
+            358,
+            540,
+            670,
+            588
+          ],
+          "text": "参数设置",
+          "target_name": "参数设置",
+          "states": {
+            "s0": "@idle",
+            "s1": "@pressed"
+          }
+        },
+        {
+          "id": "nav_io",
+          "kind": "navigation",
+          "rect": [
+            688,
+            540,
+            1000,
+            588
+          ],
+          "text": "IO监控",
+          "target_name": "IO监控",
+          "states": {
+            "s0": "@idle",
+            "s1": "@pressed"
+          }
+        },
+        {
+          "id": "value_caption",
+          "kind": "label",
+          "text": "当前本地灌装量 mL",
+          "rect": [
+            40,
+            100,
+            440,
+            136
+          ]
+        },
+        {
+          "id": "value",
+          "kind": "numeric_output",
+          "rect": [
+            40,
+            150,
+            300,
+            210
+          ],
+          "variable": "volume",
+          "font": {
+            "size_px": 36,
+            "weight": 700
+          },
+          "skin": "@idle"
+        },
+        {
+          "id": "run_lamp",
+          "kind": "lamp",
+          "rect": [
+            500,
+            100,
+            560,
+            160
+          ],
+          "variable": "running",
+          "states": {
+            "s0": "@lamp_off",
+            "s1": "@lamp_on"
+          }
+        },
+        {
+          "id": "run_caption",
+          "kind": "label",
+          "text": "运行反馈（演示）",
+          "rect": [
+            580,
+            110,
+            950,
+            154
+          ]
+        },
+        {
+          "id": "start",
+          "kind": "bit_switch",
+          "rect": [
+            40,
+            270,
+            300,
+            330
+          ],
+          "variable": "start_request",
+          "action": "momentary",
+          "states": {
+            "s0": "@start",
+            "s1": "@pressed"
+          },
+          "captions": {
+            "s0": "启动",
+            "s1": "启动"
+          },
+          "state_colors": {
+            "s0": "#24334A",
+            "s1": "#24334A"
+          },
+          "preview": {
+            "requires": {
+              "permit": true
+            },
+            "on_press": {
+              "running": true
+            }
+          }
+        },
+        {
+          "id": "stop",
+          "kind": "bit_switch",
+          "rect": [
+            340,
+            270,
+            600,
+            330
+          ],
+          "variable": "stop_request",
+          "action": "momentary",
+          "states": {
+            "s0": "@stop",
+            "s1": "@pressed"
+          },
+          "captions": {
+            "s0": "停止",
+            "s1": "停止"
+          },
+          "state_colors": {
+            "s0": "#24334A",
+            "s1": "#24334A"
+          },
+          "preview": {
+            "on_press": {
+              "running": false
+            }
+          }
+        },
+        {
+          "id": "permit",
+          "kind": "bit_switch",
+          "rect": [
+            640,
+            270,
+            970,
+            330
+          ],
+          "variable": "permit",
+          "action": "toggle",
+          "states": {
+            "s0": "@stop",
+            "s1": "@start"
+          },
+          "captions": {
+            "s0": "启动条件不满足",
+            "s1": "启动条件满足"
+          },
+          "state_colors": {
+            "s0": "#24334A",
+            "s1": "#24334A"
+          }
+        }
+      ]
+    },
+    {
+      "id": "parameters",
+      "name": "参数设置",
+      "components": [
+        {
+          "id": "bg",
+          "kind": "picture",
+          "rect": [
+            0,
+            0,
+            1024,
+            600
+          ],
+          "svg": "@background"
+        },
+        {
+          "id": "title",
+          "kind": "label",
+          "text": "参数设置 · 同源结构演示",
+          "rect": [
+            28,
+            20,
+            760,
+            64
+          ],
+          "font": {
+            "size_px": 28,
+            "weight": 700
+          }
+        },
+        {
+          "id": "note",
+          "kind": "label",
+          "text": "仅本地模拟；原生控件默认未绑定，MCGS逻辑另行配置",
+          "rect": [
+            28,
+            500,
+            996,
+            530
+          ],
+          "font": {
+            "size_px": 16
+          }
+        },
+        {
+          "id": "icon",
+          "kind": "picture",
+          "rect": [
+            930,
+            20,
+            990,
+            70
+          ],
+          "svg": "@icon"
+        },
+        {
+          "id": "nav_overview",
+          "kind": "navigation",
+          "rect": [
+            28,
+            540,
+            340,
+            588
+          ],
+          "text": "运行总览",
+          "target_name": "运行总览",
+          "states": {
+            "s0": "@idle",
+            "s1": "@pressed"
+          }
+        },
+        {
+          "id": "nav_parameters",
+          "kind": "navigation",
+          "rect": [
+            358,
+            540,
+            670,
+            588
+          ],
+          "text": "参数设置",
+          "target_name": "参数设置",
+          "states": {
+            "s0": "@idle",
+            "s1": "@pressed"
+          }
+        },
+        {
+          "id": "nav_io",
+          "kind": "navigation",
+          "rect": [
+            688,
+            540,
+            1000,
+            588
+          ],
+          "text": "IO监控",
+          "target_name": "IO监控",
+          "states": {
+            "s0": "@idle",
+            "s1": "@pressed"
+          }
+        },
+        {
+          "id": "caption",
+          "kind": "label",
+          "text": "灌装量：480.0～520.0 mL，1位小数",
+          "rect": [
+            40,
+            100,
+            960,
+            144
+          ]
+        },
+        {
+          "id": "volume_input",
+          "kind": "numeric_input",
+          "rect": [
+            40,
+            180,
+            420,
+            240
+          ],
+          "variable": "volume",
+          "font": {
+            "size_px": 32
+          },
+          "skin": "@idle"
+        },
+        {
+          "id": "help",
+          "kind": "label",
+          "text": "修改这里，返回总览或IO页检查同一数值。按Enter确认，Esc取消。",
+          "rect": [
+            40,
+            280,
+            970,
+            324
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io",
+      "name": "IO监控",
+      "components": [
+        {
+          "id": "bg",
+          "kind": "picture",
+          "rect": [
+            0,
+            0,
+            1024,
+            600
+          ],
+          "svg": "@background"
+        },
+        {
+          "id": "title",
+          "kind": "label",
+          "text": "IO监控 · 同源结构演示",
+          "rect": [
+            28,
+            20,
+            760,
+            64
+          ],
+          "font": {
+            "size_px": 28,
+            "weight": 700
+          }
+        },
+        {
+          "id": "note",
+          "kind": "label",
+          "text": "仅本地模拟；原生控件默认未绑定，MCGS逻辑另行配置",
+          "rect": [
+            28,
+            500,
+            996,
+            530
+          ],
+          "font": {
+            "size_px": 16
+          }
+        },
+        {
+          "id": "icon",
+          "kind": "picture",
+          "rect": [
+            930,
+            20,
+            990,
+            70
+          ],
+          "svg": "@icon"
+        },
+        {
+          "id": "nav_overview",
+          "kind": "navigation",
+          "rect": [
+            28,
+            540,
+            340,
+            588
+          ],
+          "text": "运行总览",
+          "target_name": "运行总览",
+          "states": {
+            "s0": "@idle",
+            "s1": "@pressed"
+          }
+        },
+        {
+          "id": "nav_parameters",
+          "kind": "navigation",
+          "rect": [
+            358,
+            540,
+            670,
+            588
+          ],
+          "text": "参数设置",
+          "target_name": "参数设置",
+          "states": {
+            "s0": "@idle",
+            "s1": "@pressed"
+          }
+        },
+        {
+          "id": "nav_io",
+          "kind": "navigation",
+          "rect": [
+            688,
+            540,
+            1000,
+            588
+          ],
+          "text": "IO监控",
+          "target_name": "IO监控",
+          "states": {
+            "s0": "@idle",
+            "s1": "@pressed"
+          }
+        },
+        {
+          "id": "caption",
+          "kind": "label",
+          "text": "0/1输入：与右侧显示读取同一变量",
+          "rect": [
+            40,
+            100,
+            970,
+            144
+          ]
+        },
+        {
+          "id": "io_input",
+          "kind": "numeric_input",
+          "rect": [
+            40,
+            180,
+            300,
+            240
+          ],
+          "variable": "io_value",
+          "font": {
+            "size_px": 32
+          },
+          "skin": "@idle"
+        },
+        {
+          "id": "io_output",
+          "kind": "numeric_output",
+          "rect": [
+            500,
+            180,
+            760,
+            240
+          ],
+          "variable": "io_value",
+          "font": {
+            "size_px": 32
+          }
+        },
+        {
+          "id": "volume_caption",
+          "kind": "label",
+          "text": "跨页共享灌装量 mL",
+          "rect": [
+            40,
+            300,
+            580,
+            344
+          ]
+        },
+        {
+          "id": "shared_volume",
+          "kind": "numeric_output",
+          "rect": [
+            600,
+            300,
+            940,
+            360
+          ],
+          "variable": "volume",
+          "font": {
+            "size_px": 32
+          }
+        }
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "overview_static",
+      "page_id": "overview",
+      "role": "static",
+      "component_ids": [
+        "bg",
+        "title",
+        "note"
+      ]
+    },
+    {
+      "id": "overview_icon",
+      "page_id": "overview",
+      "role": "graphic",
+      "component_ids": [
+        "icon"
+      ]
+    },
+    {
+      "id": "overview_nav_overview",
+      "page_id": "overview",
+      "role": "navigation",
+      "component_ids": [
+        "nav_overview"
+      ]
+    },
+    {
+      "id": "overview_nav_parameters",
+      "page_id": "overview",
+      "role": "navigation",
+      "component_ids": [
+        "nav_parameters"
+      ]
+    },
+    {
+      "id": "overview_nav_io",
+      "page_id": "overview",
+      "role": "navigation",
+      "component_ids": [
+        "nav_io"
+      ]
+    },
+    {
+      "id": "overview_captions",
+      "page_id": "overview",
+      "role": "static",
+      "component_ids": [
+        "value_caption",
+        "run_caption"
+      ]
+    },
+    {
+      "id": "overview_volume",
+      "page_id": "overview",
+      "role": "reading",
+      "component_ids": [
+        "value"
+      ],
+      "variable": "volume"
+    },
+    {
+      "id": "overview_lamp",
+      "page_id": "overview",
+      "role": "indicator",
+      "component_ids": [
+        "run_lamp"
+      ],
+      "variable": "running"
+    },
+    {
+      "id": "overview_start",
+      "page_id": "overview",
+      "role": "command",
+      "component_ids": [
+        "start"
+      ],
+      "variable": "start_request"
+    },
+    {
+      "id": "overview_stop",
+      "page_id": "overview",
+      "role": "command",
+      "component_ids": [
+        "stop"
+      ],
+      "variable": "stop_request"
+    },
+    {
+      "id": "overview_permit",
+      "page_id": "overview",
+      "role": "command",
+      "component_ids": [
+        "permit"
+      ],
+      "variable": "permit"
+    },
+    {
+      "id": "parameters_static",
+      "page_id": "parameters",
+      "role": "static",
+      "component_ids": [
+        "bg",
+        "title",
+        "note"
+      ]
+    },
+    {
+      "id": "parameters_icon",
+      "page_id": "parameters",
+      "role": "graphic",
+      "component_ids": [
+        "icon"
+      ]
+    },
+    {
+      "id": "parameters_nav_overview",
+      "page_id": "parameters",
+      "role": "navigation",
+      "component_ids": [
+        "nav_overview"
+      ]
+    },
+    {
+      "id": "parameters_nav_parameters",
+      "page_id": "parameters",
+      "role": "navigation",
+      "component_ids": [
+        "nav_parameters"
+      ]
+    },
+    {
+      "id": "parameters_nav_io",
+      "page_id": "parameters",
+      "role": "navigation",
+      "component_ids": [
+        "nav_io"
+      ]
+    },
+    {
+      "id": "parameters_captions",
+      "page_id": "parameters",
+      "role": "static",
+      "component_ids": [
+        "caption",
+        "help"
+      ]
+    },
+    {
+      "id": "parameters_volume",
+      "page_id": "parameters",
+      "role": "parameter",
+      "component_ids": [
+        "volume_input"
+      ],
+      "variable": "volume"
+    },
+    {
+      "id": "io_static",
+      "page_id": "io",
+      "role": "static",
+      "component_ids": [
+        "bg",
+        "title",
+        "note"
+      ]
+    },
+    {
+      "id": "io_icon",
+      "page_id": "io",
+      "role": "graphic",
+      "component_ids": [
+        "icon"
+      ]
+    },
+    {
+      "id": "io_nav_overview",
+      "page_id": "io",
+      "role": "navigation",
+      "component_ids": [
+        "nav_overview"
+      ]
+    },
+    {
+      "id": "io_nav_parameters",
+      "page_id": "io",
+      "role": "navigation",
+      "component_ids": [
+        "nav_parameters"
+      ]
+    },
+    {
+      "id": "io_nav_io",
+      "page_id": "io",
+      "role": "navigation",
+      "component_ids": [
+        "nav_io"
+      ]
+    },
+    {
+      "id": "io_captions",
+      "page_id": "io",
+      "role": "static",
+      "component_ids": [
+        "caption",
+        "volume_caption"
+      ]
+    },
+    {
+      "id": "io_io_input",
+      "page_id": "io",
+      "role": "parameter",
+      "component_ids": [
+        "io_input"
+      ],
+      "variable": "io_value"
+    },
+    {
+      "id": "io_io_value",
+      "page_id": "io",
+      "role": "reading",
+      "component_ids": [
+        "io_output"
+      ],
+      "variable": "io_value"
+    },
+    {
+      "id": "io_volume",
+      "page_id": "io",
+      "role": "reading",
+      "component_ids": [
+        "shared_volume"
+      ],
+      "variable": "volume"
+    }
+  ]
+}

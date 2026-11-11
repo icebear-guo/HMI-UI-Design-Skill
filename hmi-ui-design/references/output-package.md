@@ -1,6 +1,6 @@
 # 完整 UI 设计交付标准
 
-**1.05 MCGS适配分支**：用户在末尾确认MCGS导出后，除原有文件额外交付 handoff-spec.json、content-spec.csv、text-spec.csv、asset-spec.csv、mcgs-plan.json 和 validation.json，字段按 [handoff-schema.md](handoff-schema.md)。组件源、页面预览与导出文件必须同版本，接收方直接读清单，不反复核对原截图。
+本文的阶段/生产PNG约束只管理正式通用素材交付；HTML预览复制可以随时为本次所选控件即时渲染必要图片，不等待流程3，不批量导出未选中的素材。
 
 用户要求完整设计交付时，提交可解压、离线操作的HTML原型与设计标注包，不能只给截图、标注热区、提示词、说明文档或一张拼图。用户明确只要求规范、提示词、局部修改或评审时，按指定范围交付。
 
@@ -74,6 +74,3 @@ layer.type为button/control时，必须通过该实例的inventory引用asset_ro
 交付前检查 HTML 是否能离线操作、声明的功能是否实际实现、页面/独立文件是否完整、选层/缩放及字体参数是否准确，以及ZIP解压结构。按 [交互验收动作](interactive-preview.md) 检查瞬时复位、强制解除、导航目标、参数校验和仪表/棒图绑定。对文件/像素/纯逻辑、浏览器实际操作、目标平台导入分别记录结果；构建成功不等于浏览器交互、设备运行或现场验收已通过。
 
 构建后执行 [自动验收](automatic-acceptance.md)，输出机器可读报告。文件与纯逻辑检查不需要用户手工逐项操作；完整范围的浏览器或现场检查受阻时，报告保留未完成项，不用模拟测试替代真实界面验收。
-
-
-MCGS适配包仅在最终选择export后生成，选择与当前评审摘要绑定，详见 [mcgs-export-workflow.md](mcgs-export-workflow.md)。普通UI交付不因拒绝该适配而阻塞。

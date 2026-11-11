@@ -23,6 +23,5 @@ export逐态列asset_refs=[{state,asset_id}]，图片尺寸对应元素矩形。
 
 ## 检查
 
-asset_coverage.py检查登记图层、角色、状态、独立文件、尺寸、原生规格及文件引用，明确拒绝merged。export_handoff.py另外检查冻结source_inventory与实际控件逐项相等，缺组件/角色偷换时失败。两者都不能凭文件列表发现从未登记的图形，需对照已确认组件源/HTML目视核验盘点完整性。
+文字最终框、导航原生按钮归属与公共窗口机制见 [原生复制规则](mcgs-clipboard.md)。设备图鉴另按 [equipment-atlas.md](equipment-atlas.md) 检查，不能省略或只用方框占位。
 
-文字最终框、导航原生按钮归属与公共窗口机制见 [handoff-schema.md](handoff-schema.md)。设备图鉴另按 [equipment-atlas.md](equipment-atlas.md) 检查，不能省略或只用方框占位。

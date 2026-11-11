@@ -33,15 +33,11 @@
 {"mode":"visible","required_bbox_px":[4,3,210,111],"tolerance_px":2,"min_visible_fraction":0.5}
 ```
 
-bbox 使用组件画布的 LTRB；表示必须至少覆盖的可见内容范围，不是控件位置。`asset_quality.py` 检查 alpha 非空、内容 bbox、可选可见面积下限；export_handoff 自动调用。全透明仅允许真正设计为空态的 `{"mode":"empty_state","reason":"明确设计原因"}`，不能把丢失设备改成 empty_state。细管线、空心框、阴影和实体面板各自给合理预期，不使用统一面积阈值。bbox/面积检查仍不能发现所有内部缺笔，不能替代重组对照。
-
 ## 最终页面重组
 
 用最终导出 PNG 加可编辑文字/动态初值，按实际 z、页面/公共页关系重组；对照同版本源 HTML 渲染。不得重新调用源 SVG 代替待验 PNG。记录差异范围、透明边缘和可接受抗锯齿容差，逐页检查设备、面板、图标、管线、灯及公司署名。状态图做各态组件检查；页面初态通过不证明所有状态/交互通过。
 
-当前 export_handoff 返回 `status=partial`，checks.machine_spec/asset_content 可为 pass，rendered_composition/source_visual_inventory/native_display 等未执行项保留 not_checked/not_run。只有另外完成真实重组和视觉库存验证才能报告相应通过；不得手工改总状态来代替检查。
-
 最小代表页先覆盖新工厂和典型尺寸，验证后再扩多页；不要求固定行业、六页或固定设备。
 
-
 页面预览捕获项设置role="page_preview"并给brand_selector；渲染器读取实际DOM公司标签，检查文字、祖先可见样式及屏内矩形。manifest.company_name可给用户指定名称，缺省为“工控北极熊（抖音）”。缺节点、隐藏、错误文字或越出可视区会失败。这是DOM可见性检查，仍不证明没有被其他图层遮挡；资产导出项不包含此公司文字，署名继续由原生独立标签承载。
+
